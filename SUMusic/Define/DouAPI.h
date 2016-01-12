@@ -5,6 +5,12 @@
 //  Created by KevinSu on 16/1/12.
 //  Copyright © 2016年 KevinSu. All rights reserved.
 //
+/*
+ https://github.com/zonyitoo/doubanfm-qt/wiki/豆瓣FM-API
+ http://my.oschina.net/itfanr/blog/195130?fromerr=FotLJtKf
+ http://blog.sina.com.cn/s/blog_6f58a6200100zdvr.html
+ https://www.zhihu.com/question/19679351/answer/19145520
+ */
 
 #ifndef DouAPI_h
 #define DouAPI_h
