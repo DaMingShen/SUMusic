@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B4FA9351C4542E60033FE92 /* SUNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4FA9341C4542E60033FE92 /* SUNetwork.m */; settings = {ASSET_TAGS = (); }; };
+		2B7352F71C425EE5000C51C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352F61C425EE5000C51C5 /* main.m */; };
+		2B7352FA1C425EE5000C51C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352F91C425EE5000C51C5 /* AppDelegate.m */; };
+		2B7352FD1C425EE5000C51C5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352FC1C425EE5000C51C5 /* ViewController.m */; };
+		2B7353021C425EE5000C51C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353011C425EE5000C51C5 /* Assets.xcassets */; };
+		2B7353051C425EE5000C51C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353031C425EE5000C51C5 /* LaunchScreen.storyboard */; };
+		2B73531E1C426082000C51C5 /* SUPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73531D1C426082000C51C5 /* SUPlayerManager.m */; settings = {ASSET_TAGS = (); }; };
+		2B7353221C42623B000C51C5 /* SongInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7353211C42623B000C51C5 /* SongInfo.m */; settings = {ASSET_TAGS = (); }; };
+		2B7353271C428491000C51C5 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7353251C428491000C51C5 /* PlayerViewController.m */; settings = {ASSET_TAGS = (); }; };
+		2B7353281C428491000C51C5 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353261C428491000C51C5 /* PlayerViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		2B73532A1C428DBC000C51C5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353291C428DBC000C51C5 /* ViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		C0CC2742934E4E0C2A2BE3CC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C62326311B6DDD31F421887E /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		262DEA8BDAAA1AEC925980C1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2B4FA9311C4541E20033FE92 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		2B4FA9331C4542E60033FE92 /* SUNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUNetwork.h; sourceTree = "<group>"; };
+		2B4FA9341C4542E60033FE92 /* SUNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUNetwork.m; sourceTree = "<group>"; };
+		2B4FA9371C4543DE0033FE92 /* DouAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DouAPI.h; sourceTree = "<group>"; };
+		2B7352F21C425EE5000C51C5 /* SUMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SUMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7352F61C425EE5000C51C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2B7352F81C425EE5000C51C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2B7352F91C425EE5000C51C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2B7352FB1C425EE5000C51C5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2B7352FC1C425EE5000C51C5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2B7353011C425EE5000C51C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B7353041C425EE5000C51C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B7353061C425EE5000C51C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B73531C1C426082000C51C5 /* SUPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPlayerManager.h; sourceTree = "<group>"; };
+		2B73531D1C426082000C51C5 /* SUPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUPlayerManager.m; sourceTree = "<group>"; };
+		2B7353201C42623B000C51C5 /* SongInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongInfo.h; sourceTree = "<group>"; };
+		2B7353211C42623B000C51C5 /* SongInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongInfo.m; sourceTree = "<group>"; };
+		2B7353241C428491000C51C5 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		2B7353251C428491000C51C5 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		2B7353261C428491000C51C5 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
+		2B7353291C428DBC000C51C5 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C62326311B6DDD31F421887E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B7352EF1C425EE5000C51C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0CC2742934E4E0C2A2BE3CC /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FDE0E34720F855E05284BFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C62326311B6DDD31F421887E /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B4FA9321C45429E0033FE92 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2B4FA9331C4542E60033FE92 /* SUNetwork.h */,
+				2B4FA9341C4542E60033FE92 /* SUNetwork.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		2B4FA9361C4543A30033FE92 /* Define */ = {
+			isa = PBXGroup;
+			children = (
+				2B4FA9371C4543DE0033FE92 /* DouAPI.h */,
+			);
+			path = Define;
+			sourceTree = "<group>";
+		};
+		2B7352E91C425EE5000C51C5 = {
+			isa = PBXGroup;
+			children = (
+				2B7352F41C425EE5000C51C5 /* SUMusic */,
+				2B7352F31C425EE5000C51C5 /* Products */,
+				D9EFAA468740EBE0E4B17CC7 /* Pods */,
+				1FDE0E34720F855E05284BFC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2B7352F31C425EE5000C51C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B7352F21C425EE5000C51C5 /* SUMusic.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B7352F41C425EE5000C51C5 /* SUMusic */ = {
+			isa = PBXGroup;
+			children = (
+				2B4FA9361C4543A30033FE92 /* Define */,
+				2B4FA9321C45429E0033FE92 /* Network */,
+				2B73532B1C42928F000C51C5 /* VIew */,
+				2B7353231C428446000C51C5 /* Controller */,
+				2B73531F1C426219000C51C5 /* Model */,
+				2B73531B1C426047000C51C5 /* SUPlayer */,
+				2B7352F81C425EE5000C51C5 /* AppDelegate.h */,
+				2B7352F91C425EE5000C51C5 /* AppDelegate.m */,
+				2B7352FB1C425EE5000C51C5 /* ViewController.h */,
+				2B7352FC1C425EE5000C51C5 /* ViewController.m */,
+				2B4FA9311C4541E20033FE92 /* PrefixHeader.pch */,
+				2B7353291C428DBC000C51C5 /* ViewController.xib */,
+				2B7353011C425EE5000C51C5 /* Assets.xcassets */,
+				2B7353031C425EE5000C51C5 /* LaunchScreen.storyboard */,
+				2B7353061C425EE5000C51C5 /* Info.plist */,
+				2B7352F51C425EE5000C51C5 /* Supporting Files */,
+			);
+			path = SUMusic;
+			sourceTree = "<group>";
+		};
+		2B7352F51C425EE5000C51C5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B7352F61C425EE5000C51C5 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B73531B1C426047000C51C5 /* SUPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				2B73531C1C426082000C51C5 /* SUPlayerManager.h */,
+				2B73531D1C426082000C51C5 /* SUPlayerManager.m */,
+			);
+			path = SUPlayer;
+			sourceTree = "<group>";
+		};
+		2B73531F1C426219000C51C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2B7353201C42623B000C51C5 /* SongInfo.h */,
+				2B7353211C42623B000C51C5 /* SongInfo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2B7353231C428446000C51C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2B7353241C428491000C51C5 /* PlayerViewController.h */,
+				2B7353251C428491000C51C5 /* PlayerViewController.m */,
+				2B7353261C428491000C51C5 /* PlayerViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2B73532B1C42928F000C51C5 /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
+		D9EFAA468740EBE0E4B17CC7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */,
+				262DEA8BDAAA1AEC925980C1 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B7352F11C425EE5000C51C5 /* SUMusic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B7353091C425EE5000C51C5 /* Build configuration list for PBXNativeTarget "SUMusic" */;
+			buildPhases = (
+				F7111095EEB910E7612BB31E /* Check Pods Manifest.lock */,
+				2B7352EE1C425EE5000C51C5 /* Sources */,
+				2B7352EF1C425EE5000C51C5 /* Frameworks */,
+				2B7352F01C425EE5000C51C5 /* Resources */,
+				47BE7E354147805A459F77B7 /* Embed Pods Frameworks */,
+				60B8EF4612F662393AF40B38 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SUMusic;
+			productName = SUMusic;
+			productReference = 2B7352F21C425EE5000C51C5 /* SUMusic.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B7352EA1C425EE5000C51C5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = KevinSu;
+				TargetAttributes = {
+					2B7352F11C425EE5000C51C5 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = 2B7352ED1C425EE5000C51C5 /* Build configuration list for PBXProject "SUMusic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B7352E91C425EE5000C51C5;
+			productRefGroup = 2B7352F31C425EE5000C51C5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B7352F11C425EE5000C51C5 /* SUMusic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B7352F01C425EE5000C51C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B7353051C425EE5000C51C5 /* LaunchScreen.storyboard in Resources */,
+				2B7353281C428491000C51C5 /* PlayerViewController.xib in Resources */,
+				2B7353021C425EE5000C51C5 /* Assets.xcassets in Resources */,
+				2B73532A1C428DBC000C51C5 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		47BE7E354147805A459F77B7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60B8EF4612F662393AF40B38 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7111095EEB910E7612BB31E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B7352EE1C425EE5000C51C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B4FA9351C4542E60033FE92 /* SUNetwork.m in Sources */,
+				2B7352FD1C425EE5000C51C5 /* ViewController.m in Sources */,
+				2B7352FA1C425EE5000C51C5 /* AppDelegate.m in Sources */,
+				2B73531E1C426082000C51C5 /* SUPlayerManager.m in Sources */,
+				2B7352F71C425EE5000C51C5 /* main.m in Sources */,
+				2B7353221C42623B000C51C5 /* SongInfo.m in Sources */,
+				2B7353271C428491000C51C5 /* PlayerViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2B7353031C425EE5000C51C5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B7353041C425EE5000C51C5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2B7353071C425EE5000C51C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2B7353081C425EE5000C51C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B73530A1C425EE5000C51C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SUMusic/PrefixHeader.pch";
+				INFOPLIST_FILE = SUMusic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kevinSu.SUMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2B73530B1C425EE5000C51C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 262DEA8BDAAA1AEC925980C1 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SUMusic/PrefixHeader.pch";
+				INFOPLIST_FILE = SUMusic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kevinSu.SUMusic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B7352ED1C425EE5000C51C5 /* Build configuration list for PBXProject "SUMusic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B7353071C425EE5000C51C5 /* Debug */,
+				2B7353081C425EE5000C51C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B7353091C425EE5000C51C5 /* Build configuration list for PBXNativeTarget "SUMusic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B73530A1C425EE5000C51C5 /* Debug */,
+				2B73530B1C425EE5000C51C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2B7352EA1C425EE5000C51C5 /* Project object */;
+}
