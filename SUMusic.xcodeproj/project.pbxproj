@@ -40,7 +40,7 @@
 		B1A340141C4642190011867B /* SuFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FF01C4642190011867B /* SuFile.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340151C4642190011867B /* SuImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FF21C4642190011867B /* SuImageView.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340161C4642190011867B /* SuModelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FF41C4642190011867B /* SuModelTool.m */; settings = {ASSET_TAGS = (); }; };
-		B1A340171C4642190011867B /* SuNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FF61C4642190011867B /* SuNetwork.m */; settings = {ASSET_TAGS = (); }; };
+		B1A340171C4642190011867B /* SuNetworkMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FF61C4642190011867B /* SuNetworkMonitor.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340181C4642190011867B /* SUPictureScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FF81C4642190011867B /* SUPictureScroll.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340191C4642190011867B /* SuScreenAdaptation.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FFC1C4642190011867B /* SuScreenAdaptation.m */; settings = {ASSET_TAGS = (); }; };
 		B1A3401A1C4642190011867B /* SuString.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FFE1C4642190011867B /* SuString.m */; settings = {ASSET_TAGS = (); }; };
@@ -118,8 +118,8 @@
 		B1A33FF21C4642190011867B /* SuImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuImageView.m; sourceTree = "<group>"; };
 		B1A33FF31C4642190011867B /* SuModelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuModelTool.h; sourceTree = "<group>"; };
 		B1A33FF41C4642190011867B /* SuModelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuModelTool.m; sourceTree = "<group>"; };
-		B1A33FF51C4642190011867B /* SuNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuNetwork.h; sourceTree = "<group>"; };
-		B1A33FF61C4642190011867B /* SuNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuNetwork.m; sourceTree = "<group>"; };
+		B1A33FF51C4642190011867B /* SuNetworkMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuNetworkMonitor.h; sourceTree = "<group>"; };
+		B1A33FF61C4642190011867B /* SuNetworkMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuNetworkMonitor.m; sourceTree = "<group>"; };
 		B1A33FF71C4642190011867B /* SUPictureScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPictureScroll.h; sourceTree = "<group>"; };
 		B1A33FF81C4642190011867B /* SUPictureScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUPictureScroll.m; sourceTree = "<group>"; };
 		B1A33FFA1C4642190011867B /* SuScreenAdaptaionMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuScreenAdaptaionMacro.h; sourceTree = "<group>"; };
@@ -335,8 +335,8 @@
 				B1A33FF21C4642190011867B /* SuImageView.m */,
 				B1A33FF31C4642190011867B /* SuModelTool.h */,
 				B1A33FF41C4642190011867B /* SuModelTool.m */,
-				B1A33FF51C4642190011867B /* SuNetwork.h */,
-				B1A33FF61C4642190011867B /* SuNetwork.m */,
+				B1A33FF51C4642190011867B /* SuNetworkMonitor.h */,
+				B1A33FF61C4642190011867B /* SuNetworkMonitor.m */,
 				B1A33FF71C4642190011867B /* SUPictureScroll.h */,
 				B1A33FF81C4642190011867B /* SUPictureScroll.m */,
 				B1A33FF91C4642190011867B /* SuScreenAdaptation */,
@@ -527,7 +527,7 @@
 				B1A3400A1C4642190011867B /* UIWindow+SU.m in Sources */,
 				2B73531E1C426082000C51C5 /* SUPlayerManager.m in Sources */,
 				B1A340051C4642190011867B /* UIColor+SU.m in Sources */,
-				B1A340171C4642190011867B /* SuNetwork.m in Sources */,
+				B1A340171C4642190011867B /* SuNetworkMonitor.m in Sources */,
 				2B7352F71C425EE5000C51C5 /* main.m in Sources */,
 				B1A3400F1C4642190011867B /* CustomTabbar.m in Sources */,
 				B1A3400C1C4642190011867B /* SuCaptureCodeView.m in Sources */,
@@ -648,7 +648,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SUMusic/PrefixHeader.pch";
 				INFOPLIST_FILE = SUMusic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinSu.SUMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -663,7 +663,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SUMusic/PrefixHeader.pch";
 				INFOPLIST_FILE = SUMusic/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinSu.SUMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";

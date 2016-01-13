@@ -6,9 +6,9 @@
 //  Copyright © 2015年 com.revenco.company. All rights reserved.
 //
 
-#import "SuNetwork.h"
+#import "SuNetworkMonitor.h"
 
-@interface SuNetwork ()<UIAlertViewDelegate> {
+@interface SuNetworkMonitor ()<UIAlertViewDelegate> {
     
     AFNetworkReachabilityManager * _networkManager;
     UIAlertView * _alertView;
@@ -16,16 +16,16 @@
 
 @end
 
-@implementation SuNetwork
+@implementation SuNetworkMonitor
 
 
 + (instancetype)manager {
     
-    static SuNetwork * manager;
+    static SuNetworkMonitor * manager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        manager = [[SuNetwork alloc]init];
+        manager = [[SuNetworkMonitor alloc]init];
     });
     return manager;
 }

@@ -10,9 +10,12 @@
 #define PrefixHeader_pch
 
 #import <AFNetworking.h>
-
+#import <POP.h>
 
 #import "SUNetwork.h"
+#import "SuDefine.h"
+#import "SuCategory.h"
+#import "SuTool.h"
 #import "DouAPI.h"
 
 #endif /* PrefixHeader_pch */

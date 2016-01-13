@@ -47,7 +47,7 @@
     if (self.currentSongIndex <= self.songList.count - 1) {
         
         self.currentSong = self.songList[self.currentSongIndex];
-        [self.player setContentURL:self.currentSong.url];
+        [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
         [self restartPlay];
     }
 }

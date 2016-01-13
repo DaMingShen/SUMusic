@@ -121,7 +121,7 @@
     
     if (self.callBackBlack) {
         
-        self.callBackBlack(self.sourceArray[indexPath.row],indexPath.row);
+        self.callBackBlack(self.sourceArray[indexPath.row],(int)indexPath.row);
     }
     
     [self dismissList];

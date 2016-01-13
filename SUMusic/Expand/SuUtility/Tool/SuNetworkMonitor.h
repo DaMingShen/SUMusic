@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SuNetwork : NSObject
+@interface SuNetworkMonitor : NSObject
 
 + (instancetype)manager;
 

@@ -16,7 +16,7 @@
 #import "SuModelTool.h"
 #import "SuImageView.h"
 #import "SuViewTool.h"
-#import "SuNetwork.h"
+#import "SuNetworkMonitor.h"
 
 //#import "WZOperation.h"
 

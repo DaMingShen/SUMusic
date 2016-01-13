@@ -11,3 +11,10 @@
 @implementation SongInfo
 
 @end
+
+@implementation Singers
+
+@end
+
+
+

@@ -27,9 +27,9 @@
      NSArray * songNames = @[@"周慧敏 - 痴心换情深.mp3", @"张宇 - 曲终人散.mp3", @"张芸京 - 偏爱.mp3"];
     for (NSString * name in songNames) {
         SongInfo * info = [[SongInfo alloc]init];
-        info.name = name;
+        info.title = name;
 //        info.url = [[NSBundle mainBundle]URLForResource:name withExtension:nil];
-        info.url = [NSURL URLWithString:@"http://mr7.doubanio.com/1f079ad8113fde4c2ccc2f042f3482f1/0/fm/song/p1383671_128k.mp4"];
+        info.url = @"http://mr7.doubanio.com/1f079ad8113fde4c2ccc2f042f3482f1/0/fm/song/p1383671_128k.mp4";
         [self.player.songList addObject:info];
     }
     [self.player startPlay];
