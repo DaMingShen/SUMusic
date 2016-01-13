@@ -12,6 +12,7 @@
 #import <AFNetworking.h>
 #import <POP.h>
 
+#import "SSSJsonManager.h"
 #import "SUNetwork.h"
 #import "SuDefine.h"
 #import "SuCategory.h"

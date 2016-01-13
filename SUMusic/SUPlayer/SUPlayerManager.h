@@ -20,7 +20,7 @@
 @property (nonatomic, strong) MPMoviePlayerController * player;
 
 /*
- * 播放器
+ * 播放器页面
  */
 @property (nonatomic, strong) PlayerViewController * playerVC;
 

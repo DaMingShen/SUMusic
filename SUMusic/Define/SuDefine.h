@@ -99,10 +99,11 @@ selector:_selector name:_name object:nil];
 
 
 //网络相关
-#define NetResult           @"result"
+#define NetResult           @"r"
 #define NetResultCode       @"code"
 #define NetOk               0
 #define NetData             @"data"
+#define NetSong             @"song"
 #define NetMessage          @"msg"
 #define NetInvalidateToken  @"invalidetoken"
 #define HTTPSchema          @"http:"

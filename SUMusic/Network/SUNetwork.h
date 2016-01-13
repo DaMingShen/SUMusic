@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SongInfo.h"
 
 @interface SUNetwork : NSObject
 
@@ -14,6 +15,6 @@
 
 + (void)fetchChannels;
 
-+ (void)fetchPlayList;
++ (void)fetchPlayListWithCompletion:(void(^)(SongInfo * song))completion;
 
 @end

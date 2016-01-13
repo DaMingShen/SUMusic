@@ -31,9 +31,6 @@
     
     //初始化
     self.player = [[MPMoviePlayerController alloc]init];
-    self.songList = [NSMutableArray array];
-    self.currentSongIndex = 0;
-    
     self.playerVC = [[PlayerViewController alloc]init];
     
     //播放完毕后的通知
@@ -43,13 +40,15 @@
 #pragma mark - 播放控制
 - (void)startPlay {
     
+    [SUNetwork fetchPlayListWithCompletion:^(SongInfo *song) {
+        self.currentSong = song;
+        if (self.currentSong) {
+            [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
+            [self restartPlay];
+        }
+    }];
     
-    if (self.currentSongIndex <= self.songList.count - 1) {
-        
-        self.currentSong = self.songList[self.currentSongIndex];
-        [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
-        [self restartPlay];
-    }
+    
 }
 
 - (void)pausePlay {
@@ -67,13 +66,12 @@
 }
 
 - (void)playNext {
-    self.currentSongIndex ++;
+    [self pausePlay];
     [self startPlay];
 }
 
 - (void)playLast {
-    self.currentSongIndex --;
-    [self startPlay];
+    
 }
 
 - (float)bufferProgress {
@@ -86,15 +84,15 @@
         int64_t byte = currentEvent.numberOfBytesTransferred;
         int64_t bytes = currentEvent.numberOfBytesTransferred >> 10;
         NSMutableString *strBytes = [[NSMutableString alloc] initWithCapacity:100];
-        [strBytes appendFormat:@"totalSize = %lld byte", bytes];
-        NSLog(@"%@",strBytes);
+//        [strBytes appendFormat:@"totalSize = %lld byte", bytes];
+//        NSLog(@"%@",strBytes);
         if (bytes > 1024)
         {
             bytes = bytes >> 10;
 //            [bytesS setString:@""];
 //            [bytesS appendFormat:@"total = %d M", bytes];
         }
-        NSLog(@"byte = %f M bytes = %lld", (float)byte / (1024 * 1024), bytes);
+//        NSLog(@"byte = %f M bytes = %lld", (float)byte / (1024 * 1024), bytes);
     }
     return 0.f;
 }

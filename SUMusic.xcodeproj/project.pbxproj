@@ -18,6 +18,9 @@
 		2B7353271C428491000C51C5 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7353251C428491000C51C5 /* PlayerViewController.m */; settings = {ASSET_TAGS = (); }; };
 		2B7353281C428491000C51C5 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353261C428491000C51C5 /* PlayerViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		2B73532A1C428DBC000C51C5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353291C428DBC000C51C5 /* ViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		2BB57D9A1C46A45B004A1B27 /* NSObject+SSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57D981C46A45B004A1B27 /* NSObject+SSS.m */; settings = {ASSET_TAGS = (); }; };
+		2BB57D9D1C46A4EB004A1B27 /* SUNetwork+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57D9C1C46A4EB004A1B27 /* SUNetwork+Valid.m */; settings = {ASSET_TAGS = (); }; };
+		2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB57D9F1C46AED5004A1B27 /* Player.xcassets */; settings = {ASSET_TAGS = (); }; };
 		B1A340011C4642190011867B /* NSDate+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC41C4642190011867B /* NSDate+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340021C4642190011867B /* NSDictionary+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC61C4642190011867B /* NSDictionary+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340031C4642190011867B /* NSString+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC81C4642190011867B /* NSString+SU.m */; settings = {ASSET_TAGS = (); }; };
@@ -60,7 +63,7 @@
 		2B7352F91C425EE5000C51C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2B7352FB1C425EE5000C51C5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2B7352FC1C425EE5000C51C5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		2B7353011C425EE5000C51C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B7353011C425EE5000C51C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		2B7353041C425EE5000C51C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B7353061C425EE5000C51C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B73531C1C426082000C51C5 /* SUPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPlayerManager.h; sourceTree = "<group>"; };
@@ -71,6 +74,12 @@
 		2B7353251C428491000C51C5 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		2B7353261C428491000C51C5 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
 		2B7353291C428DBC000C51C5 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		2BB57D971C46A45B004A1B27 /* NSObject+SSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SSS.h"; sourceTree = "<group>"; };
+		2BB57D981C46A45B004A1B27 /* NSObject+SSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SSS.m"; sourceTree = "<group>"; };
+		2BB57D991C46A45B004A1B27 /* SSSJsonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSSJsonManager.h; sourceTree = "<group>"; };
+		2BB57D9B1C46A4EB004A1B27 /* SUNetwork+Valid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SUNetwork+Valid.h"; sourceTree = "<group>"; };
+		2BB57D9C1C46A4EB004A1B27 /* SUNetwork+Valid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SUNetwork+Valid.m"; sourceTree = "<group>"; };
+		2BB57D9F1C46AED5004A1B27 /* Player.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Player.xcassets; sourceTree = "<group>"; };
 		AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A33FC31C4642190011867B /* NSDate+SU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SU.h"; sourceTree = "<group>"; };
 		B1A33FC41C4642190011867B /* NSDate+SU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SU.m"; sourceTree = "<group>"; };
@@ -158,6 +167,8 @@
 			children = (
 				2B4FA9331C4542E60033FE92 /* SUNetwork.h */,
 				2B4FA9341C4542E60033FE92 /* SUNetwork.m */,
+				2BB57D9B1C46A4EB004A1B27 /* SUNetwork+Valid.h */,
+				2BB57D9C1C46A4EB004A1B27 /* SUNetwork+Valid.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -192,6 +203,7 @@
 		2B7352F41C425EE5000C51C5 /* SUMusic */ = {
 			isa = PBXGroup;
 			children = (
+				2BB57D9E1C46AE93004A1B27 /* Resource */,
 				B1A33FC01C4641FD0011867B /* Expand */,
 				2B4FA9361C4543A30033FE92 /* Define */,
 				2B4FA9321C45429E0033FE92 /* Network */,
@@ -205,7 +217,6 @@
 				2B7352FC1C425EE5000C51C5 /* ViewController.m */,
 				2B4FA9311C4541E20033FE92 /* PrefixHeader.pch */,
 				2B7353291C428DBC000C51C5 /* ViewController.xib */,
-				2B7353011C425EE5000C51C5 /* Assets.xcassets */,
 				2B7353031C425EE5000C51C5 /* LaunchScreen.storyboard */,
 				2B7353061C425EE5000C51C5 /* Info.plist */,
 				2B7352F51C425EE5000C51C5 /* Supporting Files */,
@@ -256,9 +267,29 @@
 			path = VIew;
 			sourceTree = "<group>";
 		};
+		2BB57D961C46A43A004A1B27 /* SSSJson */ = {
+			isa = PBXGroup;
+			children = (
+				2BB57D971C46A45B004A1B27 /* NSObject+SSS.h */,
+				2BB57D981C46A45B004A1B27 /* NSObject+SSS.m */,
+				2BB57D991C46A45B004A1B27 /* SSSJsonManager.h */,
+			);
+			path = SSSJson;
+			sourceTree = "<group>";
+		};
+		2BB57D9E1C46AE93004A1B27 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2BB57D9F1C46AED5004A1B27 /* Player.xcassets */,
+				2B7353011C425EE5000C51C5 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		B1A33FC01C4641FD0011867B /* Expand */ = {
 			isa = PBXGroup;
 			children = (
+				2BB57D961C46A43A004A1B27 /* SSSJson */,
 				B1A33FC11C4642190011867B /* SuUtility */,
 			);
 			path = Expand;
@@ -446,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7353051C425EE5000C51C5 /* LaunchScreen.storyboard in Resources */,
+				2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */,
 				2B7353281C428491000C51C5 /* PlayerViewController.xib in Resources */,
 				2B7353021C425EE5000C51C5 /* Assets.xcassets in Resources */,
 				2B73532A1C428DBC000C51C5 /* ViewController.xib in Resources */,
@@ -508,6 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1A340131C4642190011867B /* SuDropDownList.m in Sources */,
+				2BB57D9D1C46A4EB004A1B27 /* SUNetwork+Valid.m in Sources */,
 				B1A340041C4642190011867B /* UIButton+SU.m in Sources */,
 				B1A340011C4642190011867B /* NSDate+SU.m in Sources */,
 				B1A340141C4642190011867B /* SuFile.m in Sources */,
@@ -529,6 +562,7 @@
 				B1A340051C4642190011867B /* UIColor+SU.m in Sources */,
 				B1A340171C4642190011867B /* SuNetworkMonitor.m in Sources */,
 				2B7352F71C425EE5000C51C5 /* main.m in Sources */,
+				2BB57D9A1C46A45B004A1B27 /* NSObject+SSS.m in Sources */,
 				B1A3400F1C4642190011867B /* CustomTabbar.m in Sources */,
 				B1A3400C1C4642190011867B /* SuCaptureCodeView.m in Sources */,
 				B1A3400B1C4642190011867B /* SuButton.m in Sources */,
