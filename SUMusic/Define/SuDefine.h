@@ -116,7 +116,7 @@ selector:_selector name:_name object:nil];
 #define NetworkDisable @"NetworkIsNotReachability"
 
 //通知
-#define UpdateUserInfoSUCC @"UpdateUserInfoSUCC"
+#define SONGBEGIN @"BeginPlayingSong"
 #define UpdateUserInfoFAIL @"UpdateUserInfoFAIL"
 
 //默认图片

@@ -10,17 +10,17 @@
 		2B4FA9351C4542E60033FE92 /* SUNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4FA9341C4542E60033FE92 /* SUNetwork.m */; settings = {ASSET_TAGS = (); }; };
 		2B7352F71C425EE5000C51C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352F61C425EE5000C51C5 /* main.m */; };
 		2B7352FA1C425EE5000C51C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352F91C425EE5000C51C5 /* AppDelegate.m */; };
-		2B7352FD1C425EE5000C51C5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352FC1C425EE5000C51C5 /* ViewController.m */; };
 		2B7353021C425EE5000C51C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353011C425EE5000C51C5 /* Assets.xcassets */; };
 		2B7353051C425EE5000C51C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353031C425EE5000C51C5 /* LaunchScreen.storyboard */; };
 		2B73531E1C426082000C51C5 /* SUPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73531D1C426082000C51C5 /* SUPlayerManager.m */; settings = {ASSET_TAGS = (); }; };
 		2B7353221C42623B000C51C5 /* SongInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7353211C42623B000C51C5 /* SongInfo.m */; settings = {ASSET_TAGS = (); }; };
-		2B7353271C428491000C51C5 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7353251C428491000C51C5 /* PlayerViewController.m */; settings = {ASSET_TAGS = (); }; };
-		2B7353281C428491000C51C5 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353261C428491000C51C5 /* PlayerViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		2B73532A1C428DBC000C51C5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353291C428DBC000C51C5 /* ViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		2B7353281C428491000C51C5 /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353261C428491000C51C5 /* PlayViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		2BB57D9A1C46A45B004A1B27 /* NSObject+SSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57D981C46A45B004A1B27 /* NSObject+SSS.m */; settings = {ASSET_TAGS = (); }; };
 		2BB57D9D1C46A4EB004A1B27 /* SUNetwork+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB57D9C1C46A4EB004A1B27 /* SUNetwork+Valid.m */; settings = {ASSET_TAGS = (); }; };
 		2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB57D9F1C46AED5004A1B27 /* Player.xcassets */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCA11C4B5A9800CFE078 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFFC9F1C4B5A9800CFE078 /* HomeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCA21C4B5A9800CFE078 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCA01C4B5A9800CFE078 /* HomeViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCA51C4B62FC00CFE078 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFFCA41C4B62FC00CFE078 /* PlayViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340011C4642190011867B /* NSDate+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC41C4642190011867B /* NSDate+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340021C4642190011867B /* NSDictionary+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC61C4642190011867B /* NSDictionary+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340031C4642190011867B /* NSString+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC81C4642190011867B /* NSString+SU.m */; settings = {ASSET_TAGS = (); }; };
@@ -61,8 +61,6 @@
 		2B7352F61C425EE5000C51C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B7352F81C425EE5000C51C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B7352F91C425EE5000C51C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2B7352FB1C425EE5000C51C5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2B7352FC1C425EE5000C51C5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2B7353011C425EE5000C51C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		2B7353041C425EE5000C51C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B7353061C425EE5000C51C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,16 +68,18 @@
 		2B73531D1C426082000C51C5 /* SUPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUPlayerManager.m; sourceTree = "<group>"; };
 		2B7353201C42623B000C51C5 /* SongInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongInfo.h; sourceTree = "<group>"; };
 		2B7353211C42623B000C51C5 /* SongInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongInfo.m; sourceTree = "<group>"; };
-		2B7353241C428491000C51C5 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
-		2B7353251C428491000C51C5 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
-		2B7353261C428491000C51C5 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
-		2B7353291C428DBC000C51C5 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		2B7353261C428491000C51C5 /* PlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
 		2BB57D971C46A45B004A1B27 /* NSObject+SSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SSS.h"; sourceTree = "<group>"; };
 		2BB57D981C46A45B004A1B27 /* NSObject+SSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SSS.m"; sourceTree = "<group>"; };
 		2BB57D991C46A45B004A1B27 /* SSSJsonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSSJsonManager.h; sourceTree = "<group>"; };
 		2BB57D9B1C46A4EB004A1B27 /* SUNetwork+Valid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SUNetwork+Valid.h"; sourceTree = "<group>"; };
 		2BB57D9C1C46A4EB004A1B27 /* SUNetwork+Valid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SUNetwork+Valid.m"; sourceTree = "<group>"; };
 		2BB57D9F1C46AED5004A1B27 /* Player.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Player.xcassets; sourceTree = "<group>"; };
+		2BDFFC9E1C4B5A9800CFE078 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		2BDFFC9F1C4B5A9800CFE078 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		2BDFFCA01C4B5A9800CFE078 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		2BDFFCA31C4B62FC00CFE078 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		2BDFFCA41C4B62FC00CFE078 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A33FC31C4642190011867B /* NSDate+SU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SU.h"; sourceTree = "<group>"; };
 		B1A33FC41C4642190011867B /* NSDate+SU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SU.m"; sourceTree = "<group>"; };
@@ -213,10 +213,7 @@
 				2B73531B1C426047000C51C5 /* SUPlayer */,
 				2B7352F81C425EE5000C51C5 /* AppDelegate.h */,
 				2B7352F91C425EE5000C51C5 /* AppDelegate.m */,
-				2B7352FB1C425EE5000C51C5 /* ViewController.h */,
-				2B7352FC1C425EE5000C51C5 /* ViewController.m */,
 				2B4FA9311C4541E20033FE92 /* PrefixHeader.pch */,
-				2B7353291C428DBC000C51C5 /* ViewController.xib */,
 				2B7353031C425EE5000C51C5 /* LaunchScreen.storyboard */,
 				2B7353061C425EE5000C51C5 /* Info.plist */,
 				2B7352F51C425EE5000C51C5 /* Supporting Files */,
@@ -253,9 +250,12 @@
 		2B7353231C428446000C51C5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2B7353241C428491000C51C5 /* PlayerViewController.h */,
-				2B7353251C428491000C51C5 /* PlayerViewController.m */,
-				2B7353261C428491000C51C5 /* PlayerViewController.xib */,
+				2BDFFC9E1C4B5A9800CFE078 /* HomeViewController.h */,
+				2BDFFC9F1C4B5A9800CFE078 /* HomeViewController.m */,
+				2BDFFCA01C4B5A9800CFE078 /* HomeViewController.xib */,
+				2BDFFCA31C4B62FC00CFE078 /* PlayViewController.h */,
+				2BDFFCA41C4B62FC00CFE078 /* PlayViewController.m */,
+				2B7353261C428491000C51C5 /* PlayViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -478,9 +478,9 @@
 			files = (
 				2B7353051C425EE5000C51C5 /* LaunchScreen.storyboard in Resources */,
 				2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */,
-				2B7353281C428491000C51C5 /* PlayerViewController.xib in Resources */,
+				2B7353281C428491000C51C5 /* PlayViewController.xib in Resources */,
 				2B7353021C425EE5000C51C5 /* Assets.xcassets in Resources */,
-				2B73532A1C428DBC000C51C5 /* ViewController.xib in Resources */,
+				2BDFFCA21C4B5A9800CFE078 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,7 +547,6 @@
 				B1A340091C4642190011867B /* UIView+SU.m in Sources */,
 				2B4FA9351C4542E60033FE92 /* SUNetwork.m in Sources */,
 				B1A3401B1C4642190011867B /* SuViewTool.m in Sources */,
-				2B7352FD1C425EE5000C51C5 /* ViewController.m in Sources */,
 				B1A340061C4642190011867B /* UIImage+SU.m in Sources */,
 				B1A340021C4642190011867B /* NSDictionary+SU.m in Sources */,
 				B1A3401A1C4642190011867B /* SuString.m in Sources */,
@@ -557,6 +556,7 @@
 				2B7352FA1C425EE5000C51C5 /* AppDelegate.m in Sources */,
 				B1A340121C4642190011867B /* SuDate.m in Sources */,
 				B1A3400E1C4642190011867B /* SuAudioTool.m in Sources */,
+				2BDFFCA51C4B62FC00CFE078 /* PlayViewController.m in Sources */,
 				B1A3400A1C4642190011867B /* UIWindow+SU.m in Sources */,
 				2B73531E1C426082000C51C5 /* SUPlayerManager.m in Sources */,
 				B1A340051C4642190011867B /* UIColor+SU.m in Sources */,
@@ -569,12 +569,12 @@
 				B1A340181C4642190011867B /* SUPictureScroll.m in Sources */,
 				B1A3400D1C4642190011867B /* SuTabBarController.m in Sources */,
 				B1A340101C4642190011867B /* SphereMenu.m in Sources */,
+				2BDFFCA11C4B5A9800CFE078 /* HomeViewController.m in Sources */,
 				B1A340031C4642190011867B /* NSString+SU.m in Sources */,
 				2B7353221C42623B000C51C5 /* SongInfo.m in Sources */,
 				B1A340191C4642190011867B /* SuScreenAdaptation.m in Sources */,
 				B1A340071C4642190011867B /* UILabel+SU.m in Sources */,
 				B1A340161C4642190011867B /* SuModelTool.m in Sources */,
-				2B7353271C428491000C51C5 /* PlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

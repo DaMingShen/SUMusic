@@ -7,9 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <AVFoundation/AVFoundation.h>
-#import "ViewController.h"
-#import "SUPlayerManager.h"
+#import "HomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,17 +15,20 @@
 
 @implementation AppDelegate
 
++ (AppDelegate *)delegate {
+    return [UIApplication sharedApplication].delegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    ViewController * vc = [[ViewController alloc]init];
-    self.window.rootViewController = vc;
+    HomeViewController * homeVC = [[HomeViewController alloc]init];
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:homeVC];
+    self.window.rootViewController = nav;
     
-    [[SUPlayerManager manager]initialPlayer];
-//    AVAudioSession * session = [[AVAudioSession alloc]init];
-//    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-//    [session setActive:YES error:nil];
+    self.player = [SUPlayerManager manager];
+    [self.player initialPlayer];
+    self.playView = [[PlayViewController alloc]init];
     
     [self.window makeKeyAndVisible];
     

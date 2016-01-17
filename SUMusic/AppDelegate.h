@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SUPlayerManager.h"
+#import "PlayViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, strong)SUPlayerManager * player;
+
+@property (nonatomic, strong)PlayViewController * playView;
+
++ (AppDelegate *)delegate;
 
 @end
 

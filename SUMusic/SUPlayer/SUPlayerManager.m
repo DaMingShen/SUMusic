@@ -8,7 +8,6 @@
 
 #import "SUPlayerManager.h"
 #import "SongInfo.h"
-#import "PlayerViewController.h"
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
@@ -31,7 +30,10 @@
     
     //初始化
     self.player = [[MPMoviePlayerController alloc]init];
-    self.playerVC = [[PlayerViewController alloc]init];
+    
+    AVAudioSession * session = [[AVAudioSession alloc]init];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [session setActive:YES error:nil];
     
     //播放完毕后的通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playNext) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
@@ -45,6 +47,7 @@
         if (self.currentSong) {
             [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
             [self restartPlay];
+            SendNotify(SONGBEGIN, nil);
         }
     }];
     
@@ -76,6 +79,7 @@
 
 - (float)bufferProgress {
     
+    /*
     NSArray *events = self.player.accessLog.events;
     for (int i = 0; i < events.count; i++)
     {
@@ -94,25 +98,8 @@
         }
 //        NSLog(@"byte = %f M bytes = %lld", (float)byte / (1024 * 1024), bytes);
     }
+     */
     return 0.f;
-}
-
-#pragma mark - 界面控制
-- (void)show {
-    
-    self.playerVC.view.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT);
-    [KEY_WINDOW addSubview:self.playerVC.view];
-    [UIView animateWithDuration:0.5 animations:^{
-        self.playerVC.view.center = SCREEN_CENTER;
-    }];
-}
-
-- (void)hide {
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        self.playerVC.view.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT);
-    }];
-    [self.playerVC.view removeFromSuperview];
 }
 
 @end

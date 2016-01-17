@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayViewController">
+            <connections>
+                <outlet property="banSong" destination="KfP-87-QmB" id="g3m-UP-39E"/>
+                <outlet property="loveSong" destination="Um2-r7-Isy" id="Z7R-eA-VcL"/>
+                <outlet property="nextSong" destination="95n-j3-iyN" id="X9c-of-VoK"/>
+                <outlet property="songConver" destination="Lv0-2S-RAE" id="JNB-xt-qV4"/>
+                <outlet property="songName" destination="IBo-4D-nWp" id="ti7-hT-uac"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="Dfo-DG-TI4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" userLabel="PlayView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <userGuides>
+                <userLayoutGuide location="595" affinity="minY"/>
+            </userGuides>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1q-Lq-Qud" userLabel="bottom">
+                    <rect key="frame" x="0.0" y="547" width="375" height="120"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="95n-j3-iyN" userLabel="next">
+                            <rect key="frame" x="264" y="44" width="34" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="cPB-v9-1Rx"/>
+                                <constraint firstAttribute="width" constant="34" id="sMq-eI-hRB"/>
+                            </constraints>
+                            <state key="normal" image="ic_action_next"/>
+                            <state key="disabled" image="ic_action_next_disable"/>
+                            <state key="highlighted" image="ic_action_next_pressed"/>
+                            <connections>
+                                <action selector="playNextSong:" destination="-1" eventType="touchUpInside" id="fwD-ZO-E4w"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfP-87-QmB" userLabel="next">
+                            <rect key="frame" x="76" y="44" width="34" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="34" id="K0M-Pb-1Vf"/>
+                                <constraint firstAttribute="height" constant="32" id="o47-Gr-28P"/>
+                            </constraints>
+                            <state key="normal" image="ic_action_ban"/>
+                            <state key="disabled" image="ic_action_ban_disable"/>
+                            <state key="highlighted" image="ic_action_ban_pressed"/>
+                            <connections>
+                                <action selector="banCurrentSong:" destination="-1" eventType="touchUpInside" id="JmV-DW-HFI"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Um2-r7-Isy" userLabel="favor">
+                            <rect key="frame" x="170" y="44" width="34" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="31A-wb-zrD"/>
+                                <constraint firstAttribute="width" constant="34" id="leQ-gx-St3"/>
+                            </constraints>
+                            <state key="normal" image="ic_action_unfav"/>
+                            <state key="disabled" image="ic_action_fav_disable"/>
+                            <state key="selected" image="ic_action_fav"/>
+                            <state key="highlighted" image="ic_action_unfav_pressed"/>
+                            <connections>
+                                <action selector="loveCurrentSong:" destination="-1" eventType="touchUpInside" id="Qx2-2w-h55"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="KfP-87-QmB" firstAttribute="centerX" secondItem="e1q-Lq-Qud" secondAttribute="centerX" multiplier="0.5" id="18V-oA-keH"/>
+                        <constraint firstItem="95n-j3-iyN" firstAttribute="centerY" secondItem="e1q-Lq-Qud" secondAttribute="centerY" id="Bfg-qs-T1K"/>
+                        <constraint firstItem="Um2-r7-Isy" firstAttribute="centerX" secondItem="e1q-Lq-Qud" secondAttribute="centerX" id="KVh-wM-as3"/>
+                        <constraint firstItem="95n-j3-iyN" firstAttribute="centerX" secondItem="e1q-Lq-Qud" secondAttribute="centerX" multiplier="1.5" id="Sq8-A9-XG8"/>
+                        <constraint firstItem="Um2-r7-Isy" firstAttribute="centerY" secondItem="e1q-Lq-Qud" secondAttribute="centerY" id="war-TK-7ea"/>
+                        <constraint firstItem="KfP-87-QmB" firstAttribute="centerY" secondItem="e1q-Lq-Qud" secondAttribute="centerY" id="xVG-CT-nxZ"/>
+                        <constraint firstAttribute="height" constant="120" id="y4G-vV-phq"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-2S-RAE" userLabel="cover">
+                    <rect key="frame" x="67" y="214" width="240" height="240"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="240" id="Hvu-D6-QeH"/>
+                        <constraint firstAttribute="width" constant="240" id="KGq-Dc-9eC"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBo-4D-nWp">
+                    <rect key="frame" x="67" y="79" width="240" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.41450089350000002" green="0.34725437129999998" blue="0.76207386359999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.023529411760000001" green="0.69803921570000005" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Lv0-2S-RAE" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="1mN-Tw-Bhl"/>
+                <constraint firstItem="Lv0-2S-RAE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Am7-WY-Z9D"/>
+                <constraint firstItem="e1q-Lq-Qud" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Flg-Sd-154"/>
+                <constraint firstAttribute="bottom" secondItem="e1q-Lq-Qud" secondAttribute="bottom" id="PIR-r8-A9A"/>
+                <constraint firstAttribute="trailing" secondItem="e1q-Lq-Qud" secondAttribute="trailing" id="d3a-U5-8I6"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="245.5" y="318.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_action_ban" width="32" height="36"/>
+        <image name="ic_action_ban_disable" width="32" height="36"/>
+        <image name="ic_action_ban_pressed" width="32" height="36"/>
+        <image name="ic_action_fav" width="34" height="32"/>
+        <image name="ic_action_fav_disable" width="34" height="32"/>
+        <image name="ic_action_next" width="32" height="32"/>
+        <image name="ic_action_next_disable" width="32" height="32"/>
+        <image name="ic_action_next_pressed" width="32" height="32"/>
+        <image name="ic_action_unfav" width="34" height="32"/>
+        <image name="ic_action_unfav_pressed" width="34" height="32"/>
+    </resources>
+</document>

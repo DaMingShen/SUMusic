@@ -9,7 +9,10 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#import <AVFoundation/AVFoundation.h>
+
 #import <AFNetworking.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import <POP.h>
 
 #import "SSSJsonManager.h"
@@ -18,5 +21,8 @@
 #import "SuCategory.h"
 #import "SuTool.h"
 #import "DouAPI.h"
+
+#import "AppDelegate.h"
+
 
 #endif /* PrefixHeader_pch */

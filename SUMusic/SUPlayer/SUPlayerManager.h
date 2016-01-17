@@ -11,18 +11,12 @@
 
 
 @class SongInfo;
-@class PlayerViewController;
 @interface SUPlayerManager : NSObject
 
 /*
  * 播放器
  */
 @property (nonatomic, strong) MPMoviePlayerController * player;
-
-/*
- * 播放器页面
- */
-@property (nonatomic, strong) PlayerViewController * playerVC;
 
 /*
  * 播放器播放状态
@@ -97,6 +91,5 @@
  */
 - (void)playLast;
 
-- (void)show;
 
 @end
