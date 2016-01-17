@@ -104,7 +104,7 @@ selector:_selector name:_name object:nil];
 #define NetOk               0
 #define NetData             @"data"
 #define NetSong             @"song"
-#define NetMessage          @"msg"
+#define NetChannel          @"channels"
 #define NetInvalidateToken  @"invalidetoken"
 #define HTTPSchema          @"http:"
 #define HTTPGET             @"GET"

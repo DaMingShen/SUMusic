@@ -23,7 +23,8 @@ typedef NS_ENUM(NSInteger, OperationType) {
 
 + (AFHTTPRequestOperationManager *)manager;
 
-+ (void)fetchChannels;
+#pragma mark - 频道列表
++ (void)fetchChannelsWithCompletion:(void(^)(BOOL isSucc, NSArray * channels))completion;
 
 #pragma mark - 登陆
 + (void)loginWithUserName:(NSString *)userName password:(NSString *)pwd;

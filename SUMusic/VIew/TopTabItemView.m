@@ -24,7 +24,9 @@
     if (self.currentTab == sender) return;
     
     sender.selected = YES;
+    sender.userInteractionEnabled = NO;
     self.currentTab.selected = NO;
+    self.currentTab.userInteractionEnabled = YES;
     self.currentTab = sender;
     [UIView animateWithDuration:0.3 animations:^{
         

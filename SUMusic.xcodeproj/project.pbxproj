@@ -34,6 +34,15 @@
 		2BDFFCC41C4BB1EE00CFE078 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFFCC31C4BB1EE00CFE078 /* HomeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		2BDFFCC71C4BB2D100CFE078 /* TopTabItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFFCC61C4BB2D100CFE078 /* TopTabItemView.m */; settings = {ASSET_TAGS = (); }; };
 		2BDFFCC91C4BB2DF00CFE078 /* TopTabItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCC81C4BB2DF00CFE078 /* TopTabItemView.xib */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCCD1C4BCB0800CFE078 /* ChannelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFFCCB1C4BCB0800CFE078 /* ChannelTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCCE1C4BCB0800CFE078 /* ChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCCC1C4BCB0800CFE078 /* ChannelTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCD11C4BD79F00CFE078 /* MineHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFFCD01C4BD79F00CFE078 /* MineHeader.m */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCD31C4BD7AE00CFE078 /* MineHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCD21C4BD7AE00CFE078 /* MineHeader.xib */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCD51C4BDAB300CFE078 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCD41C4BDAB300CFE078 /* Mine.xcassets */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCD91C4BDB7000CFE078 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFFCD71C4BDB7000CFE078 /* MineTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCDA1C4BDB7000CFE078 /* MineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCD81C4BDB7000CFE078 /* MineTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCE01C4BE26400CFE078 /* CopyrightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFFCDE1C4BE26400CFE078 /* CopyrightViewController.m */; settings = {ASSET_TAGS = (); }; };
+		2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCDF1C4BE26400CFE078 /* CopyrightViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		B1A340011C4642190011867B /* NSDate+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC41C4642190011867B /* NSDate+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340021C4642190011867B /* NSDictionary+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC61C4642190011867B /* NSDictionary+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340031C4642190011867B /* NSString+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC81C4642190011867B /* NSString+SU.m */; settings = {ASSET_TAGS = (); }; };
@@ -115,6 +124,19 @@
 		2BDFFCC51C4BB2D100CFE078 /* TopTabItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopTabItemView.h; sourceTree = "<group>"; };
 		2BDFFCC61C4BB2D100CFE078 /* TopTabItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopTabItemView.m; sourceTree = "<group>"; };
 		2BDFFCC81C4BB2DF00CFE078 /* TopTabItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopTabItemView.xib; sourceTree = "<group>"; };
+		2BDFFCCA1C4BCB0800CFE078 /* ChannelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelTableViewCell.h; sourceTree = "<group>"; };
+		2BDFFCCB1C4BCB0800CFE078 /* ChannelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelTableViewCell.m; sourceTree = "<group>"; };
+		2BDFFCCC1C4BCB0800CFE078 /* ChannelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelTableViewCell.xib; sourceTree = "<group>"; };
+		2BDFFCCF1C4BD79F00CFE078 /* MineHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeader.h; sourceTree = "<group>"; };
+		2BDFFCD01C4BD79F00CFE078 /* MineHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeader.m; sourceTree = "<group>"; };
+		2BDFFCD21C4BD7AE00CFE078 /* MineHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineHeader.xib; sourceTree = "<group>"; };
+		2BDFFCD41C4BDAB300CFE078 /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
+		2BDFFCD61C4BDB7000CFE078 /* MineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineTableViewCell.h; sourceTree = "<group>"; };
+		2BDFFCD71C4BDB7000CFE078 /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
+		2BDFFCD81C4BDB7000CFE078 /* MineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineTableViewCell.xib; sourceTree = "<group>"; };
+		2BDFFCDD1C4BE26400CFE078 /* CopyrightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyrightViewController.h; sourceTree = "<group>"; };
+		2BDFFCDE1C4BE26400CFE078 /* CopyrightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyrightViewController.m; sourceTree = "<group>"; };
+		2BDFFCDF1C4BE26400CFE078 /* CopyrightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CopyrightViewController.xib; sourceTree = "<group>"; };
 		AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A33FC31C4642190011867B /* NSDate+SU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SU.h"; sourceTree = "<group>"; };
 		B1A33FC41C4642190011867B /* NSDate+SU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SU.m"; sourceTree = "<group>"; };
@@ -294,20 +316,10 @@
 			children = (
 				2BDFFCB11C4B908000CFE078 /* BaseViewController.h */,
 				2BDFFCB21C4B908000CFE078 /* BaseViewController.m */,
-				2BDFFCAC1C4B905600CFE078 /* LoginPage.h */,
-				2BDFFCAD1C4B905600CFE078 /* LoginPage.m */,
-				2BDFFCAE1C4B905600CFE078 /* LoginPage.xib */,
-				2BDFFCC21C4BB1EE00CFE078 /* HomeViewController.h */,
-				2BDFFCC31C4BB1EE00CFE078 /* HomeViewController.m */,
-				2BDFFC9E1C4B5A9800CFE078 /* ChannelListViewController.h */,
-				2BDFFC9F1C4B5A9800CFE078 /* ChannelListViewController.m */,
-				2BDFFCA01C4B5A9800CFE078 /* ChannelListViewController.xib */,
-				2BDFFCBD1C4BB05A00CFE078 /* MineViewController.h */,
-				2BDFFCBE1C4BB05A00CFE078 /* MineViewController.m */,
-				2BDFFCBF1C4BB05A00CFE078 /* MineViewController.xib */,
-				2BDFFCA31C4B62FC00CFE078 /* PlayViewController.h */,
-				2BDFFCA41C4B62FC00CFE078 /* PlayViewController.m */,
-				2B7353261C428491000C51C5 /* PlayViewController.xib */,
+				2BDFFCE41C4BEBB200CFE078 /* Play */,
+				2BDFFCE31C4BEB9E00CFE078 /* User */,
+				2BDFFCE21C4BEB7700CFE078 /* Home */,
+				2BDFFCDC1C4BE22200CFE078 /* Mine */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -318,6 +330,15 @@
 				2BDFFCC51C4BB2D100CFE078 /* TopTabItemView.h */,
 				2BDFFCC61C4BB2D100CFE078 /* TopTabItemView.m */,
 				2BDFFCC81C4BB2DF00CFE078 /* TopTabItemView.xib */,
+				2BDFFCCA1C4BCB0800CFE078 /* ChannelTableViewCell.h */,
+				2BDFFCCB1C4BCB0800CFE078 /* ChannelTableViewCell.m */,
+				2BDFFCCC1C4BCB0800CFE078 /* ChannelTableViewCell.xib */,
+				2BDFFCD61C4BDB7000CFE078 /* MineTableViewCell.h */,
+				2BDFFCD71C4BDB7000CFE078 /* MineTableViewCell.m */,
+				2BDFFCD81C4BDB7000CFE078 /* MineTableViewCell.xib */,
+				2BDFFCCF1C4BD79F00CFE078 /* MineHeader.h */,
+				2BDFFCD01C4BD79F00CFE078 /* MineHeader.m */,
+				2BDFFCD21C4BD7AE00CFE078 /* MineHeader.xib */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -335,6 +356,7 @@
 		2BB57D9E1C46AE93004A1B27 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				2BDFFCD41C4BDAB300CFE078 /* Mine.xcassets */,
 				2BDFFCB41C4B912E00CFE078 /* Login.xcassets */,
 				2BB57D9F1C46AED5004A1B27 /* Player.xcassets */,
 				2B7353011C425EE5000C51C5 /* Assets.xcassets */,
@@ -349,6 +371,51 @@
 				2BDFFCBB1C4BA07500CFE078 /* SuGlobal.m */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		2BDFFCDC1C4BE22200CFE078 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				2BDFFCDD1C4BE26400CFE078 /* CopyrightViewController.h */,
+				2BDFFCDE1C4BE26400CFE078 /* CopyrightViewController.m */,
+				2BDFFCDF1C4BE26400CFE078 /* CopyrightViewController.xib */,
+			);
+			name = Mine;
+			sourceTree = "<group>";
+		};
+		2BDFFCE21C4BEB7700CFE078 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2BDFFCC21C4BB1EE00CFE078 /* HomeViewController.h */,
+				2BDFFCC31C4BB1EE00CFE078 /* HomeViewController.m */,
+				2BDFFC9E1C4B5A9800CFE078 /* ChannelListViewController.h */,
+				2BDFFC9F1C4B5A9800CFE078 /* ChannelListViewController.m */,
+				2BDFFCA01C4B5A9800CFE078 /* ChannelListViewController.xib */,
+				2BDFFCBD1C4BB05A00CFE078 /* MineViewController.h */,
+				2BDFFCBE1C4BB05A00CFE078 /* MineViewController.m */,
+				2BDFFCBF1C4BB05A00CFE078 /* MineViewController.xib */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		2BDFFCE31C4BEB9E00CFE078 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				2BDFFCAC1C4B905600CFE078 /* LoginPage.h */,
+				2BDFFCAD1C4B905600CFE078 /* LoginPage.m */,
+				2BDFFCAE1C4B905600CFE078 /* LoginPage.xib */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		2BDFFCE41C4BEBB200CFE078 /* Play */ = {
+			isa = PBXGroup;
+			children = (
+				2BDFFCA31C4B62FC00CFE078 /* PlayViewController.h */,
+				2BDFFCA41C4B62FC00CFE078 /* PlayViewController.m */,
+				2B7353261C428491000C51C5 /* PlayViewController.xib */,
+			);
+			name = Play;
 			sourceTree = "<group>";
 		};
 		B1A33FC01C4641FD0011867B /* Expand */ = {
@@ -541,11 +608,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */,
 				2B7353051C425EE5000C51C5 /* LaunchScreen.storyboard in Resources */,
 				2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */,
+				2BDFFCD51C4BDAB300CFE078 /* Mine.xcassets in Resources */,
+				2BDFFCD31C4BD7AE00CFE078 /* MineHeader.xib in Resources */,
 				2BDFFCB01C4B905600CFE078 /* LoginPage.xib in Resources */,
 				2BDFFCB51C4B912E00CFE078 /* Login.xcassets in Resources */,
+				2BDFFCDA1C4BDB7000CFE078 /* MineTableViewCell.xib in Resources */,
 				2BDFFCC91C4BB2DF00CFE078 /* TopTabItemView.xib in Resources */,
+				2BDFFCCE1C4BCB0800CFE078 /* ChannelTableViewCell.xib in Resources */,
 				2B7353281C428491000C51C5 /* PlayViewController.xib in Resources */,
 				2B7353021C425EE5000C51C5 /* Assets.xcassets in Resources */,
 				2BDFFCA21C4B5A9800CFE078 /* ChannelListViewController.xib in Resources */,
@@ -610,13 +682,16 @@
 			files = (
 				B1A340131C4642190011867B /* SuDropDownList.m in Sources */,
 				2BDFFCB31C4B908000CFE078 /* BaseViewController.m in Sources */,
+				2BDFFCE01C4BE26400CFE078 /* CopyrightViewController.m in Sources */,
 				2BDFFCBC1C4BA07500CFE078 /* SuGlobal.m in Sources */,
 				2BB57D9D1C46A4EB004A1B27 /* SUNetwork+Valid.m in Sources */,
 				B1A340041C4642190011867B /* UIButton+SU.m in Sources */,
+				2BDFFCCD1C4BCB0800CFE078 /* ChannelTableViewCell.m in Sources */,
 				B1A340011C4642190011867B /* NSDate+SU.m in Sources */,
 				B1A340141C4642190011867B /* SuFile.m in Sources */,
 				B1A340091C4642190011867B /* UIView+SU.m in Sources */,
 				2B4FA9351C4542E60033FE92 /* SUNetwork.m in Sources */,
+				2BDFFCD91C4BDB7000CFE078 /* MineTableViewCell.m in Sources */,
 				B1A3401B1C4642190011867B /* SuViewTool.m in Sources */,
 				B1A340061C4642190011867B /* UIImage+SU.m in Sources */,
 				B1A340021C4642190011867B /* NSDictionary+SU.m in Sources */,
@@ -652,6 +727,7 @@
 				B1A340191C4642190011867B /* SuScreenAdaptation.m in Sources */,
 				B1A340071C4642190011867B /* UILabel+SU.m in Sources */,
 				2BDFFCA81C4B807400CFE078 /* BaseInfo.m in Sources */,
+				2BDFFCD11C4BD79F00CFE078 /* MineHeader.m in Sources */,
 				B1A340161C4642190011867B /* SuModelTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

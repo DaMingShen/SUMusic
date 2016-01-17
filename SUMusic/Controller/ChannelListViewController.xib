@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChannelListViewController">
             <connections>
+                <outlet property="tableView" destination="8jo-7H-mC9" id="Re7-PB-SAR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,24 +16,18 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMP-eF-TeH">
-                    <rect key="frame" x="164" y="144" width="46" height="30"/>
-                    <state key="normal" title="show"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8jo-7H-mC9">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <action selector="showPlayView:" destination="-1" eventType="touchUpInside" id="B3z-e3-Zd9"/>
+                        <outlet property="dataSource" destination="-1" id="dyH-7K-Gn4"/>
+                        <outlet property="delegate" destination="-1" id="oeU-fl-dRj"/>
                     </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmn-L8-bm0">
-                    <rect key="frame" x="164" y="100" width="46" height="30"/>
-                    <state key="normal" title="Login"/>
-                    <connections>
-                        <action selector="login:" destination="-1" eventType="touchUpInside" id="UPe-My-G9B"/>
-                    </connections>
-                </button>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="199" y="212"/>
+            <point key="canvasLocation" x="198.5" y="211.5"/>
         </view>
     </objects>
 </document>

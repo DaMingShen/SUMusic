@@ -8,6 +8,7 @@
 
 #import "SUNetwork.h"
 #import "UserInfo.h"
+#import "ChannelInfo.h"
 
 @implementation SUNetwork
 
@@ -48,16 +49,18 @@
 }
 
 #pragma mark - 频道列表
-+ (void)fetchChannels {
++ (void)fetchChannelsWithCompletion:(void(^)(BOOL isSucc, NSArray * channels))completion {
     
     [[SUNetwork manager] GET:DOU_API_Channels parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
-        for (NSDictionary * dict in responseObject[@"channels"]) {
-            NSLog(@"%@",dict[@"name"]);
-        }
+//        BASE_INFO_FUN(responseObject);
+        BASE_INFO_FUN(@"获取频道列表成功");
+        NSArray * channels = [ChannelInfo arrayFromArray:responseObject[NetChannel]];
+        if (completion) completion(YES, channels);
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+        BASE_INFO_FUN(@"获取频道列表失败");
+        if (completion) completion(NO, nil);
     }];
 }
 

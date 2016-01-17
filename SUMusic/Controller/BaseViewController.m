@@ -18,7 +18,11 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = WhiteColor;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
+    if (self.navigationController.viewControllers.count > 1) {
+        self.navigationController.navigationBar.hidden = NO;
+    }
 }
 
 @end
