@@ -23,6 +23,6 @@
 #import "DouAPI.h"
 
 #import "AppDelegate.h"
-
+#import "SuGlobal.h"
 
 #endif /* PrefixHeader_pch */

@@ -30,20 +30,29 @@
     
     UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
     self.view.frame = keyWindow.bounds;
-    [keyWindow addSubview:self.view];
+    [keyWindow.rootViewController.view addSubview:self.view];
+//    [keyWindow addSubview:self.view];
 }
+
+- (IBAction)hide:(UIButton *)sender {
+    
+    [self.view removeFromSuperview];
+}
+
 
 #pragma mark - 刷新界面
 - (void)refreshUI {
     
-    self.songName.text = _player.currentSong.albumtitle;
+    self.songName.text = _player.currentSong.title;
     [self.songConver sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:nil];
 }
+
+
 
 #pragma mark - 播放控制
 
 - (IBAction)playNextSong:(id)sender {
-    
+    [_player playNext];
 }
 
 - (IBAction)loveCurrentSong:(id)sender {

@@ -1,13 +1,13 @@
 //
-//  HomeViewController.h
+//  ChannelInfo.m
 //  SUMusic
 //
 //  Created by KevinSu on 16/1/17.
 //  Copyright © 2016年 KevinSu. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "ChannelInfo.h"
 
-@interface HomeViewController : BaseViewController
+@implementation ChannelInfo
 
 @end

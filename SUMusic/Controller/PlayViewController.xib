@@ -92,6 +92,15 @@
                     <color key="textColor" red="0.41450089350000002" green="0.34725437129999998" blue="0.76207386359999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jA4-RA-aDU">
+                    <rect key="frame" x="20" y="23" width="46" height="30"/>
+                    <state key="normal" title="hide">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="hide:" destination="-1" eventType="touchUpInside" id="gch-T5-AZe"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.023529411760000001" green="0.69803921570000005" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>

@@ -62,16 +62,16 @@ selector:_selector name:_name object:nil];
 
 // 设置颜色值
 #define RGBColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
-#define BaseColor       [UIColor colorWithHexRGB:@"#ff9600"]
+#define BaseColor       RGBColor(0,170,86)
 #define ClearColor      [UIColor clearColor]
 #define WhiteColor      [UIColor whiteColor]
 #define BlackColor      [UIColor blackColor]
 #define BlueColor       [UIColor blueColor]
 
 // 文件缓存路径
-#define RootPath            @"Library/.WanZhongLife"
-#define CacheImagePath      @"CacheImages"
-#define WZDBFile            @"WanZhongLife.db"
+#define RootPath            @"Library/.SUMusic"
+#define ArchiverFile        @"suMusic.archiver"
+#define DBFile              @"WanZhongLife.db"
 
 // iOS系统版本
 #define IOS_9     9.0

@@ -9,12 +9,28 @@
 #import <Foundation/Foundation.h>
 #import "SongInfo.h"
 
+typedef NS_ENUM(NSInteger, OperationType) {
+    OperationTypeNewPlayList,
+    OperationTypeNoAction,
+    OperationTypeUnLove,
+    OperationTypeLove,
+    OperationTypeSkip,
+    OperationTypeBan,
+    OperationTypePlay
+};
+
 @interface SUNetwork : NSObject
 
 + (AFHTTPRequestOperationManager *)manager;
 
 + (void)fetchChannels;
 
-+ (void)fetchPlayListWithCompletion:(void(^)(SongInfo * song))completion;
+#pragma mark - 登陆
++ (void)loginWithUserName:(NSString *)userName password:(NSString *)pwd;
+
+#pragma mark - 歌曲操作
++ (void)fetchPlayListWithType:(OperationType)type completion:(void(^)(BOOL isSucc))completion;
+
++ (void)fetchMyFavorSongList;
 
 @end

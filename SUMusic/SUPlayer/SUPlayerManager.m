@@ -30,52 +30,94 @@
     
     //初始化
     self.player = [[MPMoviePlayerController alloc]init];
+    self.isPlaying = NO;
+    self.songList = [NSMutableArray array];
+    self.currentSong = [[SongInfo alloc]init];
+    self.currentSong.sid = @"0";
+    self.currentSongIndex = 0;
+    self.currentChannelID = @"1";
+    
     
     AVAudioSession * session = [[AVAudioSession alloc]init];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     [session setActive:YES error:nil];
     
     //播放完毕后的通知
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playNext) name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    RegisterNotify(MPMoviePlayerPlaybackDidFinishNotification, @selector(playNext));
+    
 }
 
 #pragma mark - 播放控制
 - (void)startPlay {
     
-    [SUNetwork fetchPlayListWithCompletion:^(SongInfo *song) {
-        self.currentSong = song;
-        if (self.currentSong) {
-            [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
-            [self restartPlay];
-            SendNotify(SONGBEGIN, nil);
+    [SUNetwork fetchPlayListWithType:OperationTypeNewPlayList completion:^(BOOL isSucc) {
+        if (isSucc) {
+            [self play];
         }
+        
     }];
     
     
 }
 
+- (void)play {
+    
+    self.currentSongIndex = 0;
+    self.currentSong = self.songList[self.currentSongIndex];
+    [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
+    [self restartPlay];
+    SendNotify(SONGBEGIN, nil);
+}
+
 - (void)pausePlay {
-    if (self.isPlaying) {
-        [self.player pause];
-        self.isPlaying = NO;
-    }
+    if (!self.isPlaying) return;
+    
+    [self.player pause];
+    self.isPlaying = NO;
 }
 
 - (void)restartPlay {
-    if (!self.isPlaying) {
-        [self.player play];
-        self.isPlaying = YES;
-    }
+    if (self.isPlaying) return;
+    
+    [self.player play];
+    self.isPlaying = YES;
 }
 
 - (void)playNext {
     [self pausePlay];
-    [self startPlay];
+    [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
+        if (isSucc) {
+            [self play];
+        }
+    }];
 }
 
-- (void)playLast {
+/*
+ * 播放进度
+ */
+- (float)progress {
     
+    return self.timeNow.floatValue / self.duration.floatValue;
 }
+
+
+/*
+ * 当前播放时间
+ */
+- (NSString *)timeNow {
+    
+    return [NSString stringWithFormat:@"%.2f",self.player.currentPlaybackTime];
+}
+
+/*
+ * 总时长
+ */
+- (NSString *)duration {
+    
+    return [NSString stringWithFormat:@"%.2f",self.player.duration];
+}
+
+
 
 - (float)bufferProgress {
     

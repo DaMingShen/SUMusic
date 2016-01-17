@@ -38,6 +38,10 @@
  */
 @property (nonatomic, assign) NSInteger currentSongIndex;
 
+/*
+ * 当前频道
+ */
+@property (nonatomic, copy) NSString * currentChannelID;
 
 /*
  * 缓冲进度
@@ -50,9 +54,14 @@
 @property (nonatomic, assign) float progress;
 
 /*
+ * 当前播放时间
+ */
+@property (nonatomic, copy) NSString * timeNow;
+
+/*
  * 总时长
  */
-@property (nonatomic, assign) float duration;
+@property (nonatomic, copy) NSString * duration;
 
 
 #pragma mark - ---> 方法 <---

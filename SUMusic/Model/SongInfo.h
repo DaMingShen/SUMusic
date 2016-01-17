@@ -6,10 +6,10 @@
 //  Copyright © 2016年 KevinSu. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BaseInfo.h"
 
 @class Singers;
-@interface SongInfo : NSObject
+@interface SongInfo : BaseInfo
 
 @property (nonatomic, assign) NSInteger like;
 
@@ -50,7 +50,7 @@
 @end
 
 
-@interface Singers : NSObject
+@interface Singers : BaseInfo
 
 @property (nonatomic, assign) NSInteger related_site_id;
 

@@ -30,9 +30,20 @@
     [self.player initialPlayer];
     self.playView = [[PlayViewController alloc]init];
     
-    [self.window makeKeyAndVisible];
+    [self initialUser];
     
+    
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)initialUser {
+    
+    UserInfo * userInfo = [UserInfo loadUserInfo];
+    if (userInfo) {
+        self.userInfo = userInfo;
+    }
+    BASE_INFO_FUN(userInfo.user_name);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

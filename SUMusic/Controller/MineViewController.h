@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  MineViewController.h
 //  SUMusic
 //
 //  Created by KevinSu on 16/1/17.
@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface HomeViewController : BaseViewController
+@interface MineViewController : BaseViewController
 
 @end
