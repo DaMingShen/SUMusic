@@ -7,7 +7,6 @@
 //
 
 #import "ChannelListViewController.h"
-#import "LoginPage.h"
 #import "ChannelTableViewCell.h"
 #import "ChannelInfo.h"
 
@@ -58,13 +57,6 @@
         
     }];
 
-}
-
-
-- (IBAction)login:(id)sender {
-    
-    LoginPage * loginVC = [[LoginPage alloc]init];
-    [self presentViewController:loginVC animated:YES completion:nil];
 }
 
 

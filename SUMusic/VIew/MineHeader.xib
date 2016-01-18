@@ -37,6 +37,10 @@
                 <constraint firstItem="gbD-gu-0wX" firstAttribute="top" secondItem="z5A-fm-C0Q" secondAttribute="bottom" constant="8" id="vuF-qN-ofP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="userIcon" destination="z5A-fm-C0Q" id="Oqx-mi-Fge"/>
+                <outlet property="userName" destination="gbD-gu-0wX" id="nW5-7N-7F4"/>
+            </connections>
             <point key="canvasLocation" x="354.5" y="72"/>
         </view>
     </objects>

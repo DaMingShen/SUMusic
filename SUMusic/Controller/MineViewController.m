@@ -10,6 +10,7 @@
 #import "MineHeader.h"
 #import "MineTableViewCell.h"
 #import "CopyrightViewController.h"
+#import "LoginPage.h"
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate> {
     
@@ -41,8 +42,17 @@
     
     _header = [[NSBundle mainBundle]loadNibNamed:@"MineHeader" owner:self options:nil][0];
     _header.frame = CGRectMake(0, 0, ScreenW, 140);
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goLoginPage)];
+    _header.userIcon.userInteractionEnabled = YES;
+    [_header.userIcon addGestureRecognizer:tap];
     self.tableView.tableHeaderView = _header;
 }
+
+- (void)goLoginPage {
+    LoginPage * loginVC = [[LoginPage alloc]init];
+    [self presentViewController:loginVC animated:YES completion:nil];
+}
+
 
 #pragma mark - tableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

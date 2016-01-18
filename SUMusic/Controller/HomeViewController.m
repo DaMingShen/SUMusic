@@ -10,9 +10,10 @@
 #import "ChannelListViewController.h"
 #import "MineViewController.h"
 #import "TopTabItemView.h"
-#import "PlayViewController.h"
 
 @interface HomeViewController () {
+    
+    AppDelegate * _appDelegate;
     
     ChannelListViewController * _channelVC;
     MineViewController * _mineVC;
@@ -20,6 +21,7 @@
     NSArray<UIView *> * _subViewList;
     
     UIImageView * _playingPet;
+    BOOL _isPlaying;
 }
 
 @end
@@ -29,7 +31,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _appDelegate = [AppDelegate delegate];
+    
     [self setupUI];
+    [self setupPlayingPet];
+    
+    [_appDelegate.player startPlay];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -44,13 +51,13 @@
     _topView.alpha = 0.f;
 }
 
+#pragma mark - UI
 - (void)setupUI {
     
     //顶部标签
     _topView = [[NSBundle mainBundle]loadNibNamed:@"TopTabItemView" owner:self options:nil][0];
     _topView.frame = CGRectMake(0, 0, ScreenW, 64);
     [_topView setTabBlock:^(NSInteger index) {
-        BASE_INFO_FUN(@(index));
         for (UIView * view in _subViewList) {
             if (view.hidden == NO) view.hidden = YES;
         }
@@ -71,38 +78,28 @@
     
     _mineVC.view.hidden = YES;
     _subViewList = @[_channelVC.view, _mineVC.view];
-    
-    //左下角动画
-    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(20, ScreenH - 100, 80, 80)];
-    _playingPet.contentMode = UIViewContentModeScaleAspectFill;
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(petStopPlaying)];
-    _playingPet.userInteractionEnabled = YES;
-    [_playingPet addGestureRecognizer:tap];
-//    [self.navigationController.view addSubview:_playingPet];
-//    [self petGoPlaying];
-    
-    PlayViewController * playVC = [[PlayViewController alloc]init];
-    playVC.view.frame = CGRectMake(0, 0, 375, 667);
-    [[UIApplication sharedApplication].keyWindow addSubview:playVC.view];
-    [self addChildViewController:playVC];
-//    [self.navigationController.view insertSubview:playVC.view aboveSubview:_topView];
 }
 
-- (void)petGoPlaying {
-    
+#pragma mark - PlayingPet
+- (void)setupPlayingPet {
+    _isPlaying = YES;
+
+    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(10, ScreenH - 75, 70, 70)];
+    _playingPet.contentMode = UIViewContentModeScaleAspectFill;
+    _playingPet.userInteractionEnabled = YES;
     _playingPet.animationImages = @[[UIImage imageNamed:@"playingPet_1"],
                                     [UIImage imageNamed:@"playingPet_2"],
                                     [UIImage imageNamed:@"playingPet_3"]];
     _playingPet.animationDuration = 0.5;
     _playingPet.animationRepeatCount = 0;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(petTap)];
+    [_playingPet addGestureRecognizer:tap];
     [_playingPet startAnimating];
+    [self.navigationController.view addSubview:_playingPet];
 }
 
-- (void)petStopPlaying {
-    
-    [_playingPet stopAnimating];
-    _playingPet.image = [UIImage imageNamed:@"playingPet_default"];
+- (void)petTap {
+    [_appDelegate.playView show];
 }
-
 
 @end

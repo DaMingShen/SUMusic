@@ -97,7 +97,8 @@
  */
 - (float)progress {
     
-    return self.timeNow.floatValue / self.duration.floatValue;
+    if (isnan(self.player.currentPlaybackTime) || self.player.duration <= 0) return 0.f;
+    return self.player.currentPlaybackTime / self.player.duration;
 }
 
 
@@ -105,8 +106,8 @@
  * 当前播放时间
  */
 - (NSString *)timeNow {
-    
-    return [NSString stringWithFormat:@"%.2f",self.player.currentPlaybackTime];
+
+    return [self convertStringWithTime:self.player.currentPlaybackTime];
 }
 
 /*
@@ -114,7 +115,7 @@
  */
 - (NSString *)duration {
     
-    return [NSString stringWithFormat:@"%.2f",self.player.duration];
+    return [self convertStringWithTime:self.player.duration];
 }
 
 
@@ -142,6 +143,17 @@
     }
      */
     return 0.f;
+}
+
+#pragma mark - private method 
+- (NSString *)convertStringWithTime:(float)time {
+    if (isnan(time)) time = 0.f;
+    int min = time / 60.0;
+    int sec = time - min * 60;
+    NSString * minStr = min > 9 ? [NSString stringWithFormat:@"%d",min] : [NSString stringWithFormat:@"0%d",min];
+    NSString * secStr = sec > 9 ? [NSString stringWithFormat:@"%d",sec] : [NSString stringWithFormat:@"0%d",sec];
+    NSString * timeStr = [NSString stringWithFormat:@"%@:%@",minStr, secStr];
+    return timeStr;
 }
 
 @end

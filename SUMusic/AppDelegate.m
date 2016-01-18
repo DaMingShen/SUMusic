@@ -25,15 +25,14 @@
     HomeViewController * homeVC = [[HomeViewController alloc]init];
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:homeVC];
     self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
     
+    [self initialUser];
     self.player = [SUPlayerManager manager];
     [self.player initialPlayer];
     self.playView = [[PlayViewController alloc]init];
+    [self.playView show];
     
-    [self initialUser];
-    
-    
-    [self.window makeKeyAndVisible];
     return YES;
 }
 
