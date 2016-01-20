@@ -14,6 +14,7 @@
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate> {
     
+    AppDelegate * _appDelegate;
     MineHeader * _header;
     NSArray * _names;
     NSArray * _icons;
@@ -28,29 +29,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    
+    RegisterNotify(LoginSUCC, @selector(refreshUI));
 }
 
 #pragma mark - UI
 - (void)setupUI {
     
+    _appDelegate = [AppDelegate delegate];
+    
+    //初始化数组
     _names = @[@"我的离线", @"我的收藏", @"我分享的歌曲", @"设置", @"版权声明"];
     _icons = @[@"mine_down", @"mine_favor", @"mine_share", @"mine_setting", @"mine_anouce"];
     
+    //表格设置
     self.tableView.rowHeight = 70.0;
     [self.tableView registerNib:[UINib nibWithNibName:@"MineTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"mineCell"];
     self.tableView.tableFooterView = [UIView new];
     
+    //表格头部设置
     _header = [[NSBundle mainBundle]loadNibNamed:@"MineHeader" owner:self options:nil][0];
     _header.frame = CGRectMake(0, 0, ScreenW, 140);
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goLoginPage)];
     _header.userIcon.userInteractionEnabled = YES;
     [_header.userIcon addGestureRecognizer:tap];
     self.tableView.tableHeaderView = _header;
+    
+    //刷新头部
+    [self refreshUI];
 }
 
+#pragma mark - 跳转登陆页面
 - (void)goLoginPage {
     LoginPage * loginVC = [[LoginPage alloc]init];
     [self presentViewController:loginVC animated:YES completion:nil];
+}
+
+#pragma mark - 登陆登出通知处理
+- (void)refreshUI {
+    if ([SuGlobal checkLogin]) {
+        _header.userName.text = _appDelegate.userInfo.user_name;
+        _header.userIcon.userInteractionEnabled = NO;
+    }else {
+        _header.userName.text = @"未登陆";
+        _header.userIcon.userInteractionEnabled = YES;
+    }
 }
 
 
@@ -62,13 +85,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MineTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"mineCell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.icon.image = [UIImage imageNamed:_icons[indexPath.row]];
     cell.name.text = _names[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     switch (indexPath.row) {
         case 0:

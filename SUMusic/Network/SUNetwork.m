@@ -24,7 +24,7 @@
 }
 
 #pragma mark - 登陆
-+ (void)loginWithUserName:(NSString *)userName password:(NSString *)pwd {
++ (void)loginWithUserName:(NSString *)userName password:(NSString *)pwd completion:(void(^)(BOOL isSucc, NSString * msg))completion {
     
     NSDictionary * loginParam = @{@"app_name":@"radio_android",
                                   @"version":@"100",
@@ -34,17 +34,20 @@
     [[SUNetwork manager] POST:DOU_API_Login parameters:loginParam success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         BASE_INFO_FUN(responseObject);
         if ([[responseObject objectForKey:NetResult] intValue] == NetOk) {
-            
+            //解析数据
             UserInfo * userInfo = [[UserInfo alloc]initWithDictionary:responseObject dealNull:YES];
+            [AppDelegate delegate].userInfo = userInfo;
+            //本地化保存登陆信息
             [userInfo archiverUserInfo];
+            [SuGlobal setLoginStatus:YES];
+            //回调block
+            if (completion) completion(YES, @"登陆成功");
         }else {
-            
-            
+            if (completion) completion(NO, [responseObject objectForKey:NetResult]);
         }
-
-        
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         BASE_INFO_FUN(error);
+        if (completion) completion(NO, @"请检查您的网络");
     }];
 }
 

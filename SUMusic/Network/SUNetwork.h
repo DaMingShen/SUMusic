@@ -23,11 +23,11 @@ typedef NS_ENUM(NSInteger, OperationType) {
 
 + (AFHTTPRequestOperationManager *)manager;
 
+#pragma mark - 登陆
++ (void)loginWithUserName:(NSString *)userName password:(NSString *)pwd completion:(void(^)(BOOL isSucc, NSString * msg))completion;
+
 #pragma mark - 频道列表
 + (void)fetchChannelsWithCompletion:(void(^)(BOOL isSucc, NSArray * channels))completion;
-
-#pragma mark - 登陆
-+ (void)loginWithUserName:(NSString *)userName password:(NSString *)pwd;
 
 #pragma mark - 歌曲操作
 + (void)fetchPlayListWithType:(OperationType)type completion:(void(^)(BOOL isSucc))completion;

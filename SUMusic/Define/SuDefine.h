@@ -120,6 +120,6 @@ selector:_selector name:_name object:nil];
 #define UpdateUserInfoFAIL @"UpdateUserInfoFAIL"
 
 //默认图片
-#define DefaultImg [UIImage imageNamed:@"Public_default.png"]
+#define DefaultImg [UIImage imageNamed:@"cover"]
 
 #endif

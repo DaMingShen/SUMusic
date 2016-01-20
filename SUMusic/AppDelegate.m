@@ -21,14 +21,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    //初始化窗口、设置根目录
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     HomeViewController * homeVC = [[HomeViewController alloc]init];
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:homeVC];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     
+    //初始化用户数据
     [self initialUser];
     self.player = [SUPlayerManager manager];
+    
+    //初始化播放器
     [self.player initialPlayer];
     self.playView = [[PlayViewController alloc]init];
     [self.playView show];

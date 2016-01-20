@@ -10,15 +10,37 @@
 
 @implementation SuGlobal
 
-+ (SuGlobal *)global
-{
-    static SuGlobal *s_global = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        s_global = [[SuGlobal alloc] init];
-    });
+#pragma mark - 用户是否已经登陆
++ (BOOL)checkLogin {
     
-    return s_global;
+    return [SuAppSetting getBool:isLogin];
+}
+
++ (void)setLoginStatus:(BOOL)status {
+    
+    [SuAppSetting setBool:status forKey:isLogin];
+}
+
+#pragma mark - APP是否刚启动
++ (BOOL)checkLauch {
+    
+    return ![SuAppSetting getBool:isLauch];
+}
+
++ (void)setLauchStatus:(BOOL)status {
+    
+    [SuAppSetting setBool:!status forKey:isLauch];
+}
+
+#pragma mark - APP是否第一次打开
++ (BOOL)checkFirstOpenAPP {
+    
+    return ![SuAppSetting getBool:isFirstOpen];
+}
+
++ (void)setFirstOpenStatus:(BOOL)status {
+    
+    [SuAppSetting setBool:!status forKey:isFirstOpen];
 }
 
 

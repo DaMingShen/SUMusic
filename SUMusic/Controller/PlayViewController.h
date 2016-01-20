@@ -6,13 +6,11 @@
 //  Copyright © 2016年 KevinSu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface PlayViewController : UIViewController
+@interface PlayViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *songName;
-
-@property (weak, nonatomic) IBOutlet UIImageView *songConver;
 
 @property (weak, nonatomic) IBOutlet UIButton *loveSong;
 

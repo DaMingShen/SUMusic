@@ -38,6 +38,8 @@
 
 #pragma mark - UI
 - (void)setupUI {
+    
+    //表格设置
     self.tableView.rowHeight = 70.0;
     [self.tableView registerNib:[UINib nibWithNibName:@"ChannelTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"channelCell"];
     self.tableView.tableFooterView = [UIView new];
@@ -68,13 +70,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"channelCell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     ChannelInfo * channel = [self.dataSource objectAtIndex:indexPath.row];
     cell.channelName.text = channel.name;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 

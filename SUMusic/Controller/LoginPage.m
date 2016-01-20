@@ -35,13 +35,22 @@
     
 }
 
-#pragma mark - 设置输入框
+#pragma mark - UI
 -(void)UISetting{
     
-    UIColor* boColor = RGBColor(221, 221, 221);
-    _userNameTextField.layer.borderColor = boColor.CGColor;
-    _passwordTextField.layer.borderColor = boColor.CGColor;
-    _loginView.layer.borderColor = boColor.CGColor;
+    self.view.backgroundColor = [UIColor colorWithHexRGB:@"#00AA56"];
+    
+    UIView * nameLine = [UIView drawHorizonLineWithFrame:CGRectMake(_userNameTextField.x, _userNameTextField.y + _userNameTextField.h, _userNameTextField.w, 1)];
+    nameLine.backgroundColor = [UIColor lightGrayColor];
+    [_loginView addSubview:nameLine];
+    UIView * pwdLine = [UIView drawHorizonLineWithFrame:CGRectMake(_passwordTextField.x, _passwordTextField.y + _passwordTextField.h, _passwordTextField.w, 1)];
+    pwdLine.backgroundColor = [UIColor lightGrayColor];
+    [_loginView addSubview:pwdLine];
+    
+    _userNameTextField.layer.borderColor = ClearColor.CGColor;
+    _passwordTextField.layer.borderColor = ClearColor.CGColor;
+    _loginView.layer.borderColor = ClearColor.CGColor;
+    _passwordTextField.secureTextEntry = YES;
 }
 
 #pragma mark - textField代理
@@ -93,7 +102,6 @@
         //捂着的手隐藏
         self.right_hidden.frame = CGRectMake(self.right_hidden.x + 55, self.right_hidden.y + 40, 40, 66);
         self.left_hidden.frame  = CGRectMake(self.left_hidden.x - 60, self.left_hidden.y + 40, 40, 66);
-        
     }];
 }
 
@@ -125,8 +133,17 @@
 }
 
 - (IBAction)login:(id)sender {
-    
-   
+    BASE_INFO_FUN(@"登陆");
+   [SUNetwork loginWithUserName:_userNameTextField.text password:_passwordTextField.text completion:^(BOOL isSucc, NSString *msg) {
+       if (isSucc) {
+           BASE_INFO_FUN(msg);
+           SendNotify(LoginSUCC, nil);
+           [self back:nil];
+       }else {
+           BASE_INFO_FUN(msg);
+           [self ToastMessage:msg];
+       }
+   }];
 }
 
 - (IBAction)back:(id)sender {

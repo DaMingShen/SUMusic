@@ -15,12 +15,12 @@
     NSTimer * _timer;
 }
 
-@property (weak, nonatomic) IBOutlet UIImageView *bgImg;
 @property (weak, nonatomic) IBOutlet UIView *progressBar;
 @property (weak, nonatomic) IBOutlet UIView *currentProgress;
 @property (weak, nonatomic) IBOutlet UIView *progressPoint;
 @property (weak, nonatomic) IBOutlet UILabel *playTime;
 @property (weak, nonatomic) IBOutlet UILabel *totalTime;
+@property (weak, nonatomic) IBOutlet UIImageView *songCover;
 
 
 @end
@@ -48,19 +48,14 @@
 }
 
 - (void)setupUI {
-    
-    self.songConver.layer.masksToBounds = YES;
-    self.songConver.layer.cornerRadius = self.songConver.h / 2.0;
+        
+    self.songCover.layer.masksToBounds = YES;
+    self.songCover.layer.cornerRadius = self.songCover.h / 2.0;
+    self.songCover.layer.borderWidth = 5.0;
+    self.songCover.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     self.progressPoint.layer.masksToBounds = YES;
     self.progressPoint.layer.cornerRadius = self.progressPoint.h / 2.0;
-    
-    /*
-    UIVisualEffectView * visualEfView = [[UIVisualEffectView alloc]initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-    visualEfView.frame = self.bgImg.frame;
-    visualEfView.alpha = 1.0;
-    [self.bgImg addSubview:visualEfView];
-     */
 }
 
 #pragma mark - 全屏视图
@@ -95,23 +90,25 @@
 - (void)refreshUI {
     
     self.songName.text = _player.currentSong.title;
-    [self.songConver sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:nil];
-//    [self.bgImg sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:nil];
+    [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg];
     
     [self addTimer];
 }
 
 - (void)refreshProgress {
     
+    //显示时间
     self.playTime.text = _player.timeNow;
     self.totalTime.text = _player.duration;
     
+    //进度条
     float pointW = self.progressPoint.w / 2.0;
-    float progress = _player.progress;
-    if (isnan(progress)) progress = 0.0;
-//    NSLog(@"%f %f %f",pointW, progress, self.progressBar.w);
+    float progress = isnan(_player.progress) ? 0.f : _player.progress;
     self.currentProgress.w = pointW  + (self.progressBar.w - pointW) * progress;
     self.progressPoint.centerX = self.progressBar.x + self.currentProgress.w;
+    
+    //图片旋转
+    self.songCover.transform = CGAffineTransformRotate(self.songCover.transform, M_PI / 1440);
 }
 
 #pragma mark - timer
@@ -125,6 +122,7 @@
     
     [_timer invalidate];
     _timer = nil;
+//    self.PicImageView.transform = CGAffineTransformMakeRotation(0.0);
 }
 
 

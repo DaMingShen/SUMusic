@@ -6,8 +6,8 @@
 //  Copyright © 2016年 KevinSu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ChannelListViewController : UIViewController
+@interface ChannelListViewController : BaseViewController
 
 @end
