@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *playTime;
 @property (weak, nonatomic) IBOutlet UILabel *totalTime;
 @property (weak, nonatomic) IBOutlet UIImageView *songCover;
+@property (weak, nonatomic) IBOutlet UILabel *singer;
 
 
 @end
@@ -34,11 +35,14 @@
     
     _player = [SUPlayerManager manager];
     
-    RegisterNotify(SONGBEGIN, @selector(refreshUI));
+    RegisterNotify(SONGBEGIN, @selector(loadSongInfo));
+    RegisterNotify(SONGEND, @selector(songEndPlaying));
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self refreshProgress];
     if (_player.isPlaying) [self addTimer];
 }
 
@@ -87,12 +91,18 @@
 
 
 #pragma mark - 刷新界面
-- (void)refreshUI {
+- (void)loadSongInfo {
     
     self.songName.text = _player.currentSong.title;
+    self.singer.text = [NSString stringWithFormat:@"—   %@    —",_player.currentSong.artist];
+    self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
     [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg];
-    
     [self addTimer];
+}
+
+- (void)songEndPlaying {
+    
+    self.songCover.transform = CGAffineTransformMakeRotation(0.0);
 }
 
 - (void)refreshProgress {
@@ -114,31 +124,32 @@
 #pragma mark - timer
 - (void)addTimer {
     
+    if (_timer) return;
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgress) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)removeTimer {
-    
     [_timer invalidate];
     _timer = nil;
-//    self.PicImageView.transform = CGAffineTransformMakeRotation(0.0);
 }
-
 
 
 #pragma mark - 播放控制
 
-- (IBAction)playNextSong:(id)sender {
-    [_player playNext];
+- (IBAction)skipSong:(UIButton *)sender {
+    [_player skipSong];
 }
 
-- (IBAction)loveCurrentSong:(id)sender {
-    
+- (IBAction)loveSong:(UIButton *)sender {
+    OperationType type = sender.selected ? OperationTypeUnHeart : OperationTypeHeart;
+    [SUNetwork fetchPlayListWithType:type completion:^(BOOL isSucc) {
+        if (isSucc) sender.selected = !sender.selected;
+    }];
 }
 
-- (IBAction)banCurrentSong:(id)sender {
-    
+- (IBAction)banSong:(UIButton *)sender {
+    [_player banSong];
 }
 
 

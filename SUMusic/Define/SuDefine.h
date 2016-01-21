@@ -117,6 +117,7 @@ selector:_selector name:_name object:nil];
 
 //通知
 #define SONGBEGIN @"BeginPlayingSong"
+#define SONGEND @"EndPlayingSong"
 #define UpdateUserInfoFAIL @"UpdateUserInfoFAIL"
 
 //默认图片

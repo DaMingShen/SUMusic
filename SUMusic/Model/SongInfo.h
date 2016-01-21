@@ -11,7 +11,7 @@
 @class Singers;
 @interface SongInfo : BaseInfo
 
-@property (nonatomic, assign) NSInteger like;
+@property (nonatomic, copy) NSString * like;
 
 @property (nonatomic, copy) NSString *aid;
 
@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) NSArray<Singers *> *singers;
 
-@property (nonatomic, assign) NSInteger length;
+@property (nonatomic, copy) NSString * length;
 
 @property (nonatomic, copy) NSString *title;
 
@@ -43,7 +43,7 @@
 
 @property (nonatomic, copy) NSString *artist;
 
-@property (nonatomic, assign) NSInteger status;
+@property (nonatomic, copy) NSString * status;
 
 @property (nonatomic, copy) NSString *subtype;
 

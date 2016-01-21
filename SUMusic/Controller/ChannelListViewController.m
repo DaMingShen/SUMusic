@@ -13,6 +13,7 @@
 @interface ChannelListViewController ()<UITableViewDataSource, UITableViewDelegate> {
     
     AppDelegate * _appDelegate;
+    UIImageView * _unConnectNotic;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -26,11 +27,6 @@
     [super viewDidLoad];
         
     _appDelegate = [AppDelegate delegate];
-//    [_appDelegate.player startPlay];
-    
-//    [_appDelegate.playView show];
-//    [SUNetwork loginWithUserName:@"446135517@qq.com" password:@"kevinsu0321"];
-//    [SUNetwork fetchMyFavorSongList];
     
     [self setupUI];
     [self fetchChannels];
@@ -43,20 +39,34 @@
     self.tableView.rowHeight = 70.0;
     [self.tableView registerNib:[UINib nibWithNibName:@"ChannelTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"channelCell"];
     self.tableView.tableFooterView = [UIView new];
+    
+    //404提示
+    _unConnectNotic = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    _unConnectNotic.image = [UIImage imageNamed:@"network_404"];
+    _unConnectNotic.hidden = YES;
+    [self.view addSubview:_unConnectNotic];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fetchChannels)];
+    [_unConnectNotic addGestureRecognizer:tap];
 }
 
 #pragma mark - 网络
 - (void)fetchChannels {
     
+    //showAni
+    
+    //loadData
     [SUNetwork fetchChannelsWithCompletion:^(BOOL isSucc, NSArray *channels) {
+        //stopAni
         
+        //refreshUI
         if (isSucc) {
             self.dataSource = channels.mutableCopy;
+            _unConnectNotic.hidden = YES;
+            self.tableView.hidden = NO;
             [self.tableView reloadData];
         }else {
-            
+            _unConnectNotic.hidden = NO;
         }
-        
     }];
 
 }
@@ -78,6 +88,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    ChannelInfo * channel = [self.dataSource objectAtIndex:indexPath.row];
+    //改变channel
+    _appDelegate.player.currentChannelID = channel.channel_id;
+    //开始播放
+    [_appDelegate.player newChannelPlay];
+    //弹出播放器
+    [_appDelegate.playView show];
 }
 
 @end

@@ -10,10 +10,10 @@
 #import "SongInfo.h"
 
 typedef NS_ENUM(NSInteger, OperationType) {
-    OperationTypeNewPlayList,
-    OperationTypeNoAction,
-    OperationTypeUnLove,
-    OperationTypeLove,
+    OperationTypeNone,
+    OperationTypeEnd,
+    OperationTypeUnHeart,
+    OperationTypeHeart,
     OperationTypeSkip,
     OperationTypeBan,
     OperationTypePlay
@@ -31,7 +31,5 @@ typedef NS_ENUM(NSInteger, OperationType) {
 
 #pragma mark - 歌曲操作
 + (void)fetchPlayListWithType:(OperationType)type completion:(void(^)(BOOL isSucc))completion;
-
-+ (void)fetchMyFavorSongList;
 
 @end

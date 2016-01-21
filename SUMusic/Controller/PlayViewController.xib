@@ -15,6 +15,7 @@
                 <outlet property="playTime" destination="r56-AN-opF" id="54a-e8-9XD"/>
                 <outlet property="progressBar" destination="Xmx-kl-m1E" id="n1B-Jl-xln"/>
                 <outlet property="progressPoint" destination="qOB-qt-trC" id="e7d-aP-CnG"/>
+                <outlet property="singer" destination="HKS-vE-0HF" id="unv-XN-Bag"/>
                 <outlet property="songCover" destination="Lv0-2S-RAE" id="Qnd-cu-bn8"/>
                 <outlet property="songName" destination="IBo-4D-nWp" id="ti7-hT-uac"/>
                 <outlet property="totalTime" destination="Ngu-wV-Fxx" id="aw7-fP-Bzl"/>
@@ -46,7 +47,7 @@
                             <state key="disabled" image="ic_action_next_disable"/>
                             <state key="highlighted" image="ic_action_next_pressed"/>
                             <connections>
-                                <action selector="playNextSong:" destination="-1" eventType="touchUpInside" id="fwD-ZO-E4w"/>
+                                <action selector="skipSong:" destination="-1" eventType="touchUpInside" id="A7W-7S-WIg"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfP-87-QmB" userLabel="next">
@@ -59,7 +60,7 @@
                             <state key="disabled" image="ic_action_ban_disable"/>
                             <state key="highlighted" image="ic_action_ban_pressed"/>
                             <connections>
-                                <action selector="banCurrentSong:" destination="-1" eventType="touchUpInside" id="JmV-DW-HFI"/>
+                                <action selector="banSong:" destination="-1" eventType="touchUpInside" id="KnB-WZ-po0"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Um2-r7-Isy" userLabel="favor">
@@ -73,7 +74,7 @@
                             <state key="selected" image="ic_action_fav"/>
                             <state key="highlighted" image="ic_action_unfav_pressed"/>
                             <connections>
-                                <action selector="loveCurrentSong:" destination="-1" eventType="touchUpInside" id="Qx2-2w-h55"/>
+                                <action selector="loveSong:" destination="-1" eventType="touchUpInside" id="TZi-rZ-Msk"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngu-wV-Fxx">
@@ -178,9 +179,6 @@
                     <state key="disabled" image="ic_action_fav_disable"/>
                     <state key="selected" image="ic_action_fav"/>
                     <state key="highlighted" image="ic_action_lyric_pressed"/>
-                    <connections>
-                        <action selector="loveCurrentSong:" destination="-1" eventType="touchUpInside" id="g2e-7i-WrA"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQt-Vd-AG5" userLabel="favor">
                     <rect key="frame" x="176" y="447" width="24" height="24"/>
@@ -192,9 +190,6 @@
                     <state key="disabled" image="ic_action_fav_disable"/>
                     <state key="selected" image="ic_action_collect"/>
                     <state key="highlighted" image="ic_action_uncollect_pressed"/>
-                    <connections>
-                        <action selector="loveCurrentSong:" destination="-1" eventType="touchUpInside" id="Rio-WL-WEb"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRV-bl-pGQ" userLabel="favor">
                     <rect key="frame" x="233" y="448" width="22" height="22"/>
@@ -206,9 +201,6 @@
                     <state key="disabled" image="ic_action_fav_disable"/>
                     <state key="selected" image="ic_action_fav"/>
                     <state key="highlighted" image="ic_action_share_pressed"/>
-                    <connections>
-                        <action selector="loveCurrentSong:" destination="-1" eventType="touchUpInside" id="aR5-1V-kH1"/>
-                    </connections>
                 </button>
             </subviews>
             <constraints>
@@ -234,7 +226,7 @@
     </objects>
     <resources>
         <image name="Player_hide" width="25" height="25"/>
-        <image name="cover" width="128" height="128"/>
+        <image name="cover" width="256" height="256"/>
         <image name="ic_action_ban" width="32" height="36"/>
         <image name="ic_action_ban_disable" width="32" height="36"/>
         <image name="ic_action_ban_pressed" width="32" height="36"/>

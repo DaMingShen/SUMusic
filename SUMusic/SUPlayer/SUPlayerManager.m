@@ -35,8 +35,7 @@
     self.currentSong = [[SongInfo alloc]init];
     self.currentSong.sid = @"0";
     self.currentSongIndex = 0;
-    self.currentChannelID = @"1";
-    
+    self.currentChannelID = @"1";  //默认频道：私人频道
     
     AVAudioSession * session = [[AVAudioSession alloc]init];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
@@ -44,31 +43,21 @@
     
     //播放完毕后的通知
     RegisterNotify(MPMoviePlayerPlaybackDidFinishNotification, @selector(playNext));
-    
 }
 
-#pragma mark - 播放控制
+#pragma mark - 播放器控制
+//开始／继续播放
 - (void)startPlay {
+    if (self.isPlaying) return;
     
-    [SUNetwork fetchPlayListWithType:OperationTypeNewPlayList completion:^(BOOL isSucc) {
-        if (isSucc) {
-            [self play];
-        }
-        
-    }];
+    [self.player play];
+    self.isPlaying = YES;
     
-    
+    //如果是最后一首，加载更多歌曲
+    if (self.currentSongIndex == self.songList.count - 1) [self loadMoreSong];
 }
 
-- (void)play {
-    
-    self.currentSongIndex = 0;
-    self.currentSong = self.songList[self.currentSongIndex];
-    [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
-    [self restartPlay];
-    SendNotify(SONGBEGIN, nil);
-}
-
+//暂停播放
 - (void)pausePlay {
     if (!self.isPlaying) return;
     
@@ -76,22 +65,80 @@
     self.isPlaying = NO;
 }
 
-- (void)restartPlay {
-    if (self.isPlaying) return;
+//自然播放下一首
+- (void)playNext {
     
-    [self.player play];
-    self.isPlaying = YES;
+    //先报告上一首歌已完成
+    [self reportSongEnd];
+    
+    //播放列表下一首歌
+    [self pausePlay];
+    SendNotify(SONGEND, nil);
+    [self loadSongInfoWithResetStatus:NO];
+    [self startPlay];
 }
 
-- (void)playNext {
+//停止当前歌曲并从第一首开始播放
+- (void)resetPlay {
+    [self pausePlay];
+    SendNotify(SONGEND, nil);
+    [self loadSongInfoWithResetStatus:YES];
+    [self startPlay];
+}
+
+//加载下一首歌曲信息（reset ：打开app、切歌、ban歌之后）
+- (void)loadSongInfoWithResetStatus:(BOOL)reset {
+    self.currentSongIndex = reset ? 0 : self.currentSongIndex + 1;
+    self.currentSong = self.songList[self.currentSongIndex];
+    [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
+    SendNotify(SONGBEGIN, nil);
+}
+
+#pragma mark - 网络操作
+//纯粹获取播放列表(打开app、切换频道)
+- (void)newChannelPlay {
+    [SUNetwork fetchPlayListWithType:OperationTypeNone completion:^(BOOL isSucc) {
+        if (isSucc) {
+            [self resetPlay];
+        };
+    }];
+}
+
+//切歌
+- (void)skipSong {
     [self pausePlay];
     [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
         if (isSucc) {
-            [self play];
+            [self resetPlay];
         }
     }];
 }
 
+//ban歌
+- (void)banSong {
+    [self pausePlay];
+    [SUNetwork fetchPlayListWithType:OperationTypeBan completion:^(BOOL isSucc) {
+        if (isSucc) {
+            [self resetPlay];
+        }
+    }];
+}
+
+//报告歌曲正常播放完毕
+- (void)reportSongEnd {
+    [SUNetwork fetchPlayListWithType:OperationTypeEnd completion:^(BOOL isSucc) {
+
+    }];
+}
+
+//播放到列表最后一首
+- (void)loadMoreSong {
+    [SUNetwork fetchPlayListWithType:OperationTypePlay completion:^(BOOL isSucc) {
+        
+    }];
+}
+
+#pragma mark - 播放器属性获取
 /*
  * 播放进度
  */
@@ -101,9 +148,17 @@
     return self.player.currentPlaybackTime / self.player.duration;
 }
 
+/*
+ * 当前播放时间(秒)
+ */
+- (NSString *)playTime {
+    
+    return [NSString stringWithFormat:@"%.f",isnan(self.player.currentPlaybackTime) ? 0 : self.player.currentPlaybackTime];
+}
+
 
 /*
- * 当前播放时间
+ * 当前播放时间(00:00)
  */
 - (NSString *)timeNow {
 

@@ -36,7 +36,7 @@
     [self setupUI];
     [self setupPlayingPet];
     
-    [_appDelegate.player startPlay];
+    [_appDelegate.player newChannelPlay];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

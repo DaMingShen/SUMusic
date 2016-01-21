@@ -54,12 +54,17 @@
 @property (nonatomic, assign) float progress;
 
 /*
- * 当前播放时间
+ * 当前播放时间(秒)
+ */
+@property (nonatomic, copy) NSString * playTime;
+
+/*
+ * 当前播放时间(00:00)
  */
 @property (nonatomic, copy) NSString * timeNow;
 
 /*
- * 总时长
+ * 总时长(00:00)
  */
 @property (nonatomic, copy) NSString * duration;
 
@@ -86,19 +91,20 @@
 - (void)pausePlay;
 
 /*
- * 继续播放
+ * 纯粹获取播放列表(打开app、切换频道)
  */
-- (void)restartPlay;
+- (void)newChannelPlay;
 
 /*
- * 播放下一首
+ * 切歌
  */
-- (void)playNext;
+- (void)skipSong;
 
 /*
- * 播放上一首
+ * ban歌
  */
-- (void)playLast;
+- (void)banSong;
+
 
 
 @end
