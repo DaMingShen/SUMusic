@@ -126,75 +126,35 @@
 
 - (void)showLoadingAni {
     
-    [self showAniWithCues:@"拼命加载中..." Panel:NO InView:YES];
-}
-
-- (void)showAniWithCues:(NSString *)cues {
-    
-    [self showAniWithCues:cues Panel:YES InView:NO];
-}
-
-- (void)showAniWithCues:(NSString *)cues Panel:(BOOL)isOnPanel InView:(BOOL)isInView {
-    
-    [self hideAni];
-    
-    _aniView = [[UIView alloc]initWithFrame:ScreenB];
-    _aniView.backgroundColor = ClearColor;
-    
-    //背景
-    if (isOnPanel) {
+    if (_aniView == nil) {
+        _aniView = [[UIView alloc]initWithFrame:ScreenB];
+        _aniView.alpha = 0.f;
         
-        UIView * bg = [[UIView alloc]initWithFrame:ScreenB];
-        bg.backgroundColor = BlackColor;
-        bg.alpha = 0.3;
-        [_aniView addSubview:bg];
-        
-        UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-        UIVisualEffectView * effe = [[UIVisualEffectView alloc]initWithEffect:blur];
-        effe.frame = CGRectMake(0, 0, 160, 80);
-        effe.center = CGPointMake(ScreenW / 2, ScreenH / 2 + 10);
-        effe.layer.masksToBounds = YES;
-        effe.layer.cornerRadius = 15.0;
-        [_aniView addSubview:effe];
+        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+        imageView.center = CGPointMake(ScreenW / 2, ScreenH / 2);
+        imageView.image = [UIImage imageNamed:@"loading"];
+        imageView.tag = 90016;
+        [_aniView addSubview:imageView];
     }
-    
-    //动画图片
-    UIImageView * aniIv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 48, 40)];
-    aniIv.center = CGPointMake(ScreenW / 2, ScreenH / 2);
-    aniIv.animationImages = [NSArray arrayWithObjects:
-                             [UIImage imageNamed:@"ani_1.png"],
-                             [UIImage imageNamed:@"ani_2.png"],
-                             [UIImage imageNamed:@"ani_3.png"], nil];
-    
-    aniIv.animationDuration = 0.4;
-    aniIv.animationRepeatCount = 2000;
-    [aniIv startAnimating];
-    [_aniView addSubview:aniIv];
-    
-    //提示
-    UILabel * msg = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 20)];
-    msg.center = CGPointMake(ScreenW / 2, aniIv.y + aniIv.h + 10);
-    msg.text = cues;
-    msg.textColor = [UIColor colorWithHexRGB:@"#ff9600"];
-    msg.font = [UIFont systemFontOfSize:14.0];
-    msg.textAlignment = NSTextAlignmentCenter;
-    msg.backgroundColor = ClearColor;
-    [_aniView addSubview:msg];
-    
-    if (isInView) {
-        
-        [self.view addSubview:_aniView];
-        
-    }else {
-        
-        [[UIApplication sharedApplication].keyWindow addSubview:_aniView];
-    }
-    
+    CABasicAnimation * rotationAni = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAni.toValue = [NSNumber numberWithFloat:M_PI * 2.0];
+    rotationAni.duration = 2.0;
+    rotationAni.cumulative = YES;
+    rotationAni.repeatCount = NSIntegerMax;
+    [[_aniView viewWithTag:90016].layer addAnimation:rotationAni forKey:@"rotationAni"];
+
+    [[UIApplication sharedApplication].keyWindow addSubview:_aniView];
+    [UIView animateWithDuration:0.2 animations:^{
+        _aniView.alpha = 1.0;
+    }];
 }
 
 - (void)hideAni {
-    
-    [_aniView removeFromSuperview];
+    [UIView animateWithDuration:0.2 animations:^{
+        _aniView.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        [_aniView removeFromSuperview];
+    }];
 }
 
 #pragma mark ============================ 导航栏 ============================

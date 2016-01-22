@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalTime;
 @property (weak, nonatomic) IBOutlet UIImageView *songCover;
 @property (weak, nonatomic) IBOutlet UILabel *singer;
+@property (weak, nonatomic) IBOutlet UIView *playBtnBg;
+@property (weak, nonatomic) IBOutlet UIImageView *playBtn;
 
 
 @end
@@ -52,11 +54,14 @@
 }
 
 - (void)setupUI {
-        
-    self.songCover.layer.masksToBounds = YES;
-    self.songCover.layer.cornerRadius = self.songCover.h / 2.0;
-    self.songCover.layer.borderWidth = 5.0;
-    self.songCover.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    BASE_INFO_FUN(@(self.songCover.w));
+//    self.songCover.layer.masksToBounds = YES;
+//    self.songCover.layer.cornerRadius = self.songCover.h / 2.0;
+//    self.songCover.layer.borderWidth = 5.0;
+//    self.songCover.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//    
+//    self.playBtnBg.layer.masksToBounds = YES;
+//    self.playBtnBg.layer.cornerRadius = self.playBtnBg.h / 2.0;
     
     self.progressPoint.layer.masksToBounds = YES;
     self.progressPoint.layer.cornerRadius = self.progressPoint.h / 2.0;
@@ -89,9 +94,27 @@
     }];
 }
 
+- (IBAction)pausePlaying:(UITapGestureRecognizer *)sender {
+    [_player pausePlay];
+    [self removeTimer];
+    self.playBtnBg.hidden = NO;
+    self.playBtn.hidden = NO;
+}
+
+- (IBAction)goOnPlaying:(UITapGestureRecognizer *)sender {
+    [_player startPlay];
+    [self addTimer];
+    self.playBtnBg.hidden = YES;
+    self.playBtn.hidden = YES;
+}
 
 #pragma mark - 刷新界面
 - (void)loadSongInfo {
+    
+    if (self.playBtn.hidden == NO) {
+        self.playBtn.hidden = YES;
+        self.playBtnBg.hidden = YES;
+    }
     
     self.songName.text = _player.currentSong.title;
     self.singer.text = [NSString stringWithFormat:@"—   %@    —",_player.currentSong.artist];
@@ -130,6 +153,7 @@
 }
 
 - (void)removeTimer {
+    
     [_timer invalidate];
     _timer = nil;
 }
@@ -152,7 +176,18 @@
     [_player banSong];
 }
 
+#pragma mark - 其他功能
+- (IBAction)lyrics:(UIButton *)sender {
+}
 
+- (IBAction)favor:(UIButton *)sender {
+    [self showLoadingAni];
+    [self performSelector:@selector(hideAni) withObject:nil afterDelay:10.0];
+}
+
+- (IBAction)share:(UIButton *)sender {
+    [self hideAni];
+}
 
 
 @end

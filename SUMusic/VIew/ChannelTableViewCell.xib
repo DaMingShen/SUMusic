@@ -41,12 +41,21 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="40B-2u-sc2">
+                        <rect key="frame" x="293" y="24" width="21" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="21" id="eTm-dS-zyH"/>
+                            <constraint firstAttribute="height" constant="20" id="x3v-QT-iLO"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="40B-2u-sc2" secondAttribute="trailing" constant="6" id="5Hj-Ll-VlN"/>
                     <constraint firstItem="5bn-iY-jgI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="SJK-D9-zYQ"/>
                     <constraint firstItem="YCI-6j-y85" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ea1-pJ-xfX"/>
                     <constraint firstItem="5bn-iY-jgI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fS1-gg-UlM"/>
                     <constraint firstItem="pow-N2-HnX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gPq-Ac-Phi"/>
+                    <constraint firstItem="40B-2u-sc2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-0.5" id="qEp-Td-mam"/>
                     <constraint firstItem="pow-N2-HnX" firstAttribute="leading" secondItem="5bn-iY-jgI" secondAttribute="trailing" constant="15" id="qR9-6f-adM"/>
                     <constraint firstItem="YCI-6j-y85" firstAttribute="leading" secondItem="pow-N2-HnX" secondAttribute="trailing" id="u05-OR-Z8d"/>
                 </constraints>
@@ -54,6 +63,7 @@
             <connections>
                 <outlet property="channelName" destination="pow-N2-HnX" id="bNI-t0-u7M"/>
                 <outlet property="icon" destination="5bn-iY-jgI" id="Ip8-Q3-4Q5"/>
+                <outlet property="playIndicator" destination="40B-2u-sc2" id="lIH-tg-zyO"/>
             </connections>
             <point key="canvasLocation" x="438" y="233"/>
         </tableViewCell>

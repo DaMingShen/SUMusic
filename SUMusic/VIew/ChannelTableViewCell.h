@@ -14,4 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *channelName;
 
+@property (weak, nonatomic) IBOutlet UIImageView *playIndicator;
+
+
 @end

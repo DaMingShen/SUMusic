@@ -81,18 +81,36 @@
     
     ChannelTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"channelCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     ChannelInfo * channel = [self.dataSource objectAtIndex:indexPath.row];
     cell.channelName.text = channel.name;
+    
+    if ([_appDelegate.player.currentChannelID isEqualToString:channel.channel_id]) {
+        cell.playIndicator.hidden = NO;
+        cell.playIndicator.animationImages = @[[UIImage imageNamed:@"ic_channel_nowplaying1"],
+                                               [UIImage imageNamed:@"ic_channel_nowplaying2"],
+                                               [UIImage imageNamed:@"ic_channel_nowplaying3"],
+                                               [UIImage imageNamed:@"ic_channel_nowplaying4"]];
+        cell.playIndicator.animationDuration = 1.0;
+        cell.playIndicator.animationRepeatCount = 0;
+        [cell.playIndicator startAnimating];
+    }else {
+        [cell.playIndicator stopAnimating];
+        cell.playIndicator.hidden = YES;
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ChannelInfo * channel = [self.dataSource objectAtIndex:indexPath.row];
-    //改变channel
-    _appDelegate.player.currentChannelID = channel.channel_id;
-    //开始播放
-    [_appDelegate.player newChannelPlay];
+    if (![_appDelegate.player.currentChannelID isEqualToString:channel.channel_id]) {
+        //改变channel
+        _appDelegate.player.currentChannelID = channel.channel_id;
+        //开始播放
+        [_appDelegate.player newChannelPlay];
+    }
     //弹出播放器
     [_appDelegate.playView show];
 }

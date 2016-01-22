@@ -18,7 +18,6 @@
 
 //显示动画
 - (void)showLoadingAni;
-- (void)showAniWithCues:(NSString *)cues;
 - (void)hideAni;
 
 #pragma mark ===========================导航相关============================
