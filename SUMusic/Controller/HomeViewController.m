@@ -89,7 +89,9 @@
 - (void)setupPlayingPet {
     _isPlaying = YES;
 
-    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, ScreenH - 75, 85, 75)];
+//    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, ScreenH - 75, 85, 75)];
+    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 75, 75)];
+    _playingPet.center = CGPointMake(ScreenW / 2, ScreenH - 38);
     _playingPet.contentMode = UIViewContentModeScaleAspectFill;
     _playingPet.userInteractionEnabled = YES;
     _playingPet.image = [UIImage imageNamed:@"playingPet_1"];

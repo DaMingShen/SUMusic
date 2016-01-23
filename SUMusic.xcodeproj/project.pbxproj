@@ -11,7 +11,6 @@
 		2B7352F71C425EE5000C51C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352F61C425EE5000C51C5 /* main.m */; };
 		2B7352FA1C425EE5000C51C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352F91C425EE5000C51C5 /* AppDelegate.m */; };
 		2B7353021C425EE5000C51C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353011C425EE5000C51C5 /* Assets.xcassets */; };
-		2B7353051C425EE5000C51C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353031C425EE5000C51C5 /* LaunchScreen.storyboard */; };
 		2B73531E1C426082000C51C5 /* SUPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73531D1C426082000C51C5 /* SUPlayerManager.m */; settings = {ASSET_TAGS = (); }; };
 		2B7353221C42623B000C51C5 /* SongInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7353211C42623B000C51C5 /* SongInfo.m */; settings = {ASSET_TAGS = (); }; };
 		2B7353281C428491000C51C5 /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353261C428491000C51C5 /* PlayViewController.xib */; settings = {ASSET_TAGS = (); }; };
@@ -84,7 +83,6 @@
 		2B7352F81C425EE5000C51C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B7352F91C425EE5000C51C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2B7353011C425EE5000C51C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
-		2B7353041C425EE5000C51C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B7353061C425EE5000C51C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B73531C1C426082000C51C5 /* SUPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPlayerManager.h; sourceTree = "<group>"; };
 		2B73531D1C426082000C51C5 /* SUPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUPlayerManager.m; sourceTree = "<group>"; };
@@ -260,20 +258,17 @@
 		2B7352F41C425EE5000C51C5 /* SUMusic */ = {
 			isa = PBXGroup;
 			children = (
-				2BDFFCB91C4BA05100CFE078 /* Global */,
-				2BB57D9E1C46AE93004A1B27 /* Resource */,
-				B1A33FC01C4641FD0011867B /* Expand */,
-				2B4FA9361C4543A30033FE92 /* Define */,
-				2B4FA9321C45429E0033FE92 /* Network */,
-				2B73532B1C42928F000C51C5 /* VIew */,
-				2B7353231C428446000C51C5 /* Controller */,
-				2B73531F1C426219000C51C5 /* Model */,
-				2B73531B1C426047000C51C5 /* SUPlayer */,
 				2B7352F81C425EE5000C51C5 /* AppDelegate.h */,
 				2B7352F91C425EE5000C51C5 /* AppDelegate.m */,
-				2B4FA9311C4541E20033FE92 /* PrefixHeader.pch */,
-				2B7353031C425EE5000C51C5 /* LaunchScreen.storyboard */,
-				2B7353061C425EE5000C51C5 /* Info.plist */,
+				2BDFFCB91C4BA05100CFE078 /* Global */,
+				2B4FA9361C4543A30033FE92 /* Define */,
+				2B7353231C428446000C51C5 /* Controller */,
+				2B73532B1C42928F000C51C5 /* VIew */,
+				2B73531F1C426219000C51C5 /* Model */,
+				2B4FA9321C45429E0033FE92 /* Network */,
+				2B73531B1C426047000C51C5 /* SUPlayer */,
+				B1A33FC01C4641FD0011867B /* Expand */,
+				2BB57D9E1C46AE93004A1B27 /* Resource */,
 				2B7352F51C425EE5000C51C5 /* Supporting Files */,
 			);
 			path = SUMusic;
@@ -282,6 +277,8 @@
 		2B7352F51C425EE5000C51C5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2B4FA9311C4541E20033FE92 /* PrefixHeader.pch */,
+				2B7353061C425EE5000C51C5 /* Info.plist */,
 				2B7352F61C425EE5000C51C5 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -582,6 +579,7 @@
 				TargetAttributes = {
 					2B7352F11C425EE5000C51C5 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = TUPS7BBK3N;
 					};
 				};
 			};
@@ -609,7 +607,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */,
-				2B7353051C425EE5000C51C5 /* LaunchScreen.storyboard in Resources */,
 				2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */,
 				2BDFFCD51C4BDAB300CFE078 /* Mine.xcassets in Resources */,
 				2BDFFCD31C4BD7AE00CFE078 /* MineHeader.xib in Resources */,
@@ -734,17 +731,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		2B7353031C425EE5000C51C5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2B7353041C425EE5000C51C5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		2B7353071C425EE5000C51C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -833,6 +819,9 @@
 			baseConfigurationReference = AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SUMusic/PrefixHeader.pch";
 				INFOPLIST_FILE = SUMusic/Info.plist;
@@ -840,6 +829,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinSu.SUMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "afba56e1-f71e-4f16-ae9d-55d82732c5da";
 			};
 			name = Debug;
 		};
@@ -848,6 +838,9 @@
 			baseConfigurationReference = 262DEA8BDAAA1AEC925980C1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SUMusic/PrefixHeader.pch";
 				INFOPLIST_FILE = SUMusic/Info.plist;
@@ -855,6 +848,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinSu.SUMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "afba56e1-f71e-4f16-ae9d-55d82732c5da";
 			};
 			name = Release;
 		};

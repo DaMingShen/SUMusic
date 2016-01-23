@@ -109,6 +109,8 @@
         _appDelegate.player.currentChannelID = channel.channel_id;
         //开始播放
         [_appDelegate.player newChannelPlay];
+        //刷新表格
+        [tableView reloadData];
     }
     //弹出播放器
     [_appDelegate.playView show];
