@@ -36,11 +36,16 @@
     [self setupUI];
     [self setupPlayingPet];
     
+    RegisterNotify(SONGPLAY, @selector(songBeginNotice));
+    RegisterNotify(SONGPAUSE, @selector(songStopNotice));
+    RegisterNotify(SONGEND, @selector(songStopNotice));
+    
     [_appDelegate.player newChannelPlay];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [UIView animateWithDuration:0.5 animations:^{
        _topView.alpha = 1.0;
     }];
@@ -84,9 +89,10 @@
 - (void)setupPlayingPet {
     _isPlaying = YES;
 
-    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(10, ScreenH - 75, 70, 70)];
+    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, ScreenH - 75, 85, 75)];
     _playingPet.contentMode = UIViewContentModeScaleAspectFill;
     _playingPet.userInteractionEnabled = YES;
+    _playingPet.image = [UIImage imageNamed:@"playingPet_1"];
     _playingPet.animationImages = @[[UIImage imageNamed:@"playingPet_1"],
                                     [UIImage imageNamed:@"playingPet_2"],
                                     [UIImage imageNamed:@"playingPet_3"]];
@@ -99,7 +105,20 @@
 }
 
 - (void)petTap {
-    [_appDelegate.playView show];
+    if (_appDelegate.player.isPlaying) {
+        [_appDelegate.playView show];
+    }else {
+        [_appDelegate.player startPlay];
+    }
+}
+
+#pragma mark - 通知处理
+- (void)songBeginNotice {
+    [_playingPet startAnimating];
+}
+
+- (void)songStopNotice {
+    [_playingPet stopAnimating];
 }
 
 @end

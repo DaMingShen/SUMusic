@@ -52,6 +52,7 @@
     
     [self.player play];
     self.isPlaying = YES;
+    SendNotify(SONGPLAY, nil);
     
     //如果是最后一首，加载更多歌曲
     if (self.currentSongIndex == self.songList.count - 1) [self loadMoreSong];
@@ -63,6 +64,16 @@
     
     [self.player pause];
     self.isPlaying = NO;
+    SendNotify(SONGPAUSE, nil);
+}
+
+//播放完毕
+- (void)endPlay {
+    if (self.isPlaying) {
+        [self.player pause];
+        self.isPlaying = NO;
+    }
+    SendNotify(SONGEND, nil);
 }
 
 //自然播放下一首
@@ -72,16 +83,13 @@
     [self reportSongEnd];
     
     //播放列表下一首歌
-    [self pausePlay];
-    SendNotify(SONGEND, nil);
+    [self endPlay];
     [self loadSongInfoWithResetStatus:NO];
     [self startPlay];
 }
 
 //停止当前歌曲并从第一首开始播放
 - (void)resetPlay {
-    [self pausePlay];
-    SendNotify(SONGEND, nil);
     [self loadSongInfoWithResetStatus:YES];
     [self startPlay];
 }
@@ -91,12 +99,13 @@
     self.currentSongIndex = reset ? 0 : self.currentSongIndex + 1;
     self.currentSong = self.songList[self.currentSongIndex];
     [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
-    SendNotify(SONGBEGIN, nil);
+    SendNotify(SONGREADY, nil);
 }
 
 #pragma mark - 网络操作
 //纯粹获取播放列表(打开app、切换频道)
 - (void)newChannelPlay {
+    [self endPlay];
     [SUNetwork fetchPlayListWithType:OperationTypeNone completion:^(BOOL isSucc) {
         if (isSucc) {
             [self resetPlay];
@@ -106,7 +115,7 @@
 
 //切歌
 - (void)skipSong {
-    [self pausePlay];
+    [self endPlay];
     [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
         if (isSucc) {
             [self resetPlay];
@@ -116,7 +125,7 @@
 
 //ban歌
 - (void)banSong {
-    [self pausePlay];
+    [self endPlay];
     [SUNetwork fetchPlayListWithType:OperationTypeBan completion:^(BOOL isSucc) {
         if (isSucc) {
             [self resetPlay];

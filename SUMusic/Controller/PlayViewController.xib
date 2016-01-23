@@ -3,21 +3,24 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayViewController">
             <connections>
                 <outlet property="banSong" destination="KfP-87-QmB" id="g3m-UP-39E"/>
+                <outlet property="coverView" destination="3QP-1L-yEN" id="Fkq-oQ-vqH"/>
                 <outlet property="currentProgress" destination="xcI-NW-jOZ" id="iJv-ea-HDo"/>
+                <outlet property="favorBtn" destination="eQt-Vd-AG5" id="7U8-qB-uSJ"/>
                 <outlet property="loveSong" destination="Um2-r7-Isy" id="Z7R-eA-VcL"/>
+                <outlet property="lyricsBtn" destination="9UQ-wt-YFS" id="xeo-MF-ryT"/>
                 <outlet property="nextSong" destination="95n-j3-iyN" id="X9c-of-VoK"/>
                 <outlet property="playBtn" destination="xL4-RG-w2B" id="jsv-03-wfY"/>
                 <outlet property="playBtnBg" destination="hid-aw-stf" id="hFr-o8-PLg"/>
                 <outlet property="playTime" destination="r56-AN-opF" id="54a-e8-9XD"/>
                 <outlet property="progressBar" destination="Xmx-kl-m1E" id="n1B-Jl-xln"/>
                 <outlet property="progressPoint" destination="qOB-qt-trC" id="e7d-aP-CnG"/>
+                <outlet property="shareBtn" destination="NRV-bl-pGQ" id="fJG-rF-2Q3"/>
                 <outlet property="singer" destination="HKS-vE-0HF" id="unv-XN-Bag"/>
                 <outlet property="songCover" destination="Lv0-2S-RAE" id="Qnd-cu-bn8"/>
                 <outlet property="songName" destination="IBo-4D-nWp" id="ti7-hT-uac"/>
@@ -139,26 +142,20 @@
                         <constraint firstItem="Ngu-wV-Fxx" firstAttribute="centerY" secondItem="Ghl-87-Umy" secondAttribute="centerY" id="lZa-6F-qMb"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QP-1L-yEN" userLabel="封面">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QP-1L-yEN" userLabel="封面">
                     <rect key="frame" x="0.0" y="110" width="375" height="348"/>
                     <subviews>
-                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-2S-RAE" userLabel="cover">
+                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-2S-RAE" userLabel="cover">
                             <rect key="frame" x="60" y="46" width="256" height="256"/>
                             <gestureRecognizers/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="Lv0-2S-RAE" secondAttribute="height" multiplier="1:1" id="QfG-V8-Hh6"/>
-                            </constraints>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="zMw-km-SdO" appends="YES" id="qln-mq-UkW"/>
                             </connections>
                         </imageView>
-                        <view hidden="YES" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hid-aw-stf" userLabel="play_btn_bg">
+                        <view hidden="YES" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hid-aw-stf" userLabel="play_btn_bg">
                             <rect key="frame" x="59" y="46" width="256" height="256"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="hid-aw-stf" secondAttribute="height" multiplier="1:1" id="4ck-eA-h4j"/>
-                            </constraints>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="iU1-p6-8YZ" appends="YES" id="Ztd-ao-xsy"/>
                             </connections>
@@ -174,11 +171,6 @@
                     <constraints>
                         <constraint firstItem="xL4-RG-w2B" firstAttribute="centerX" secondItem="3QP-1L-yEN" secondAttribute="centerX" id="4P3-xw-Vxy"/>
                         <constraint firstItem="xL4-RG-w2B" firstAttribute="centerY" secondItem="3QP-1L-yEN" secondAttribute="centerY" id="5If-qx-F5h"/>
-                        <constraint firstItem="hid-aw-stf" firstAttribute="centerX" secondItem="3QP-1L-yEN" secondAttribute="centerX" id="7bq-m5-Yic"/>
-                        <constraint firstItem="hid-aw-stf" firstAttribute="centerY" secondItem="3QP-1L-yEN" secondAttribute="centerY" id="Hn3-bV-NDm"/>
-                        <constraint firstItem="hid-aw-stf" firstAttribute="width" secondItem="Lv0-2S-RAE" secondAttribute="width" id="Kq4-ye-sQS"/>
-                        <constraint firstItem="Lv0-2S-RAE" firstAttribute="centerX" secondItem="3QP-1L-yEN" secondAttribute="centerX" id="kc9-hv-0EU"/>
-                        <constraint firstItem="Lv0-2S-RAE" firstAttribute="centerY" secondItem="3QP-1L-yEN" secondAttribute="centerY" id="sRT-1i-YVh"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2W-0M-kMn" userLabel="歌名&amp;艺术家">
@@ -205,7 +197,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jA4-RA-aDU" userLabel="hide">
-                            <rect key="frame" x="14" y="0.0" width="30" height="30"/>
+                            <rect key="frame" x="7" y="5" width="50" height="50"/>
                             <state key="normal" image="Player_hide">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -232,7 +224,6 @@
                                 <constraint firstAttribute="height" constant="20" id="Plt-fN-3xZ"/>
                             </constraints>
                             <state key="normal" image="ic_action_lyric"/>
-                            <state key="disabled" image="ic_action_fav_disable"/>
                             <state key="selected" image="ic_action_fav"/>
                             <state key="highlighted" image="ic_action_lyric_pressed"/>
                             <connections>
@@ -246,7 +237,6 @@
                                 <constraint firstAttribute="width" constant="24" id="eBu-3H-2fS"/>
                             </constraints>
                             <state key="normal" image="ic_action_uncollect"/>
-                            <state key="disabled" image="ic_action_fav_disable"/>
                             <state key="selected" image="ic_action_collect"/>
                             <state key="highlighted" image="ic_action_uncollect_pressed"/>
                             <connections>
@@ -260,7 +250,6 @@
                                 <constraint firstAttribute="height" constant="22" id="ySl-QC-ZJF"/>
                             </constraints>
                             <state key="normal" image="ic_action_share"/>
-                            <state key="disabled" image="ic_action_fav_disable"/>
                             <state key="selected" image="ic_action_fav"/>
                             <state key="highlighted" image="ic_action_share_pressed"/>
                             <connections>

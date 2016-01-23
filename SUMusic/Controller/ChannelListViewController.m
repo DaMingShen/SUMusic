@@ -40,8 +40,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"ChannelTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"channelCell"];
     self.tableView.tableFooterView = [UIView new];
     
-    //404提示
-    _unConnectNotic = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    _unConnectNotic = [[UIImageView alloc]initWithFrame:ScreenB];
     _unConnectNotic.image = [UIImage imageNamed:@"network_404"];
     _unConnectNotic.hidden = YES;
     [self.view addSubview:_unConnectNotic];

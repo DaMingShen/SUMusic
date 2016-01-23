@@ -116,9 +116,10 @@ selector:_selector name:_name object:nil];
 #define NetworkDisable @"NetworkIsNotReachability"
 
 //通知
-#define SONGBEGIN @"BeginPlayingSong"
+#define SONGREADY @"BeginPlayingSong"
+#define SONGPLAY @"playingSong"
+#define SONGPAUSE @"pausePlayingSong"
 #define SONGEND @"EndPlayingSong"
-#define UpdateUserInfoFAIL @"UpdateUserInfoFAIL"
 
 //默认图片
 #define DefaultImg [UIImage imageNamed:@"cover"]

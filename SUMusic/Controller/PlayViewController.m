@@ -24,6 +24,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *singer;
 @property (weak, nonatomic) IBOutlet UIView *playBtnBg;
 @property (weak, nonatomic) IBOutlet UIImageView *playBtn;
+@property (weak, nonatomic) IBOutlet UIView *coverView;
+@property (weak, nonatomic) IBOutlet UIButton *lyricsBtn;
+@property (weak, nonatomic) IBOutlet UIButton *favorBtn;
+@property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 
 
 @end
@@ -33,38 +37,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupUI];
-    
     _player = [SUPlayerManager manager];
     
-    RegisterNotify(SONGBEGIN, @selector(loadSongInfo));
+    RegisterNotify(SONGREADY, @selector(loadSongInfo));
+    RegisterNotify(SONGPLAY, @selector(songBeginNotice));
+    RegisterNotify(SONGPAUSE, @selector(songPauseNotice));
     RegisterNotify(SONGEND, @selector(songEndPlaying));
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [self refreshProgress];
     if (_player.isPlaying) [self addTimer];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        //进度条
+        self.progressPoint.layer.masksToBounds = YES;
+        self.progressPoint.layer.cornerRadius = self.progressPoint.h / 2.0;
+        
+        //封面
+        CGRect coverBounds = CGRectMake(0, 0, self.coverView.h * 0.93, self.coverView.h * 0.93);
+        CGPoint coverCenter = CGPointMake(self.coverView.w / 2, self.coverView.h / 2);
+        self.songCover.bounds = coverBounds;
+        self.songCover.center = coverCenter;
+        self.songCover.layer.masksToBounds = YES;
+        self.songCover.layer.cornerRadius = self.songCover.h / 2.0;
+        self.songCover.layer.borderWidth = 5.0;
+        self.songCover.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        
+        self.playBtnBg.bounds = coverBounds;
+        self.playBtnBg.center = coverCenter;
+        self.playBtnBg.layer.masksToBounds = YES;
+        self.playBtnBg.layer.cornerRadius = self.playBtnBg.h / 2.0;
+    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self removeTimer];
-}
-
-- (void)setupUI {
-    BASE_INFO_FUN(@(self.songCover.w));
-//    self.songCover.layer.masksToBounds = YES;
-//    self.songCover.layer.cornerRadius = self.songCover.h / 2.0;
-//    self.songCover.layer.borderWidth = 5.0;
-//    self.songCover.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//    
-//    self.playBtnBg.layer.masksToBounds = YES;
-//    self.playBtnBg.layer.cornerRadius = self.playBtnBg.h / 2.0;
-    
-    self.progressPoint.layer.masksToBounds = YES;
-    self.progressPoint.layer.cornerRadius = self.progressPoint.h / 2.0;
+    if (_timer) [self removeTimer];
 }
 
 #pragma mark - 全屏视图
@@ -96,38 +110,50 @@
 
 - (IBAction)pausePlaying:(UITapGestureRecognizer *)sender {
     [_player pausePlay];
-    [self removeTimer];
-    self.playBtnBg.hidden = NO;
-    self.playBtn.hidden = NO;
 }
 
 - (IBAction)goOnPlaying:(UITapGestureRecognizer *)sender {
     [_player startPlay];
-    [self addTimer];
-    self.playBtnBg.hidden = YES;
-    self.playBtn.hidden = YES;
 }
 
-#pragma mark - 刷新界面
+#pragma mark - 通知处理
 - (void)loadSongInfo {
     
-    if (self.playBtn.hidden == NO) {
-        self.playBtn.hidden = YES;
-        self.playBtnBg.hidden = YES;
-    }
+    [self enableInfo];
     
     self.songName.text = _player.currentSong.title;
     self.singer.text = [NSString stringWithFormat:@"—   %@    —",_player.currentSong.artist];
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
     [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg];
-    [self addTimer];
+}
+
+- (void)songBeginNotice {
+    if (!_timer) [self addTimer];
+    _playBtn.hidden = YES;
+    _playBtnBg.hidden = YES;
+}
+
+- (void)songPauseNotice {
+    if (_timer) [self removeTimer];
+    self.playBtnBg.hidden = NO;
+    self.playBtn.hidden = NO;
 }
 
 - (void)songEndPlaying {
+    if (_timer) [self removeTimer];
     
+    self.songName.text = @"";
+    self.singer.text = @"";
+    self.songCover.image = DefaultImg;
+    self.playTime.text = @"00:00";
+    self.totalTime.text = @"00:00";
+    self.progressPoint.x = self.progressBar.x;
+    self.coverView.userInteractionEnabled = NO;
     self.songCover.transform = CGAffineTransformMakeRotation(0.0);
+    [self changeAllBtnStatus:NO];
 }
 
+#pragma mark - 刷新界面
 - (void)refreshProgress {
     
     //显示时间
@@ -144,16 +170,29 @@
     self.songCover.transform = CGAffineTransformRotate(self.songCover.transform, M_PI / 1440);
 }
 
+- (void)enableInfo {
+    self.coverView.userInteractionEnabled = YES;
+    [self changeAllBtnStatus:YES];
+}
+
+- (void)changeAllBtnStatus:(BOOL)status {
+    self.banSong.enabled = status;
+    self.loveSong.enabled = status;
+    self.nextSong.enabled = status;
+    self.lyricsBtn.enabled = status;
+    self.favorBtn.enabled = status;
+    self.shareBtn.enabled = status;
+}
+
 #pragma mark - timer
 - (void)addTimer {
-    
-    if (_timer) return;
+    BASE_INFO_FUN(@"添加timer");
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgress) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)removeTimer {
-    
+    BASE_INFO_FUN(@"移除timer");
     [_timer invalidate];
     _timer = nil;
 }
@@ -162,6 +201,7 @@
 #pragma mark - 播放控制
 
 - (IBAction)skipSong:(UIButton *)sender {
+    [self songEndPlaying];
     [_player skipSong];
 }
 
@@ -173,6 +213,7 @@
 }
 
 - (IBAction)banSong:(UIButton *)sender {
+    [self songEndPlaying];
     [_player banSong];
 }
 
