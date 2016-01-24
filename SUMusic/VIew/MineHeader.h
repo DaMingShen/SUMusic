@@ -10,7 +10,7 @@
 
 @interface MineHeader : UIView
 
-@property (weak, nonatomic) IBOutlet UIImageView *userIcon;
+@property (weak, nonatomic) IBOutlet UIButton *userIcon;
 
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 

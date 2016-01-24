@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
+#import <UMSocial.h>
 
 @interface AppDelegate ()
 
@@ -36,6 +37,9 @@
     [self.player initialPlayer];
     self.playView = [[PlayViewController alloc]init];
     [self.playView show];
+    
+    //初始化友盟
+    [UMSocialData setAppKey:@"56a4941667e58e200d001b8d"];
     
     return YES;
 }

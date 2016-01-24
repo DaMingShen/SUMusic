@@ -13,23 +13,23 @@
 #pragma mark - 用户是否已经登陆
 + (BOOL)checkLogin {
     
-    return [SuAppSetting getBool:isLogin];
+    return [SuAppSetting getBool:UserLogin];
 }
 
 + (void)setLoginStatus:(BOOL)status {
     
-    [SuAppSetting setBool:status forKey:isLogin];
+    [SuAppSetting setBool:status forKey:UserLogin];
 }
 
 #pragma mark - APP是否刚启动
 + (BOOL)checkLauch {
     
-    return ![SuAppSetting getBool:isLauch];
+    return ![SuAppSetting getBool:UserLauch];
 }
 
 + (void)setLauchStatus:(BOOL)status {
     
-    [SuAppSetting setBool:!status forKey:isLauch];
+    [SuAppSetting setBool:!status forKey:UserLauch];
 }
 
 #pragma mark - APP是否第一次打开

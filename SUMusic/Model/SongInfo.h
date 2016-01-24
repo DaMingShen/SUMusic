@@ -47,6 +47,8 @@
 
 @property (nonatomic, copy) NSString *subtype;
 
+@property (nonatomic, copy) NSString * jsonString;
+
 @end
 
 

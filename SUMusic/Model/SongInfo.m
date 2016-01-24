@@ -10,6 +10,12 @@
 
 @implementation SongInfo
 
++ (instancetype)infoFromDict:(NSDictionary *)dict {
+    SongInfo * info = [[self alloc]initWithStringDict:dict];
+    info.jsonString = [SuString dictionaryToJson:dict];
+    return info;
+}
+
 @end
 
 @implementation Singers

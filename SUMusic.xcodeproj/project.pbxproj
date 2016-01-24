@@ -42,6 +42,8 @@
 		2BDFFCDA1C4BDB7000CFE078 /* MineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCD81C4BDB7000CFE078 /* MineTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		2BDFFCE01C4BE26400CFE078 /* CopyrightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFFCDE1C4BE26400CFE078 /* CopyrightViewController.m */; settings = {ASSET_TAGS = (); }; };
 		2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCDF1C4BE26400CFE078 /* CopyrightViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		2BF6B1441C54FA76003B4C7F /* SuDBManager+private.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6B13F1C54FA76003B4C7F /* SuDBManager+private.m */; settings = {ASSET_TAGS = (); }; };
+		2BF6B1451C54FA76003B4C7F /* SuDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6B1411C54FA76003B4C7F /* SuDBManager.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340011C4642190011867B /* NSDate+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC41C4642190011867B /* NSDate+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340021C4642190011867B /* NSDictionary+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC61C4642190011867B /* NSDictionary+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340031C4642190011867B /* NSString+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC81C4642190011867B /* NSString+SU.m */; settings = {ASSET_TAGS = (); }; };
@@ -135,6 +137,10 @@
 		2BDFFCDD1C4BE26400CFE078 /* CopyrightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyrightViewController.h; sourceTree = "<group>"; };
 		2BDFFCDE1C4BE26400CFE078 /* CopyrightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyrightViewController.m; sourceTree = "<group>"; };
 		2BDFFCDF1C4BE26400CFE078 /* CopyrightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CopyrightViewController.xib; sourceTree = "<group>"; };
+		2BF6B13E1C54FA76003B4C7F /* SuDBManager+private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SuDBManager+private.h"; sourceTree = "<group>"; };
+		2BF6B13F1C54FA76003B4C7F /* SuDBManager+private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SuDBManager+private.m"; sourceTree = "<group>"; };
+		2BF6B1401C54FA76003B4C7F /* SuDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuDBManager.h; sourceTree = "<group>"; };
+		2BF6B1411C54FA76003B4C7F /* SuDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuDBManager.m; sourceTree = "<group>"; };
 		AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A33FC31C4642190011867B /* NSDate+SU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SU.h"; sourceTree = "<group>"; };
 		B1A33FC41C4642190011867B /* NSDate+SU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SU.m"; sourceTree = "<group>"; };
@@ -415,9 +421,21 @@
 			name = Play;
 			sourceTree = "<group>";
 		};
+		2BF6B13D1C54FA76003B4C7F /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				2BF6B13E1C54FA76003B4C7F /* SuDBManager+private.h */,
+				2BF6B13F1C54FA76003B4C7F /* SuDBManager+private.m */,
+				2BF6B1401C54FA76003B4C7F /* SuDBManager.h */,
+				2BF6B1411C54FA76003B4C7F /* SuDBManager.m */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
 		B1A33FC01C4641FD0011867B /* Expand */ = {
 			isa = PBXGroup;
 			children = (
+				2BF6B13D1C54FA76003B4C7F /* DB */,
 				2BB57D961C46A43A004A1B27 /* SSSJson */,
 				B1A33FC11C4642190011867B /* SuUtility */,
 			);
@@ -696,6 +714,7 @@
 				B1A3401A1C4642190011867B /* SuString.m in Sources */,
 				B1A340081C4642190011867B /* UITextField+SU.m in Sources */,
 				B1A340151C4642190011867B /* SuImageView.m in Sources */,
+				2BF6B1451C54FA76003B4C7F /* SuDBManager.m in Sources */,
 				B1A340111C4642190011867B /* SuAppSetting.m in Sources */,
 				2B7352FA1C425EE5000C51C5 /* AppDelegate.m in Sources */,
 				B1A340121C4642190011867B /* SuDate.m in Sources */,
@@ -722,6 +741,7 @@
 				2B7353221C42623B000C51C5 /* SongInfo.m in Sources */,
 				2BDFFCC41C4BB1EE00CFE078 /* HomeViewController.m in Sources */,
 				B1A340191C4642190011867B /* SuScreenAdaptation.m in Sources */,
+				2BF6B1441C54FA76003B4C7F /* SuDBManager+private.m in Sources */,
 				B1A340071C4642190011867B /* UILabel+SU.m in Sources */,
 				2BDFFCA81C4B807400CFE078 /* BaseInfo.m in Sources */,
 				2BDFFCD11C4BD79F00CFE078 /* MineHeader.m in Sources */,
@@ -822,6 +842,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SUMusic/PrefixHeader.pch";
 				INFOPLIST_FILE = SUMusic/Info.plist;
@@ -841,6 +862,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SUMusic/PrefixHeader.pch";
 				INFOPLIST_FILE = SUMusic/Info.plist;

@@ -35,7 +35,7 @@
         BASE_INFO_FUN(responseObject);
         if ([[responseObject objectForKey:NetResult] intValue] == NetOk) {
             //解析数据
-            UserInfo * userInfo = [[UserInfo alloc]initWithDictionary:responseObject dealNull:YES];
+            UserInfo * userInfo = [[UserInfo alloc]initWithStringDict:responseObject];
             [AppDelegate delegate].userInfo = userInfo;
             //本地化保存登陆信息
             [userInfo archiverUserInfo];

@@ -48,12 +48,14 @@
     self.tableView.tableFooterView = [UIView new];
     
     //表格头部设置
+    UIView * tableHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 140)];
     _header = [[NSBundle mainBundle]loadNibNamed:@"MineHeader" owner:self options:nil][0];
-    _header.frame = CGRectMake(0, 0, ScreenW, 140);
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goLoginPage)];
-    _header.userIcon.userInteractionEnabled = YES;
-    [_header.userIcon addGestureRecognizer:tap];
-    self.tableView.tableHeaderView = _header;
+    _header.frame = tableHeader.bounds;
+    [_header.userIcon addTarget:self action:@selector(goLoginPage) forControlEvents:UIControlEventTouchUpInside];
+    [tableHeader addSubview:_header];
+    UIView * line = [UIView drawHorizonLineWithFrame:CGRectMake(0, tableHeader.h, tableHeader.w, 1)];
+//    [tableHeader addSubview:line];
+    self.tableView.tableHeaderView = tableHeader;
     
     //刷新头部
     [self refreshUI];

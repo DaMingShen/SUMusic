@@ -11,15 +11,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="z5A-fm-C0Q">
-                    <rect key="frame" x="137" y="8" width="100" height="100"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvJ-0B-lRW">
+                    <rect key="frame" x="137" y="9" width="100" height="100"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="aag-Ft-lZY"/>
-                        <constraint firstAttribute="width" constant="100" id="yzi-Ol-Wo9"/>
+                        <constraint firstAttribute="height" constant="100" id="4fJ-3R-lYc"/>
+                        <constraint firstAttribute="width" constant="100" id="KXr-UZ-ovb"/>
                     </constraints>
-                </imageView>
+                    <state key="normal" backgroundImage="user_avatar"/>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nickName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbD-gu-0wX">
-                    <rect key="frame" x="137" y="116" width="100" height="21"/>
+                    <rect key="frame" x="137" y="114" width="100" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Qat-DU-QQG"/>
                         <constraint firstAttribute="height" constant="21" id="YxL-lI-XAu"/>
@@ -31,14 +32,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="zvJ-0B-lRW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-11" id="05P-gn-Bkj"/>
+                <constraint firstItem="gbD-gu-0wX" firstAttribute="top" secondItem="zvJ-0B-lRW" secondAttribute="bottom" constant="5" id="8Qy-B6-Om8"/>
                 <constraint firstItem="gbD-gu-0wX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Bsk-Vn-KPn"/>
-                <constraint firstItem="z5A-fm-C0Q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="PHg-xX-vZX"/>
-                <constraint firstItem="z5A-fm-C0Q" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mir-EC-Voq"/>
-                <constraint firstItem="gbD-gu-0wX" firstAttribute="top" secondItem="z5A-fm-C0Q" secondAttribute="bottom" constant="8" id="vuF-qN-ofP"/>
+                <constraint firstItem="zvJ-0B-lRW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fdH-gI-eML"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="userIcon" destination="z5A-fm-C0Q" id="Oqx-mi-Fge"/>
+                <outlet property="userIcon" destination="zvJ-0B-lRW" id="rkb-SK-Dc5"/>
                 <outlet property="userName" destination="gbD-gu-0wX" id="nW5-7N-7F4"/>
             </connections>
             <point key="canvasLocation" x="354.5" y="72"/>

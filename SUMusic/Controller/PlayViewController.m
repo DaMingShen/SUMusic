@@ -7,6 +7,7 @@
 //
 
 #import "PlayViewController.h"
+#import <UMSocial.h>
 
 @interface PlayViewController () {
     
@@ -222,12 +223,11 @@
 }
 
 - (IBAction)favor:(UIButton *)sender {
-    [self showLoadingAni];
-    [self performSelector:@selector(hideAni) withObject:nil afterDelay:10.0];
+    
 }
 
 - (IBAction)share:(UIButton *)sender {
-    [self hideAni];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:@"56a4941667e58e200d001b8d" shareText:[NSString stringWithFormat:@"%@%@",_player.currentSong.title,_player.currentSong.artist] shareImage:[UIImage imageNamed:@"logo"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,nil] delegate:nil];
 }
 
 

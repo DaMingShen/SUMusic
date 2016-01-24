@@ -90,7 +90,7 @@
     _isPlaying = YES;
 
 //    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, ScreenH - 75, 85, 75)];
-    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 75, 75)];
+    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 76, 76)];
     _playingPet.center = CGPointMake(ScreenW / 2, ScreenH - 38);
     _playingPet.contentMode = UIViewContentModeScaleAspectFill;
     _playingPet.userInteractionEnabled = YES;
@@ -102,6 +102,8 @@
     _playingPet.animationRepeatCount = 0;
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(petTap)];
     [_playingPet addGestureRecognizer:tap];
+    UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(petPan:)];
+    [_playingPet addGestureRecognizer:pan];
     [_playingPet startAnimating];
     [self.navigationController.view addSubview:_playingPet];
 }
@@ -112,6 +114,16 @@
     }else {
         [_appDelegate.player startPlay];
     }
+}
+
+- (void)petPan:(UIPanGestureRecognizer *)pan {
+    CGPoint translation = [pan translationInView:self.view];
+    _playingPet.center = CGPointMake(_playingPet.centerX + translation.x, _playingPet.centerY + translation.y);
+    [pan setTranslation:CGPointZero inView:self.view];
+    if (_playingPet.x < 5) _playingPet.x = 5;
+    if (_playingPet.y < 10) _playingPet.y = 10;
+    if (_playingPet.x > ScreenW - _playingPet.w + 5) _playingPet.x = ScreenW - _playingPet.w + 5;
+    if (_playingPet.y > ScreenH - _playingPet.h) _playingPet.y = ScreenH - _playingPet.h;
 }
 
 #pragma mark - 通知处理

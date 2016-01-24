@@ -12,7 +12,7 @@
 
 + (instancetype)infoFromDict:(NSDictionary *)dict {
     
-    return [[self alloc]initWithDictionary:dict dealNull:YES];
+    return [[self alloc]initWithStringDict:dict];
 }
 
 + (NSArray *)arrayFromDict:(NSDictionary *)dict {
