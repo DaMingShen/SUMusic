@@ -59,6 +59,11 @@
 @property (nonatomic, copy) NSString * playTime;
 
 /*
+ * 总时长(秒)
+ */
+@property (nonatomic, copy) NSString * playDuration;
+
+/*
  * 当前播放时间(00:00)
  */
 @property (nonatomic, copy) NSString * timeNow;

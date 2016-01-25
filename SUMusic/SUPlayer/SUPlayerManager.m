@@ -43,6 +43,7 @@
     
     //播放完毕后的通知
     RegisterNotify(MPMoviePlayerPlaybackDidFinishNotification, @selector(playNext));
+    RegisterNotify(MPMoviePlayerLoadStateDidChangeNotification, @selector(loadingStatusChange));
 }
 
 #pragma mark - 播放器控制
@@ -165,6 +166,14 @@
     return [NSString stringWithFormat:@"%.f",isnan(self.player.currentPlaybackTime) ? 0 : self.player.currentPlaybackTime];
 }
 
+/*
+ * 总时长(秒)
+ */
+- (NSString *)playDuration {
+    
+    return [NSString stringWithFormat:@"%.f", self.player.duration];
+}
+
 
 /*
  * 当前播放时间(00:00)
@@ -218,6 +227,23 @@
     NSString * secStr = sec > 9 ? [NSString stringWithFormat:@"%d",sec] : [NSString stringWithFormat:@"0%d",sec];
     NSString * timeStr = [NSString stringWithFormat:@"%@:%@",minStr, secStr];
     return timeStr;
+}
+
+#pragma mark - loading状态
+- (void)loadingStatusChange {
+    if (self.player.loadState == MPMovieLoadStateUnknown) {
+        BASE_INFO_FUN(@"未知状态");
+    }
+    if (self.player.loadState == MPMovieLoadStatePlayable) {
+        [[AppDelegate delegate] configNowPlayingCenter];
+        BASE_INFO_FUN(@"可以播放");
+    }
+    if (self.player.loadState == MPMovieLoadStatePlaythroughOK) {
+        BASE_INFO_FUN(@"缓冲完成");
+    }
+    if (self.player.loadState == MPMovieLoadStateStalled) {
+        BASE_INFO_FUN(@"缓冲中");
+    }
 }
 
 @end

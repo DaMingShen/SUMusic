@@ -41,9 +41,29 @@
     //初始化友盟
     [UMSocialData setAppKey:@"56a4941667e58e200d001b8d"];
     
+    //Remote Control
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
+    
     return YES;
 }
 
+- (void)applicationWillResignActive:(UIApplication *)application {
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+}
+
+#pragma mark - User
 - (void)initialUser {
     
     UserInfo * userInfo = [UserInfo loadUserInfo];
@@ -53,26 +73,53 @@
     BASE_INFO_FUN(userInfo.user_name);
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+#pragma mark - NowPlayingCenter & Remote Control
+- (void)configNowPlayingCenter {
+    
+    //[UIApplication sharedApplication].applicationState == UIApplicationStateActive;
+    NSMutableDictionary * info = [NSMutableDictionary dictionary];
+    [info setObject:_player.currentSong.title forKey:MPMediaItemPropertyTitle];
+    [info setObject:_player.currentSong.artist forKey:MPMediaItemPropertyArtist];
+    [info setObject:@(self.player.playTime.intValue) forKey:MPNowPlayingInfoPropertyElapsedPlaybackTime];
+    [info setObject:@(1) forKey:MPNowPlayingInfoPropertyPlaybackRate];
+    [info setObject:@(self.player.playDuration.intValue) forKey:MPMediaItemPropertyPlaybackDuration];
+    MPMediaItemArtwork * artwork = [[MPMediaItemArtwork alloc] initWithImage:self.playView.coverImg];
+    [info setObject:artwork forKey:MPMediaItemPropertyArtwork];
+    [[MPNowPlayingInfoCenter defaultCenter]setNowPlayingInfo:info];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+- (BOOL)canBecomeFirstResponder {
+    return YES;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event {
+    
+    switch (event.subtype)
+    {
+        case UIEventSubtypeRemoteControlPlay:
+            [self.playView goOnPlaying:nil];
+            BASE_INFO_FUN(@"remote_play");
+            break;
+        case UIEventSubtypeRemoteControlPause:
+            [self.playView pausePlaying:nil];
+            BASE_INFO_FUN(@"remote_pause");
+            break;
+        case UIEventSubtypeRemoteControlNextTrack:
+            [self.playView skipSong:nil];
+            BASE_INFO_FUN(@"remote_skip");
+            break;
+        case UIEventSubtypeRemoteControlTogglePlayPause:
+            if (self.player.isPlaying) {
+                [self.playView pausePlaying:nil];
+            }else {
+                [self.playView goOnPlaying:nil];
+            }
+            BASE_INFO_FUN(@"remote_toggle");
+            break;
+        default:
+            break;
+    }
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
 
 @end

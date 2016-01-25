@@ -23,5 +23,7 @@
 
 + (AppDelegate *)delegate;
 
+- (void)configNowPlayingCenter;
+
 @end
 

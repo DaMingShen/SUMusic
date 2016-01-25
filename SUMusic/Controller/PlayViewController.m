@@ -8,6 +8,7 @@
 
 #import "PlayViewController.h"
 #import <UMSocial.h>
+#import <MediaPlayer/MPNowPlayingInfoCenter.h>
 
 @interface PlayViewController () {
     
@@ -125,7 +126,10 @@
     self.songName.text = _player.currentSong.title;
     self.singer.text = [NSString stringWithFormat:@"—   %@    —",_player.currentSong.artist];
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
-    [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg];
+    [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.coverImg = image;
+        [[AppDelegate delegate] configNowPlayingCenter];
+    }];
 }
 
 - (void)songBeginNotice {
@@ -187,12 +191,14 @@
 
 #pragma mark - timer
 - (void)addTimer {
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) return;
     BASE_INFO_FUN(@"添加timer");
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgress) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)removeTimer {
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) return;
     BASE_INFO_FUN(@"移除timer");
     [_timer invalidate];
     _timer = nil;
@@ -232,6 +238,5 @@
 - (IBAction)share:(UIButton *)sender {
     [UMSocialSnsService presentSnsIconSheetView:self appKey:@"56a4941667e58e200d001b8d" shareText:[NSString stringWithFormat:@"%@%@",_player.currentSong.title,_player.currentSong.artist] shareImage:[UIImage imageNamed:@"logo"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,nil] delegate:nil];
 }
-
 
 @end
