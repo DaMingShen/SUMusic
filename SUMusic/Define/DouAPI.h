@@ -27,4 +27,7 @@
 #pragma mark - 歌曲列表（已登陆）
 #define DOU_API_PlayList_Login @"http://www.douban.com/j/app/radio/people?type=%@&sid=%@&pt=%@&channel=%@&app_name=radio_android&version=100&user_id=%@&expire=%@&token=%@"
 
+#pragma mark - 歌词
+#define DOU_API_Lyric @"http://api.douban.com/v2/fm/lyric"
+
 #endif /* DouAPI_h */

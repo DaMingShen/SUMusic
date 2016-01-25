@@ -32,4 +32,7 @@ typedef NS_ENUM(NSInteger, OperationType) {
 #pragma mark - 歌曲操作
 + (void)fetchPlayListWithType:(OperationType)type completion:(void(^)(BOOL isSucc))completion;
 
+#pragma mark - 歌词
++ (void)fetchLyricWithCompletion:(void(^)(BOOL isSucc, BOOL isExist, NSDictionary * lyric))completion;
+
 @end

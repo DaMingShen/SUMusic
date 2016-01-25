@@ -44,6 +44,7 @@
 		2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFFCDF1C4BE26400CFE078 /* CopyrightViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		2BF6B1441C54FA76003B4C7F /* SuDBManager+private.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6B13F1C54FA76003B4C7F /* SuDBManager+private.m */; settings = {ASSET_TAGS = (); }; };
 		2BF6B1451C54FA76003B4C7F /* SuDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6B1411C54FA76003B4C7F /* SuDBManager.m */; settings = {ASSET_TAGS = (); }; };
+		B199DC8B1C55C86100D2E63E /* SuLyricTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B199DC8A1C55C86100D2E63E /* SuLyricTool.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340011C4642190011867B /* NSDate+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC41C4642190011867B /* NSDate+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340021C4642190011867B /* NSDictionary+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC61C4642190011867B /* NSDictionary+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340031C4642190011867B /* NSString+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC81C4642190011867B /* NSString+SU.m */; settings = {ASSET_TAGS = (); }; };
@@ -142,6 +143,8 @@
 		2BF6B1401C54FA76003B4C7F /* SuDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuDBManager.h; sourceTree = "<group>"; };
 		2BF6B1411C54FA76003B4C7F /* SuDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuDBManager.m; sourceTree = "<group>"; };
 		AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B199DC891C55C86100D2E63E /* SuLyricTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuLyricTool.h; sourceTree = "<group>"; };
+		B199DC8A1C55C86100D2E63E /* SuLyricTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuLyricTool.m; sourceTree = "<group>"; };
 		B1A33FC31C4642190011867B /* NSDate+SU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SU.h"; sourceTree = "<group>"; };
 		B1A33FC41C4642190011867B /* NSDate+SU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SU.m"; sourceTree = "<group>"; };
 		B1A33FC51C4642190011867B /* NSDictionary+SU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SU.h"; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 				B1A33FFE1C4642190011867B /* SuString.m */,
 				B1A33FFF1C4642190011867B /* SuViewTool.h */,
 				B1A340001C4642190011867B /* SuViewTool.m */,
+				B199DC891C55C86100D2E63E /* SuLyricTool.h */,
+				B199DC8A1C55C86100D2E63E /* SuLyricTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -724,6 +729,7 @@
 				B1A3400A1C4642190011867B /* UIWindow+SU.m in Sources */,
 				2B73531E1C426082000C51C5 /* SUPlayerManager.m in Sources */,
 				B1A340051C4642190011867B /* UIColor+SU.m in Sources */,
+				B199DC8B1C55C86100D2E63E /* SuLyricTool.m in Sources */,
 				2BDFFCC71C4BB2D100CFE078 /* TopTabItemView.m in Sources */,
 				B1A340171C4642190011867B /* SuNetworkMonitor.m in Sources */,
 				2B7352F71C425EE5000C51C5 /* main.m in Sources */,
@@ -850,7 +856,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinSu.SUMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "afba56e1-f71e-4f16-ae9d-55d82732c5da";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -870,7 +876,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinSu.SUMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "afba56e1-f71e-4f16-ae9d-55d82732c5da";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

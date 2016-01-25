@@ -220,6 +220,9 @@
 
 #pragma mark - 其他功能
 - (IBAction)lyrics:(UIButton *)sender {
+    [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
+        BASE_INFO_FUN(lyric);
+    }];
 }
 
 - (IBAction)favor:(UIButton *)sender {

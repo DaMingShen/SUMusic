@@ -130,4 +130,31 @@
     }];
 }
 
+#pragma mark - 歌词
++ (void)fetchLyricWithCompletion:(void(^)(BOOL isSucc, BOOL isExist, NSDictionary * lyric))completion {
+    
+    //取得管理实例
+    SUPlayerManager * player = [AppDelegate delegate].player;
+    
+    NSDictionary * lyricParam = @{@"sid":player.currentSong.sid,
+                                  @"ssid":player.currentSong.ssid};
+    
+    [[SUNetwork manager] POST:DOU_API_Lyric parameters:lyricParam success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        BASE_INFO_FUN(responseObject);
+        
+        NSString * lyricString = [responseObject getObjectFromKey:@"lyric"];
+        if (lyricString.length > 0) {
+            NSDictionary * dict = [SuLyricTool parseLyricStirng:lyricString];
+            if (completion) completion(YES, YES, dict);
+        }else {
+            if (completion) completion(YES, NO, nil);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        BASE_INFO_FUN(error);
+        if (completion) completion(NO, NO, nil);
+    }];
+    
+}
+
 @end
