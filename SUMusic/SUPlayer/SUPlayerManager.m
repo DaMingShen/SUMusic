@@ -30,7 +30,6 @@
     
     //初始化
     self.player = [[MPMoviePlayerController alloc]init];
-    self.isPlaying = NO;
     self.songList = [NSMutableArray array];
     self.currentSong = [[SongInfo alloc]init];
     self.currentSong.sid = @"0";
@@ -52,7 +51,6 @@
     if (self.isPlaying) return;
     
     [self.player play];
-    self.isPlaying = YES;
     SendNotify(SONGPLAY, nil);
     
     //如果是最后一首，加载更多歌曲
@@ -64,7 +62,6 @@
     if (!self.isPlaying) return;
     
     [self.player pause];
-    self.isPlaying = NO;
     SendNotify(SONGPAUSE, nil);
 }
 
@@ -72,7 +69,6 @@
 - (void)endPlay {
     if (self.isPlaying) {
         [self.player pause];
-        self.isPlaying = NO;
     }
     SendNotify(SONGEND, nil);
 }
@@ -189,6 +185,13 @@
 - (NSString *)duration {
     
     return [self convertStringWithTime:self.player.duration];
+}
+
+/*
+ * 播放器播放状态
+ */
+- (BOOL)isPlaying {
+    return self.player.playbackState == MPMoviePlaybackStatePlaying;
 }
 
 

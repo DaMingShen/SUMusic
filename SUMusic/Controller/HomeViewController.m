@@ -21,7 +21,6 @@
     NSArray<UIView *> * _subViewList;
     
     UIImageView * _playingPet;
-    BOOL _isPlaying;
 }
 
 @end
@@ -87,7 +86,6 @@
 
 #pragma mark - PlayingPet
 - (void)setupPlayingPet {
-    _isPlaying = YES;
 
 //    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, ScreenH - 75, 85, 75)];
     _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 76, 76)];

@@ -45,6 +45,7 @@
 		2BF6B1441C54FA76003B4C7F /* SuDBManager+private.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6B13F1C54FA76003B4C7F /* SuDBManager+private.m */; settings = {ASSET_TAGS = (); }; };
 		2BF6B1451C54FA76003B4C7F /* SuDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6B1411C54FA76003B4C7F /* SuDBManager.m */; settings = {ASSET_TAGS = (); }; };
 		B199DC8B1C55C86100D2E63E /* SuLyricTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B199DC8A1C55C86100D2E63E /* SuLyricTool.m */; settings = {ASSET_TAGS = (); }; };
+		B199DC911C57046F00D2E63E /* LyricView.m in Sources */ = {isa = PBXBuildFile; fileRef = B199DC901C57046F00D2E63E /* LyricView.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340011C4642190011867B /* NSDate+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC41C4642190011867B /* NSDate+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340021C4642190011867B /* NSDictionary+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC61C4642190011867B /* NSDictionary+SU.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340031C4642190011867B /* NSString+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC81C4642190011867B /* NSString+SU.m */; settings = {ASSET_TAGS = (); }; };
@@ -145,6 +146,8 @@
 		AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B199DC891C55C86100D2E63E /* SuLyricTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuLyricTool.h; sourceTree = "<group>"; };
 		B199DC8A1C55C86100D2E63E /* SuLyricTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuLyricTool.m; sourceTree = "<group>"; };
+		B199DC8F1C57046F00D2E63E /* LyricView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricView.h; sourceTree = "<group>"; };
+		B199DC901C57046F00D2E63E /* LyricView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricView.m; sourceTree = "<group>"; };
 		B1A33FC31C4642190011867B /* NSDate+SU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SU.h"; sourceTree = "<group>"; };
 		B1A33FC41C4642190011867B /* NSDate+SU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SU.m"; sourceTree = "<group>"; };
 		B1A33FC51C4642190011867B /* NSDictionary+SU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SU.h"; sourceTree = "<group>"; };
@@ -345,6 +348,8 @@
 				2BDFFCCF1C4BD79F00CFE078 /* MineHeader.h */,
 				2BDFFCD01C4BD79F00CFE078 /* MineHeader.m */,
 				2BDFFCD21C4BD7AE00CFE078 /* MineHeader.xib */,
+				B199DC8F1C57046F00D2E63E /* LyricView.h */,
+				B199DC901C57046F00D2E63E /* LyricView.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -735,6 +740,7 @@
 				2B7352F71C425EE5000C51C5 /* main.m in Sources */,
 				2BB57D9A1C46A45B004A1B27 /* NSObject+SSS.m in Sources */,
 				2BDFFCB81C4B9D9000CFE078 /* ChannelInfo.m in Sources */,
+				B199DC911C57046F00D2E63E /* LyricView.m in Sources */,
 				2BDFFCAB1C4B8F1000CFE078 /* UserInfo.m in Sources */,
 				B1A3400F1C4642190011867B /* CustomTabbar.m in Sources */,
 				B1A3400C1C4642190011867B /* SuCaptureCodeView.m in Sources */,

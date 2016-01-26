@@ -9,12 +9,15 @@
 #import "PlayViewController.h"
 #import <UMSocial.h>
 #import <MediaPlayer/MPNowPlayingInfoCenter.h>
+#import "LyricView.h"
 
 @interface PlayViewController () {
     
     SUPlayerManager * _player;
-    
     NSTimer * _timer;
+    
+    //歌词
+    LyricView * _lycView;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *progressBar;
@@ -75,6 +78,10 @@
         self.playBtnBg.center = coverCenter;
         self.playBtnBg.layer.masksToBounds = YES;
         self.playBtnBg.layer.cornerRadius = self.playBtnBg.h / 2.0;
+        
+        //歌词
+        _lycView = [[LyricView alloc]initWithFrame:self.coverView.frame];
+
     });
 }
 
@@ -121,8 +128,10 @@
 #pragma mark - 通知处理
 - (void)loadSongInfo {
     
+    //激活UI
     [self enableInfo];
     
+    //设置封面
     self.songName.text = _player.currentSong.title;
     self.singer.text = [NSString stringWithFormat:@"—   %@    —",_player.currentSong.artist];
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
@@ -130,6 +139,18 @@
         self.coverImg = image;
         [[AppDelegate delegate] configNowPlayingCenter];
     }];
+    
+    //设置歌词
+    [_lycView clearLyric];
+    if ([_lycView checkShow]) {
+        [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
+            if (isSucc) {
+                [_lycView loadLyric:lyric];
+            }else {
+                
+            }
+        }];
+    }
 }
 
 - (void)songBeginNotice {
@@ -226,9 +247,26 @@
 
 #pragma mark - 其他功能
 - (IBAction)lyrics:(UIButton *)sender {
-    [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
-        BASE_INFO_FUN(lyric);
-    }];
+    
+    if ([_lycView checkLyric]) {
+        if ([_lycView checkShow]) {
+            [_lycView hide];
+        }else {
+            [_lycView showInView:self.view];
+        }
+    }else {
+        [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
+            if (isSucc) {
+                [_lycView loadLyric:lyric];
+                [_lycView showInView:self.view];
+            }else {
+                
+            }
+            
+        }];
+    }
+    
+    
 }
 
 - (IBAction)favor:(UIButton *)sender {
