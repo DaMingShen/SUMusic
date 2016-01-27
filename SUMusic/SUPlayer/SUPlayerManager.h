@@ -103,12 +103,12 @@
 /*
  * 切歌
  */
-- (void)skipSong;
+- (void)skipSongWithHandle:(void(^)(BOOL isSucc))handle;
 
 /*
  * ban歌
  */
-- (void)banSong;
+- (void)banSongWithHandle:(void(^)(BOOL isSucc))handle;
 
 
 

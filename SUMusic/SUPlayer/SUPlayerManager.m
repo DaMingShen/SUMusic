@@ -111,22 +111,26 @@
 }
 
 //切歌
-- (void)skipSong {
-    [self endPlay];
+- (void)skipSongWithHandle:(void(^)(BOOL isSucc))handle {
+    
     [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
         if (isSucc) {
+            [self endPlay];
             [self resetPlay];
         }
+        if (handle) handle(isSucc);
     }];
 }
 
 //ban歌
-- (void)banSong {
-    [self endPlay];
+- (void)banSongWithHandle:(void(^)(BOOL isSucc))handle {
+    
     [SUNetwork fetchPlayListWithType:OperationTypeBan completion:^(BOOL isSucc) {
         if (isSucc) {
+            [self endPlay];
             [self resetPlay];
         }
+        if (handle) handle(isSucc);
     }];
 }
 

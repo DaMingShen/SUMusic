@@ -19,6 +19,8 @@
 //显示动画
 - (void)showLoadingAni;
 - (void)hideAni;
+- (UIView *)showLoadingInView:(UIView *)sender;
+- (void)hideLoading:(UIView *)loadingView;
 
 #pragma mark ===========================导航相关============================
 - (void)setNavigationTitle:(NSString *)title;

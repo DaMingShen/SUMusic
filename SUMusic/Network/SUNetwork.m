@@ -46,7 +46,7 @@
             if (completion) completion(NO, [responseObject objectForKey:NetResult]);
         }
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-        BASE_INFO_FUN(error);
+        BASE_INFO_FUN(@"网络错误");
         if (completion) completion(NO, @"请检查您的网络");
     }];
 }
@@ -87,11 +87,12 @@
     }else {
         url = [NSString stringWithFormat:DOU_API_PlayList,operationTypeList[type],player.currentSong.sid,player.playTime,player.currentChannelID];
     }
-    BASE_INFO_FUN(url);
+//    BASE_INFO_FUN(url);
     
     //请求数据
     [[SUNetwork manager] GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        BASE_INFO_FUN(responseObject);
+//        BASE_INFO_FUN(responseObject);
+        BASE_INFO_FUN(@"成功");
         if ([[responseObject objectForKey:NetResult] intValue] == NetOk) {
             //正常播放完一首歌 : 直接返回请求结果，不用切歌
             if (type == OperationTypeEnd) {
@@ -125,7 +126,7 @@
         }
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+        BASE_INFO_FUN(@"网络错误");
         if (completion) completion(NO);
     }];
 }
@@ -140,8 +141,8 @@
                                   @"ssid":player.currentSong.ssid};
     
     [[SUNetwork manager] POST:DOU_API_Lyric parameters:lyricParam success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        BASE_INFO_FUN(responseObject);
-        
+//        BASE_INFO_FUN(responseObject);
+        BASE_INFO_FUN(@"成功");
         NSString * lyricString = [responseObject getObjectFromKey:@"lyric"];
         if (lyricString.length > 0) {
             NSDictionary * dict = [SuLyricTool parseLyricStirng:lyricString];
@@ -151,7 +152,7 @@
         }
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-        BASE_INFO_FUN(error);
+        BASE_INFO_FUN(@"网络错误");
         if (completion) completion(NO, NO, nil);
     }];
     

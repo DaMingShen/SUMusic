@@ -11,7 +11,6 @@
 @interface BaseViewController () {
     
     UIView * _aniView;
-    
 }
 
 
@@ -133,7 +132,7 @@
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
         imageView.center = CGPointMake(ScreenW / 2, ScreenH / 2);
         imageView.image = [UIImage imageNamed:@"loading"];
-        imageView.tag = 90016;
+        imageView.tag = 666;
         [_aniView addSubview:imageView];
     }
     CABasicAnimation * rotationAni = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -141,7 +140,7 @@
     rotationAni.duration = 2.0;
     rotationAni.cumulative = YES;
     rotationAni.repeatCount = NSIntegerMax;
-    [[_aniView viewWithTag:90016].layer addAnimation:rotationAni forKey:@"rotationAni"];
+    [[_aniView viewWithTag:666].layer addAnimation:rotationAni forKey:@"rotationAni"];
 
     [[UIApplication sharedApplication].keyWindow addSubview:_aniView];
     [UIView animateWithDuration:0.2 animations:^{
@@ -154,6 +153,41 @@
         _aniView.alpha = 0.f;
     } completion:^(BOOL finished) {
         [_aniView removeFromSuperview];
+    }];
+}
+
+- (UIView *)showLoadingInView:(UIView *)sender {
+    
+    UIView * loadingView = [[UIView alloc]initWithFrame:sender.frame];
+    loadingView.backgroundColor = WhiteColor;
+    loadingView.alpha = 0.f;
+    
+    UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    imageView.center = CGPointMake(sender.w / 2, sender.h / 2);
+    imageView.image = [UIImage imageNamed:@"loading"];
+    imageView.tag = 666;
+    [loadingView addSubview:imageView];
+
+    CABasicAnimation * rotationAni = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAni.toValue = [NSNumber numberWithFloat:M_PI * 2.0];
+    rotationAni.duration = 2.0;
+    rotationAni.cumulative = YES;
+    rotationAni.repeatCount = NSIntegerMax;
+    [[loadingView viewWithTag:666].layer addAnimation:rotationAni forKey:@"rotationAni"];
+    
+    [sender.superview addSubview:loadingView];
+    [UIView animateWithDuration:0.2 animations:^{
+        loadingView.alpha = 1.0;
+    }];
+    
+    return loadingView;
+}
+
+- (void)hideLoading:(UIView *)loadingView {
+    [UIView animateWithDuration:0.2 animations:^{
+        loadingView.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        [loadingView removeFromSuperview];
     }];
 }
 

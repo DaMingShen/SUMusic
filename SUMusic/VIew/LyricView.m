@@ -20,6 +20,7 @@
     BOOL _isShow;
     
     NSTimer * _timer;
+    UILabel * _noLyricNotice;
 }
 
 
@@ -37,6 +38,9 @@
 }
 
 - (void)setupUI {
+    
+    self.alpha = 0.f;
+    
     _isCheck = NO;
     _isShow = NO;
     _timeSource = [NSMutableArray array];
@@ -52,6 +56,15 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.tableFooterView = [UIView new];
     [self addSubview:_tableView];
+    
+    
+    _noLyricNotice = [[UILabel alloc]initWithFrame:self.bounds];
+    _noLyricNotice.font = [UIFont systemFontOfSize:18];
+    _noLyricNotice.textAlignment = NSTextAlignmentCenter;
+    _noLyricNotice.text = @"该歌曲暂时没有歌词";
+    _noLyricNotice.textColor = [UIColor grayColor];
+    _noLyricNotice.hidden = YES;
+    [self addSubview:_noLyricNotice];
 }
 
 - (void)loadLyric:(NSDictionary *)dict {
@@ -62,9 +75,11 @@
     if (dict == nil) {
         
         //show no lyric
-        
+        _noLyricNotice.hidden = NO;
         
     }else {
+        
+        _noLyricNotice.hidden = YES;
         
         for (NSString * key in dict) {
             [_timeSource addObject:key];
@@ -86,6 +101,7 @@
 
 - (void)clearLyric {
     _isCheck = NO;
+    _noLyricNotice.hidden = YES;
     [_timeSource removeAllObjects];
     [_lycSource removeAllObjects];
     [_tableView reloadData];
@@ -94,10 +110,17 @@
 - (void)showInView:(UIView *)sender {
     _isShow = YES;
     
+    //先显示到当前歌词
+    [self scrollLyric];
+    
+    //定时器
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(scrollLyric) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
     
     [sender addSubview:self];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.alpha = 1.0;
+    }];
 }
 
 - (void)hide {
@@ -106,7 +129,11 @@
     [_timer invalidate];
     _timer = nil;
     
-    [self removeFromSuperview];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
 
 - (BOOL)checkLyric {
@@ -157,12 +184,12 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:aCellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.w, 40)];
-        label.font = [UIFont systemFontOfSize:15];
         label.textAlignment = NSTextAlignmentCenter;
         label.tag = 666;
         [cell.contentView addSubview:label];
     }
     UILabel * lyc = (UILabel *)[cell.contentView viewWithTag:666];
+    lyc.font = [UIFont systemFontOfSize:15];
     lyc.textColor = [UIColor grayColor];
     lyc.text = _lycSource[indexPath.row];
     return cell;

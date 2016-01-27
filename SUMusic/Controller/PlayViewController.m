@@ -127,7 +127,7 @@
 
 #pragma mark - 通知处理
 - (void)loadSongInfo {
-    
+    BASE_INFO_FUN(@"准备播放通知");
     //激活UI
     [self enableInfo];
     
@@ -154,18 +154,21 @@
 }
 
 - (void)songBeginNotice {
+    BASE_INFO_FUN(@"开始播放通知");
     if (!_timer) [self addTimer];
     _playBtn.hidden = YES;
     _playBtnBg.hidden = YES;
 }
 
 - (void)songPauseNotice {
+    BASE_INFO_FUN(@"暂停播放通知");
     if (_timer) [self removeTimer];
     self.playBtnBg.hidden = NO;
     self.playBtn.hidden = NO;
 }
 
 - (void)songEndPlaying {
+    BASE_INFO_FUN(@"播放完毕通知");
     if (_timer) [self removeTimer];
     
     self.songName.text = @"";
@@ -229,20 +232,31 @@
 #pragma mark - 播放控制
 
 - (IBAction)skipSong:(UIButton *)sender {
-    [self songEndPlaying];
-    [_player skipSong];
+    
+    UIView * loading = [self showLoadingInView:sender];
+    [_player skipSongWithHandle:^(BOOL isSucc) {
+        [self hideLoading:loading];
+        if (!isSucc) [self ToastMessage:@"网络错误"];
+    }];
 }
 
 - (IBAction)loveSong:(UIButton *)sender {
+    
+    UIView * loading = [self showLoadingInView:sender];
     OperationType type = sender.selected ? OperationTypeUnHeart : OperationTypeHeart;
     [SUNetwork fetchPlayListWithType:type completion:^(BOOL isSucc) {
         if (isSucc) sender.selected = !sender.selected;
+        [self hideLoading:loading];
+        if (!isSucc) [self ToastMessage:@"网络错误"];
     }];
 }
 
 - (IBAction)banSong:(UIButton *)sender {
-    [self songEndPlaying];
-    [_player banSong];
+    UIView * loading = [self showLoadingInView:sender];
+    [_player banSongWithHandle:^(BOOL isSucc) {
+        [self hideLoading:loading];
+        if (!isSucc) [self ToastMessage:@"网络错误"];
+    }];
 }
 
 #pragma mark - 其他功能
@@ -255,25 +269,27 @@
             [_lycView showInView:self.view];
         }
     }else {
+        
+        UIView * loading = [self showLoadingInView:sender];
         [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
             if (isSucc) {
                 [_lycView loadLyric:lyric];
                 [_lycView showInView:self.view];
             }else {
-                
+                [self ToastMessage:@"获取歌词失败"];
             }
-            
+            [self hideLoading:loading];
         }];
     }
-    
-    
 }
 
 - (IBAction)favor:(UIButton *)sender {
     
+    [self showLoadingInView:sender];
 }
 
 - (IBAction)share:(UIButton *)sender {
+    
     [UMSocialSnsService presentSnsIconSheetView:self appKey:@"56a4941667e58e200d001b8d" shareText:[NSString stringWithFormat:@"%@%@",_player.currentSong.title,_player.currentSong.artist] shareImage:[UIImage imageNamed:@"logo"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,nil] delegate:nil];
 }
 
