@@ -121,27 +121,32 @@
         NSMutableString * sql = [[NSMutableString alloc]init];
         [sql appendFormat:@"SELECT * FROM %@", tableName];
         
-        NSInteger index = 0;
-        for (NSString * key in dictCondition) {
+        //若不传dictCondition 则查询全部
+        if (dictCondition != nil) {
             
-            if (index == 0) {
+            NSInteger index = 0;
+            for (NSString * key in dictCondition) {
                 
-                [sql appendString:@" WHERE "];
-            }else {
+                if (index == 0) {
+                    
+                    [sql appendString:@" WHERE "];
+                }else {
+                    
+                    [sql appendString:@" AND "];
+                }
                 
-                [sql appendString:@" AND "];
+                if ([dictCondition objectForKey:key]) {
+                    
+                    [sql appendFormat:@"%@ = '%@'", key, [dictCondition objectForKey:key]];
+                }else {
+                    
+                    [sql appendFormat:@"%@ = %@", key, [dictCondition objectForKey:key]];
+                }
+                
+                index ++;
             }
-            
-            if ([dictCondition objectForKey:key]) {
-                
-                [sql appendFormat:@"%@ = '%@'", key, [dictCondition objectForKey:key]];
-            }else {
-                
-                [sql appendFormat:@"%@ = %@", key, [dictCondition objectForKey:key]];
-            }
-            
-            index ++;
         }
+        
         
         FMResultSet * set = [db executeQuery:sql];
         while (set.next) {

@@ -11,8 +11,21 @@
 
 @interface SuDBManager : NSObject
 
-+ (void)saveUserInfoDict:(NSDictionary *)dict;
+#pragma mark - 离线
++ (void)saveToDownList;
 
-+ (NSDictionary *)fetchUserInfoDict;
++ (NSArray *)fetchDownList;
+
++ (SongInfo *)fetchSongInfoWithSid:(NSString *)sid;
+
+#pragma mark - 收藏
++ (void)saveToFavorList;
+
++ (NSArray *)fetchFavorList;
+
+#pragma mark - 分享的歌曲
++ (void)saveToSharedList;
+
++ (NSArray *)fetchSharedList;
 
 @end

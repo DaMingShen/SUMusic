@@ -9,33 +9,91 @@
 #import "SuDBManager.h"
 #import "SuDBManager+private.h"
 
-#define UserInfoTable @"UserInfo"
+#define DownListTable @"DownListTable"
+#define FavorListTable @"FavorListTable"
+#define SharedListTable @"SharedListTable"
 
 @implementation SuDBManager
 
-+ (void)saveUserInfoDict:(NSDictionary *)dict {
+#pragma mark -
++ (void)saveToDownList {
     
-//    NSString * path = [WZGlobal getUserDBFile];
-//    BASE_INFO_FUN(path);
-//    NSString * mobile = [SuAppSetting getValue:UserID];
-//    NSString * jsonStr = [SuJsonStringTool dictionaryToJsonStr:dict];
-//    NSDictionary * dictContent = [NSDictionary dictionaryWithObjectsAndKeys:mobile,@"mobile",jsonStr,@"userInfo", nil];
-//    [SuDBManager save:dictContent primaryKey:@"mobile" inTable:UserInfoTable inDBFile:path];
-    
+    NSString * path = [SuGlobal getUserDBFile];
+    NSString * sid = [AppDelegate delegate].player.currentSong.sid;
+    NSString * jsonStr = [AppDelegate delegate].player.currentSong.jsonString;
+    NSDictionary * dictContent = [NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",jsonStr,@"songInfo", nil];
+    [SuDBManager save:dictContent primaryKey:@"sid" inTable:DownListTable inDBFile:path];
 }
 
-+ (NSDictionary *)fetchUserInfoDict {
++ (NSArray *)fetchDownList {
     
-//    NSString * path = [WZGlobal getUserDBFile];
-//    NSString * mobile = [SuAppSetting getValue:UserID];
-//    NSDictionary * dictCondiction = [NSDictionary dictionaryWithObjectsAndKeys:mobile,@"mobile", nil];
-//    NSArray * result = [SuDBManager fetchWithCondition:dictCondiction forFields:@[@"mobile", @"userInfo"] inTable:UserInfoTable inDBFile:path];
-//    if (result.count > 0) {
-//        
-//        NSDictionary * rsDict = result[0];
-//        NSString * jsonStr = rsDict[@"userInfo"];
-//        return [SuJsonStringTool jsonStringToDictionary:jsonStr];
-//    }
+    NSString * path = [SuGlobal getUserDBFile];
+    NSArray * result = [SuDBManager fetchWithCondition:nil forFields:@[@"sid", @"songInfo"] inTable:DownListTable inDBFile:path];
+    if (result.count > 0) {
+        NSMutableArray * list = [NSMutableArray array];
+        for (NSDictionary * rsDict in result) {
+            NSString * jsonStr = rsDict[@"songInfo"];
+            [list addObject:[SongInfo infoFromDict:[NSDictionary dictionaryWithJsonString:jsonStr]]];
+        }
+        return list;
+    }
+    return nil;
+}
+
++ (SongInfo *)fetchSongInfoWithSid:(NSString *)sid {
+    
+    NSString * path = [SuGlobal getUserDBFile];
+    NSDictionary * dictCondiction = [NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid", nil];
+    NSArray * result = [SuDBManager fetchWithCondition:dictCondiction forFields:@[@"sid", @"songInfo"] inTable:DownListTable inDBFile:path];
+    if (result.count > 0) {
+        NSDictionary * rsDict = result[0];
+        NSString * jsonStr = rsDict[@"songInfo"];
+        return [SongInfo infoFromDict:[NSDictionary dictionaryWithJsonString:jsonStr]];
+    }
+    return nil;
+}
+
+
+#pragma mark - 收藏
++ (void)saveToFavorList {
+    [self saveInfoToTable:FavorListTable];
+}
+
++ (NSArray *)fetchFavorList {
+    return [self fetchListFromTable:FavorListTable];
+}
+
+#pragma mark - 分享的歌曲
++ (void)saveToSharedList {
+    [self saveInfoToTable:SharedListTable];
+}
+
++ (NSArray *)fetchSharedList {
+    return [self fetchListFromTable:SharedListTable];
+}
+
+#pragma mark - 公共方法
++ (void)saveInfoToTable:(NSString *)table {
+    
+    NSString * path = [SuGlobal getUserDBFile];
+    NSString * sid = [AppDelegate delegate].player.currentSong.sid;
+    NSString * jsonStr = [AppDelegate delegate].player.currentSong.jsonString;
+    NSDictionary * dictContent = [NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",jsonStr,@"songInfo", nil];
+    [SuDBManager save:dictContent primaryKey:@"sid" inTable:table inDBFile:path];
+}
+
++ (NSArray *)fetchListFromTable:(NSString *)table {
+    
+    NSString * path = [SuGlobal getUserDBFile];
+    NSArray * result = [SuDBManager fetchWithCondition:nil forFields:@[@"sid", @"songInfo"] inTable:table inDBFile:path];
+    if (result.count > 0) {
+        NSMutableArray * list = [NSMutableArray array];
+        for (NSDictionary * rsDict in result) {
+            NSString * jsonStr = rsDict[@"songInfo"];
+            [list addObject:[SongInfo infoFromDict:[NSDictionary dictionaryWithJsonString:jsonStr]]];
+        }
+        return list;
+    }
     return nil;
 }
 

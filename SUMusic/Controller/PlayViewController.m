@@ -7,6 +7,7 @@
 //
 
 #import "PlayViewController.h"
+#import "OffLineManager.h"
 #import <UMSocial.h>
 #import <MediaPlayer/MPNowPlayingInfoCenter.h>
 #import "LyricView.h"
@@ -288,7 +289,13 @@
 #pragma mark - 离线
 - (IBAction)favor:(UIButton *)sender {
     
-    [self showLoadingInView:sender];
+    [SuDBManager saveToFavorList];
+    
+//    [SuDBManager saveToDownList];
+//    [OffLineManager offLineSong];
+//    BASE_INFO_FUN([SuDBManager fetchDownList][0]);
+//    BASE_INFO_FUN([SuDBManager fetchSongInfoWithSid:@"185725"].sid);
+    
 }
 
 
@@ -314,6 +321,7 @@
         [_shareView dismiss:nil];
         if (response.responseCode == UMSResponseCodeSuccess) {
             BASE_INFO_FUN(@"分享成功");
+            [SuDBManager saveToSharedList];
         }else {
             BASE_INFO_FUN(@"分享失败");
         }

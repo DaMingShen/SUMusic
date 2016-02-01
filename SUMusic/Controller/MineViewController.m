@@ -11,6 +11,7 @@
 #import "MineTableViewCell.h"
 #import "CopyrightViewController.h"
 #import "LoginPage.h"
+#import "MyFavorViewController.h"
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate> {
     
@@ -100,7 +101,10 @@
             
             break;
         case 1:
-            
+        {
+            MyFavorViewController * favor = [[MyFavorViewController alloc]init];
+            [self.navigationController pushViewController:favor animated:YES];
+        }
             break;
         case 2:
             

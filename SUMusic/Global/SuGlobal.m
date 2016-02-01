@@ -46,70 +46,39 @@
 
 #pragma mark - 缓存路径
 
-+ (NSString *)getRootPath
-{
++ (NSString *)getRootPath {
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:RootPath];
     [SuFile createPath:path];
-    
     return path;
 }
 
-+ (NSString *)getArchiverFile;
-{
++ (NSString *)getArchiverFile {
     NSString *path = [[SuGlobal getRootPath] stringByAppendingPathComponent:ArchiverFile];
     return path;
 }
 
-+ (NSString *)getUserDBFile
-{
++ (NSString *)getUserDBFile {
     NSString *path = [SuGlobal getRootPath];
     return [path stringByAppendingPathComponent:DBFile];
 }
 
-+ (BOOL)setNotBackUp:(NSString *)filePath
-{
-    NSError *error = nil;
-    NSURL *fileURL = [NSURL fileURLWithPath:filePath];
-    NSNumber *attrValue = [NSNumber numberWithBool:YES];
-    
-    [fileURL setResourceValue:attrValue
-                       forKey:NSURLIsExcludedFromBackupKey
-                        error:&error];
-    if (error!=nil) {
-        BASE_ERROR_FUN([error localizedDescription]);
-        return NO;
-    }
-    
-    return YES;
++ (NSString *)getOffLinePath {
+    NSString *path = [[SuGlobal getRootPath] stringByAppendingPathComponent:OffLineFile];
+    [SuFile createPath:path];
+    return path;
+}
+
++ (NSString *)getOffLineFilePath {
+    NSString *path = [[SuGlobal getOffLinePath] stringByAppendingPathComponent:[AppDelegate delegate].player.currentSong.sid];
+    return path;
 }
 
 
 #pragma mark - 系统提示
 
-+ (void)alertMessage:(NSString *)message
-{
-    [SuGlobal alertMessageEx:message
-                       title:nil
-                    okTtitle:@"确定"
-                 cancelTitle:nil
-                    delegate:nil];
++ (void)alertMessage:(NSString *)message {
+    [[[UIAlertView alloc] initWithTitle:nil message:@"确定" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil]show];
 }
 
-+ (void)alertMessageEx:(NSString *)message
-                 title:(NSString *)title
-              okTtitle:(NSString *)okTitle
-           cancelTitle:(NSString *)cancelTitle
-              delegate:(id)delegate
-{
-    UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:title
-                              message:message
-                              delegate:delegate
-                              cancelButtonTitle:cancelTitle
-                              otherButtonTitles:okTitle,
-                              nil];
-    
-    [alertView show];
-}
 
 @end

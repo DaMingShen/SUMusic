@@ -32,14 +32,10 @@
 + (NSString *)getRootPath;
 + (NSString *)getArchiverFile;
 + (NSString *)getUserDBFile;
-+ (BOOL)setNotBackUp:(NSString *)filePath;
++ (NSString *)getOffLinePath;
++ (NSString *)getOffLineFilePath;
 
 // 系统提示
 + (void)alertMessage:(NSString *)message;
-+ (void)alertMessageEx:(NSString *)message
-                 title:(NSString *)title
-              okTtitle:(NSString *)okTitle
-           cancelTitle:(NSString *)cancelTitle
-              delegate:(id)delegate;
 
 @end

@@ -196,7 +196,7 @@
     
     self.title = title;
     //设置标题颜色为白色
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:19.0]}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:BaseColor,NSFontAttributeName:[UIFont systemFontOfSize:19.0]}];
 }
 
 - (void)setNavigationTitleView:(UIView *)view {

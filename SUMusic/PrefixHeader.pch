@@ -24,5 +24,6 @@
 
 #import "AppDelegate.h"
 #import "SuGlobal.h"
+#import "SuDBManager.h"
 
 #endif /* PrefixHeader_pch */

@@ -70,8 +70,9 @@ selector:_selector name:_name object:nil];
 
 // 文件缓存路径
 #define RootPath            @"Library/.SUMusic"
-#define ArchiverFile        @"suMusic.archiver"
-#define DBFile              @"WanZhongLife.db"
+#define ArchiverFile        @"SuMusic.archiver"
+#define DBFile              @"SuMusic.db"
+#define OffLineFile         @"OffLine"
 
 // iOS系统版本
 #define IOS_9     9.0
