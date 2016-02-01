@@ -10,6 +10,7 @@
 #import <UMSocial.h>
 #import <MediaPlayer/MPNowPlayingInfoCenter.h>
 #import "LyricView.h"
+#import "ShareView.h"
 
 @interface PlayViewController () {
     
@@ -18,6 +19,9 @@
     
     //歌词
     LyricView * _lycView;
+    
+    //分享
+    ShareView * _shareView;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *progressBar;
@@ -50,11 +54,6 @@
     RegisterNotify(SONGEND, @selector(songEndPlaying));
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if (_player.isPlaying) [self addTimer];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -83,10 +82,12 @@
         _lycView = [[LyricView alloc]initWithFrame:self.coverView.frame];
 
     });
+    
+    if (_player.isPlaying) [self addTimer];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     if (_timer) [self removeTimer];
 }
 
@@ -174,6 +175,7 @@
     self.songName.text = @"";
     self.singer.text = @"";
     self.songCover.image = DefaultImg;
+    self.coverImg = nil;
     self.playTime.text = @"00:00";
     self.totalTime.text = @"00:00";
     self.progressPoint.x = self.progressBar.x;
@@ -215,14 +217,14 @@
 
 #pragma mark - timer
 - (void)addTimer {
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) return;
+    if (_timer) return;
     BASE_INFO_FUN(@"添加timer");
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgress) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)removeTimer {
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) return;
+    if (_timer == nil) return;
     BASE_INFO_FUN(@"移除timer");
     [_timer invalidate];
     _timer = nil;
@@ -259,7 +261,7 @@
     }];
 }
 
-#pragma mark - 其他功能
+#pragma mark - 歌词
 - (IBAction)lyrics:(UIButton *)sender {
     
     if ([_lycView checkLyric]) {
@@ -283,14 +285,39 @@
     }
 }
 
+#pragma mark - 离线
 - (IBAction)favor:(UIButton *)sender {
     
     [self showLoadingInView:sender];
 }
 
+
+#pragma mark - 分享
 - (IBAction)share:(UIButton *)sender {
     
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:@"56a4941667e58e200d001b8d" shareText:[NSString stringWithFormat:@"%@%@",_player.currentSong.title,_player.currentSong.artist] shareImage:[UIImage imageNamed:@"logo"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,nil] delegate:nil];
+    if (_shareView == nil) {
+        WEAKSELF
+        _shareView = [[NSBundle mainBundle] loadNibNamed:@"ShareView" owner:self options:nil][0];
+        _shareView.frame = ScreenB;
+        [_shareView setShareBlock:^(NSInteger shareType) {
+            [weakSelf shareWithType:shareType];
+        }];
+    }
+    [_shareView showInView:self.view];
+}
+
+- (void)shareWithType:(NSInteger)shareType {
+    
+    NSArray * types = @[UMShareToSina, UMShareToWechatSession, UMShareToWechatTimeline];
+    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[types[shareType]] content:[NSString stringWithFormat:@"%@%@",_player.currentSong.title,_player.currentSong.artist] image:self.coverImg ? self.coverImg : DefaultImg location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
+        
+        [_shareView dismiss:nil];
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            BASE_INFO_FUN(@"分享成功");
+        }else {
+            BASE_INFO_FUN(@"分享失败");
+        }
+    }];
 }
 
 @end

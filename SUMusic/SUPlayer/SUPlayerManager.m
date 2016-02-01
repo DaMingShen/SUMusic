@@ -42,7 +42,13 @@
     
     //播放完毕后的通知
     RegisterNotify(MPMoviePlayerPlaybackDidFinishNotification, @selector(playNext));
+    //Loading状态改变通知
     RegisterNotify(MPMoviePlayerLoadStateDidChangeNotification, @selector(loadingStatusChange));
+    //播放状态改变通知
+    RegisterNotify(MPMoviePlayerPlaybackStateDidChangeNotification, @selector(playBackStatusChange));
+    //可播放时间改变通知
+    RegisterNotify(MPMovieDurationAvailableNotification, @selector(durationAvailable));
+
 }
 
 #pragma mark - 播放器控制
@@ -67,9 +73,9 @@
 
 //播放完毕
 - (void)endPlay {
-    if (self.isPlaying) {
-        [self.player pause];
-    }
+    if (!self.isPlaying) return;
+    
+    [self.player pause];
     SendNotify(SONGEND, nil);
 }
 
@@ -238,19 +244,57 @@
 
 #pragma mark - loading状态
 - (void)loadingStatusChange {
-    if (self.player.loadState == MPMovieLoadStateUnknown) {
-        BASE_INFO_FUN(@"未知状态");
-    }
-    if (self.player.loadState == MPMovieLoadStatePlayable) {
-        [[AppDelegate delegate] configNowPlayingCenter];
-        BASE_INFO_FUN(@"可以播放");
-    }
-    if (self.player.loadState == MPMovieLoadStatePlaythroughOK) {
-        BASE_INFO_FUN(@"缓冲完成");
-    }
-    if (self.player.loadState == MPMovieLoadStateStalled) {
-        BASE_INFO_FUN(@"缓冲中");
+    
+    switch (self.player.loadState) {
+        case MPMovieLoadStateUnknown:
+            BASE_INFO_FUN(@"未知状态");
+            break;
+        case MPMovieLoadStatePlayable:
+            BASE_INFO_FUN(@"可以播放");
+            break;
+        case MPMovieLoadStatePlaythroughOK:
+            BASE_INFO_FUN(@"缓冲完成");
+            break;
+        case MPMovieLoadStateStalled:
+            BASE_INFO_FUN(@"缓冲中");
+            break;
+        default:
+            break;
     }
 }
+
+#pragma mark - 播放状态
+- (void)playBackStatusChange {
+    
+    switch (self.player.playbackState) {
+        case MPMoviePlaybackStatePlaying:
+            BASE_INFO_FUN(@"State:正在播放");
+            break;
+        case MPMoviePlaybackStatePaused:
+            BASE_INFO_FUN(@"State:暂停播放");
+            break;
+        case MPMoviePlaybackStateStopped:
+            BASE_INFO_FUN(@"State:停止播放");
+            break;
+        case MPMoviePlaybackStateInterrupted:
+            BASE_INFO_FUN(@"State:中断播放");
+            break;
+        case MPMoviePlaybackStateSeekingForward:
+            BASE_INFO_FUN(@"State:向前定位");
+            break;
+        case MPMoviePlaybackStateSeekingBackward:
+            BASE_INFO_FUN(@"State:向后定位");
+            break;
+        default:
+            break;
+    }
+    
+}
+
+- (void)durationAvailable {
+    BASE_INFO_FUN(@"可播放时间改变通知");
+    [[AppDelegate delegate] configNowPlayingCenter];
+}
+
 
 @end

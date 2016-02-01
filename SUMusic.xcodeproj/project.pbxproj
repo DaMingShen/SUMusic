@@ -73,6 +73,8 @@
 		B1A340191C4642190011867B /* SuScreenAdaptation.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FFC1C4642190011867B /* SuScreenAdaptation.m */; settings = {ASSET_TAGS = (); }; };
 		B1A3401A1C4642190011867B /* SuString.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FFE1C4642190011867B /* SuString.m */; settings = {ASSET_TAGS = (); }; };
 		B1A3401B1C4642190011867B /* SuViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A340001C4642190011867B /* SuViewTool.m */; settings = {ASSET_TAGS = (); }; };
+		B1B4C92E1C5F385E00A767CA /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C92D1C5F385E00A767CA /* ShareView.m */; settings = {ASSET_TAGS = (); }; };
+		B1B4C9301C5F386C00A767CA /* ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C92F1C5F386C00A767CA /* ShareView.xib */; settings = {ASSET_TAGS = (); }; };
 		C0CC2742934E4E0C2A2BE3CC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C62326311B6DDD31F421887E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -206,6 +208,9 @@
 		B1A33FFF1C4642190011867B /* SuViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuViewTool.h; sourceTree = "<group>"; };
 		B1A340001C4642190011867B /* SuViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuViewTool.m; sourceTree = "<group>"; };
 		B1A3401C1C4642B30011867B /* SuDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuDefine.h; sourceTree = "<group>"; };
+		B1B4C92C1C5F385E00A767CA /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		B1B4C92D1C5F385E00A767CA /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		B1B4C92F1C5F386C00A767CA /* ShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareView.xib; sourceTree = "<group>"; };
 		C62326311B6DDD31F421887E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -348,6 +353,9 @@
 				2BDFFCCF1C4BD79F00CFE078 /* MineHeader.h */,
 				2BDFFCD01C4BD79F00CFE078 /* MineHeader.m */,
 				2BDFFCD21C4BD7AE00CFE078 /* MineHeader.xib */,
+				B1B4C92C1C5F385E00A767CA /* ShareView.h */,
+				B1B4C92D1C5F385E00A767CA /* ShareView.m */,
+				B1B4C92F1C5F386C00A767CA /* ShareView.xib */,
 				B199DC8F1C57046F00D2E63E /* LyricView.h */,
 				B199DC901C57046F00D2E63E /* LyricView.m */,
 			);
@@ -636,6 +644,7 @@
 			files = (
 				2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */,
 				2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */,
+				B1B4C9301C5F386C00A767CA /* ShareView.xib in Resources */,
 				2BDFFCD51C4BDAB300CFE078 /* Mine.xcassets in Resources */,
 				2BDFFCD31C4BD7AE00CFE078 /* MineHeader.xib in Resources */,
 				2BDFFCB01C4B905600CFE078 /* LoginPage.xib in Resources */,
@@ -715,6 +724,7 @@
 				B1A340011C4642190011867B /* NSDate+SU.m in Sources */,
 				B1A340141C4642190011867B /* SuFile.m in Sources */,
 				B1A340091C4642190011867B /* UIView+SU.m in Sources */,
+				B1B4C92E1C5F385E00A767CA /* ShareView.m in Sources */,
 				2B4FA9351C4542E60033FE92 /* SUNetwork.m in Sources */,
 				2BDFFCD91C4BDB7000CFE078 /* MineTableViewCell.m in Sources */,
 				B1A3401B1C4642190011867B /* SuViewTool.m in Sources */,

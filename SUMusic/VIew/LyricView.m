@@ -111,7 +111,7 @@
     _isShow = YES;
     
     //先显示到当前歌词
-    [self scrollLyric];
+    [self scrollToCurrentLyric];
     
     //定时器
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(scrollLyric) userInfo:nil repeats:YES];
@@ -145,6 +145,7 @@
 }
 
 #pragma mark - scroll lyric
+//根据当前秒数滚动到对应的行
 - (void)scrollLyric {
     
     NSString * secNow = [AppDelegate delegate].player.playTime;
@@ -169,6 +170,30 @@
             break;
         }
     }
+}
+
+//根据当前描述滚动到当前播放行
+- (void)scrollToCurrentLyric {
+    float secNow = [AppDelegate delegate].player.playTime.floatValue;
+    int rowNow = 0;
+    for (int i = 1; i < _timeSource.count; i ++) {
+        if (secNow > [_timeSource[i] floatValue]) {
+            if ((secNow - [_timeSource[i] floatValue]) < (secNow - [_timeSource[rowNow] floatValue])) {
+                rowNow = i;
+            }
+        }else {
+            break;
+        }
+    }
+    
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:rowNow inSection:0];
+    //滚动
+    [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    //突出显示
+    UITableViewCell * cell = [_tableView cellForRowAtIndexPath:indexPath];
+    UILabel * lyc = (UILabel *)[cell.contentView viewWithTag:666];
+    lyc.font = [UIFont systemFontOfSize:18];
+    lyc.textColor = BaseColor;
 }
 
 

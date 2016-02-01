@@ -124,4 +124,7 @@ selector:_selector name:_name object:nil];
 //默认图片
 #define DefaultImg [UIImage imageNamed:@"cover"]
 
+//弱引用
+#define WEAKSELF __weak __typeof(self) weakSelf = self;
+
 #endif
