@@ -35,9 +35,9 @@
     [self setupUI];
     [self setupPlayingPet];
     
-    RegisterNotify(SONGPLAY, @selector(songBeginNotice));
-    RegisterNotify(SONGPAUSE, @selector(songStopNotice));
-    RegisterNotify(SONGEND, @selector(songStopNotice));
+    RegisterNotify(SONGPLAY, @selector(songBegin))
+    RegisterNotify(SONGPAUSE, @selector(songStop))
+    RegisterNotify(SONGEND, @selector(songStop))
     
     [_appDelegate.player newChannelPlay];
 }
@@ -125,11 +125,11 @@
 }
 
 #pragma mark - 通知处理
-- (void)songBeginNotice {
+- (void)songBegin {
     [_playingPet startAnimating];
 }
 
-- (void)songStopNotice {
+- (void)songStop {
     [_playingPet stopAnimating];
 }
 

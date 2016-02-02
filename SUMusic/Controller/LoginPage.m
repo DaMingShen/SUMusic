@@ -38,7 +38,8 @@
 #pragma mark - UI
 -(void)UISetting{
     
-    self.view.backgroundColor = [UIColor colorWithHexRGB:@"#00AA56"];
+//    self.view.backgroundColor = RGBColor(36, 142, 178);
+    self.view.backgroundColor = [UIColor colorWithRed:0.8345 green:0.8345 blue:0.8345 alpha:1.0];
     
     UIView * nameLine = [UIView drawHorizonLineWithFrame:CGRectMake(_userNameTextField.x, _userNameTextField.y + _userNameTextField.h, _userNameTextField.w, 1)];
     nameLine.backgroundColor = [UIColor lightGrayColor];
@@ -137,7 +138,7 @@
    [SUNetwork loginWithUserName:_userNameTextField.text password:_passwordTextField.text completion:^(BOOL isSucc, NSString *msg) {
        if (isSucc) {
            BASE_INFO_FUN(msg);
-           SendNotify(LoginSUCC, nil);
+           SendNotify(LoginSUCC, nil)
            [self back:nil];
        }else {
            BASE_INFO_FUN(msg);

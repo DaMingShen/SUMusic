@@ -37,7 +37,7 @@
     
     _networkManager = [AFNetworkReachabilityManager managerForDomain:@"www.baidu.com"];
     [_networkManager startMonitoring];
-    RegisterNotify(AFNetworkingReachabilityDidChangeNotification, @selector(reachabilityChanged:));
+    RegisterNotify(AFNetworkingReachabilityDidChangeNotification, @selector(reachabilityChanged:))
 }
 
 

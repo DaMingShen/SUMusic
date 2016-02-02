@@ -122,6 +122,9 @@ selector:_selector name:_name object:nil];
 #define SONGPAUSE @"pausePlayingSong"
 #define SONGEND @"EndPlayingSong"
 
+#define RADIOPLAY @"PlayRadioMusic"
+#define LOCALPLAY @"PlayLocalList"
+
 //默认图片
 #define DefaultImg [UIImage imageNamed:@"cover"]
 

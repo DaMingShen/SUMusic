@@ -78,8 +78,10 @@
 		B1B4C93C1C5F79DB00A767CA /* SongListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C93A1C5F79DB00A767CA /* SongListTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		B1B4C93D1C5F79DB00A767CA /* SongListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C93B1C5F79DB00A767CA /* SongListTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		B1B4C9401C5F851000A767CA /* MyFavorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C93F1C5F851000A767CA /* MyFavorViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B1B4C9461C5F890C00A767CA /* SongListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C9451C5F890C00A767CA /* SongListView.m */; settings = {ASSET_TAGS = (); }; };
-		B1B4C9481C5F891A00A767CA /* SongListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C9471C5F891A00A767CA /* SongListView.xib */; settings = {ASSET_TAGS = (); }; };
+		B1B4C94B1C60419200A767CA /* MySharedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C94A1C60419200A767CA /* MySharedViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B1B4C94E1C60420800A767CA /* MyOffLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C94D1C60420800A767CA /* MyOffLineViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B1B4C95C1C60BF7200A767CA /* SongTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C95A1C60BF7200A767CA /* SongTableView.m */; settings = {ASSET_TAGS = (); }; };
+		B1B4C95D1C60BF7200A767CA /* SongTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C95B1C60BF7200A767CA /* SongTableView.xib */; settings = {ASSET_TAGS = (); }; };
 		C0CC2742934E4E0C2A2BE3CC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C62326311B6DDD31F421887E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -221,9 +223,13 @@
 		B1B4C93B1C5F79DB00A767CA /* SongListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongListTableViewCell.xib; sourceTree = "<group>"; };
 		B1B4C93E1C5F851000A767CA /* MyFavorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavorViewController.h; sourceTree = "<group>"; };
 		B1B4C93F1C5F851000A767CA /* MyFavorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFavorViewController.m; sourceTree = "<group>"; };
-		B1B4C9441C5F890C00A767CA /* SongListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongListView.h; sourceTree = "<group>"; };
-		B1B4C9451C5F890C00A767CA /* SongListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongListView.m; sourceTree = "<group>"; };
-		B1B4C9471C5F891A00A767CA /* SongListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongListView.xib; sourceTree = "<group>"; };
+		B1B4C9491C60419200A767CA /* MySharedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySharedViewController.h; sourceTree = "<group>"; };
+		B1B4C94A1C60419200A767CA /* MySharedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySharedViewController.m; sourceTree = "<group>"; };
+		B1B4C94C1C60420800A767CA /* MyOffLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOffLineViewController.h; sourceTree = "<group>"; };
+		B1B4C94D1C60420800A767CA /* MyOffLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOffLineViewController.m; sourceTree = "<group>"; };
+		B1B4C9591C60BF7100A767CA /* SongTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableView.h; sourceTree = "<group>"; };
+		B1B4C95A1C60BF7200A767CA /* SongTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableView.m; sourceTree = "<group>"; };
+		B1B4C95B1C60BF7200A767CA /* SongTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongTableView.xib; sourceTree = "<group>"; };
 		C62326311B6DDD31F421887E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -374,9 +380,6 @@
 				B1B4C92F1C5F386C00A767CA /* ShareView.xib */,
 				B199DC8F1C57046F00D2E63E /* LyricView.h */,
 				B199DC901C57046F00D2E63E /* LyricView.m */,
-				B1B4C9441C5F890C00A767CA /* SongListView.h */,
-				B1B4C9451C5F890C00A767CA /* SongListView.m */,
-				B1B4C9471C5F891A00A767CA /* SongListView.xib */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -417,8 +420,15 @@
 				2BDFFCDD1C4BE26400CFE078 /* CopyrightViewController.h */,
 				2BDFFCDE1C4BE26400CFE078 /* CopyrightViewController.m */,
 				2BDFFCDF1C4BE26400CFE078 /* CopyrightViewController.xib */,
+				B1B4C9591C60BF7100A767CA /* SongTableView.h */,
+				B1B4C95A1C60BF7200A767CA /* SongTableView.m */,
+				B1B4C95B1C60BF7200A767CA /* SongTableView.xib */,
 				B1B4C93E1C5F851000A767CA /* MyFavorViewController.h */,
 				B1B4C93F1C5F851000A767CA /* MyFavorViewController.m */,
+				B1B4C9491C60419200A767CA /* MySharedViewController.h */,
+				B1B4C94A1C60419200A767CA /* MySharedViewController.m */,
+				B1B4C94C1C60420800A767CA /* MyOffLineViewController.h */,
+				B1B4C94D1C60420800A767CA /* MyOffLineViewController.m */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -666,10 +676,10 @@
 				B1B4C93D1C5F79DB00A767CA /* SongListTableViewCell.xib in Resources */,
 				2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */,
 				2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */,
+				B1B4C95D1C60BF7200A767CA /* SongTableView.xib in Resources */,
 				B1B4C9301C5F386C00A767CA /* ShareView.xib in Resources */,
 				2BDFFCD51C4BDAB300CFE078 /* Mine.xcassets in Resources */,
 				2BDFFCD31C4BD7AE00CFE078 /* MineHeader.xib in Resources */,
-				B1B4C9481C5F891A00A767CA /* SongListView.xib in Resources */,
 				2BDFFCB01C4B905600CFE078 /* LoginPage.xib in Resources */,
 				2BDFFCB51C4B912E00CFE078 /* Login.xcassets in Resources */,
 				2BDFFCDA1C4BDB7000CFE078 /* MineTableViewCell.xib in Resources */,
@@ -738,10 +748,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1A340131C4642190011867B /* SuDropDownList.m in Sources */,
+				B1B4C94E1C60420800A767CA /* MyOffLineViewController.m in Sources */,
 				2BDFFCB31C4B908000CFE078 /* BaseViewController.m in Sources */,
 				2BDFFCE01C4BE26400CFE078 /* CopyrightViewController.m in Sources */,
 				2BDFFCBC1C4BA07500CFE078 /* SuGlobal.m in Sources */,
 				B1A340041C4642190011867B /* UIButton+SU.m in Sources */,
+				B1B4C94B1C60419200A767CA /* MySharedViewController.m in Sources */,
 				2BDFFCCD1C4BCB0800CFE078 /* ChannelTableViewCell.m in Sources */,
 				B1A340011C4642190011867B /* NSDate+SU.m in Sources */,
 				B1A340141C4642190011867B /* SuFile.m in Sources */,
@@ -779,13 +791,13 @@
 				B1A3400F1C4642190011867B /* CustomTabbar.m in Sources */,
 				B1A3400C1C4642190011867B /* SuCaptureCodeView.m in Sources */,
 				B1B4C93C1C5F79DB00A767CA /* SongListTableViewCell.m in Sources */,
+				B1B4C95C1C60BF7200A767CA /* SongTableView.m in Sources */,
 				B1A3400B1C4642190011867B /* SuButton.m in Sources */,
 				B1A340181C4642190011867B /* SUPictureScroll.m in Sources */,
 				B1A3400D1C4642190011867B /* SuTabBarController.m in Sources */,
 				B1A340101C4642190011867B /* SphereMenu.m in Sources */,
 				2BDFFCA11C4B5A9800CFE078 /* ChannelListViewController.m in Sources */,
 				B1A340031C4642190011867B /* NSString+SU.m in Sources */,
-				B1B4C9461C5F890C00A767CA /* SongListView.m in Sources */,
 				2B7353221C42623B000C51C5 /* SongInfo.m in Sources */,
 				2BDFFCC41C4BB1EE00CFE078 /* HomeViewController.m in Sources */,
 				B1A340191C4642190011867B /* SuScreenAdaptation.m in Sources */,

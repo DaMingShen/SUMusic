@@ -111,5 +111,16 @@
 - (void)banSongWithHandle:(void(^)(BOOL isSucc))handle;
 
 
+#pragma mark - 本地列表播放
+/*
+ * 是否播放本地列表
+ */
+@property (nonatomic, assign) BOOL isLocalPlay;
+
+/*
+ * 播放本地列表(index: 开始的位置)
+ */
+- (void)playLocalListWithIndex:(NSInteger)index;
+
 
 @end

@@ -110,6 +110,7 @@
 - (void)showInView:(UIView *)sender {
     _isShow = YES;
     
+    [_tableView reloadData];
     //先显示到当前歌词
     [self scrollToCurrentLyric];
     

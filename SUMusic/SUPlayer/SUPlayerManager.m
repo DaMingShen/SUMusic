@@ -34,20 +34,20 @@
     self.currentSong = [[SongInfo alloc]init];
     self.currentSong.sid = @"0";
     self.currentSongIndex = 0;
-    self.currentChannelID = @"1";  //默认频道：私人频道
+    self.currentChannelID = @"0";  //默认频道：私人频道
     
     AVAudioSession * session = [[AVAudioSession alloc]init];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     [session setActive:YES error:nil];
     
     //播放完毕后的通知
-    RegisterNotify(MPMoviePlayerPlaybackDidFinishNotification, @selector(playNext));
+    RegisterNotify(MPMoviePlayerPlaybackDidFinishNotification, @selector(playNext))
     //Loading状态改变通知
-    RegisterNotify(MPMoviePlayerLoadStateDidChangeNotification, @selector(loadingStatusChange));
+    RegisterNotify(MPMoviePlayerLoadStateDidChangeNotification, @selector(loadingStatusChange))
     //播放状态改变通知
-    RegisterNotify(MPMoviePlayerPlaybackStateDidChangeNotification, @selector(playBackStatusChange));
+    RegisterNotify(MPMoviePlayerPlaybackStateDidChangeNotification, @selector(playBackStatusChange))
     //可播放时间改变通知
-    RegisterNotify(MPMovieDurationAvailableNotification, @selector(durationAvailable));
+    RegisterNotify(MPMovieDurationAvailableNotification, @selector(durationAvailable))
 
 }
 
@@ -57,10 +57,10 @@
     if (self.isPlaying) return;
     
     [self.player play];
-    SendNotify(SONGPLAY, nil);
+//    SendNotify(SONGPLAY, nil)
     
     //如果是最后一首，加载更多歌曲
-    if (self.currentSongIndex == self.songList.count - 1) [self loadMoreSong];
+    if (!self.isLocalPlay && self.currentSongIndex == self.songList.count - 1) [self loadMoreSong];
 }
 
 //暂停播放
@@ -68,7 +68,7 @@
     if (!self.isPlaying) return;
     
     [self.player pause];
-    SendNotify(SONGPAUSE, nil);
+    SendNotify(SONGPAUSE, nil)
 }
 
 //播放完毕
@@ -76,14 +76,16 @@
     if (!self.isPlaying) return;
     
     [self.player pause];
-    SendNotify(SONGEND, nil);
+    SendNotify(SONGEND, nil)
 }
 
 //自然播放下一首
 - (void)playNext {
     
-    //先报告上一首歌已完成
-    [self reportSongEnd];
+    if (!self.isLocalPlay) {
+        //先报告上一首歌已完成
+        [self reportSongEnd];
+    }
     
     //播放列表下一首歌
     [self endPlay];
@@ -100,9 +102,11 @@
 //加载下一首歌曲信息（reset ：打开app、切歌、ban歌之后）
 - (void)loadSongInfoWithResetStatus:(BOOL)reset {
     self.currentSongIndex = reset ? 0 : self.currentSongIndex + 1;
+    if (self.isLocalPlay && self.currentSongIndex > self.songList.count - 1) self.currentSongIndex = 0;
     self.currentSong = self.songList[self.currentSongIndex];
     [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
-    SendNotify(SONGREADY, nil);
+    [self.player prepareToPlay];
+    SendNotify(SONGREADY, nil)
 }
 
 #pragma mark - 网络操作
@@ -111,6 +115,7 @@
     [self endPlay];
     [SUNetwork fetchPlayListWithType:OperationTypeNone completion:^(BOOL isSucc) {
         if (isSucc) {
+            self.isLocalPlay = NO;
             [self resetPlay];
         };
     }];
@@ -118,14 +123,21 @@
 
 //切歌
 - (void)skipSongWithHandle:(void(^)(BOOL isSucc))handle {
-    
-    [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
-        if (isSucc) {
-            [self endPlay];
-            [self resetPlay];
-        }
-        if (handle) handle(isSucc);
-    }];
+    //本地播放下一首
+    if (self.isLocalPlay) {
+        [self playNext];
+        if (handle) handle(YES);
+    }
+    //网络播放下一首
+    else {
+        [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
+            if (isSucc) {
+                [self endPlay];
+                [self resetPlay];
+            }
+            if (handle) handle(isSucc);
+        }];
+    }
 }
 
 //ban歌
@@ -152,6 +164,15 @@
     [SUNetwork fetchPlayListWithType:OperationTypePlay completion:^(BOOL isSucc) {
         
     }];
+}
+
+#pragma mark - 本地列表播放
+- (void)playLocalListWithIndex:(NSInteger)index {
+    [self endPlay];
+    self.isLocalPlay = YES;
+    self.currentSongIndex = index - 1;
+    [self loadSongInfoWithResetStatus:NO];
+    [self startPlay];
 }
 
 #pragma mark - 播放器属性获取
@@ -268,9 +289,11 @@
     
     switch (self.player.playbackState) {
         case MPMoviePlaybackStatePlaying:
+            SendNotify(SONGPLAY, nil)
             BASE_INFO_FUN(@"State:正在播放");
             break;
         case MPMoviePlaybackStatePaused:
+            SendNotify(SONGPAUSE, nil)
             BASE_INFO_FUN(@"State:暂停播放");
             break;
         case MPMoviePlaybackStateStopped:

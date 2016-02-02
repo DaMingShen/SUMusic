@@ -46,6 +46,13 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kCw-B8-aa6">
+                        <rect key="frame" x="293" y="25" width="21" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="1uO-il-StG"/>
+                            <constraint firstAttribute="width" constant="21" id="Ejt-YC-Rme"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="Ao5-iw-tFw" secondAttribute="trailing" constant="14" id="EqJ-Vr-tqN"/>
@@ -53,13 +60,16 @@
                     <constraint firstAttribute="trailingMargin" secondItem="fgh-Bl-BgM" secondAttribute="trailing" constant="14" id="SAX-hS-jHw"/>
                     <constraint firstItem="fgh-Bl-BgM" firstAttribute="leading" secondItem="SNH-ns-23F" secondAttribute="trailing" constant="15" id="Tp5-RM-rpY"/>
                     <constraint firstItem="SNH-ns-23F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="XBw-78-R5r"/>
+                    <constraint firstAttribute="trailing" secondItem="kCw-B8-aa6" secondAttribute="trailing" constant="6" id="XsN-0p-dcu"/>
                     <constraint firstAttribute="bottom" secondItem="Ao5-iw-tFw" secondAttribute="bottom" constant="9" id="ZkX-O4-HeQ"/>
                     <constraint firstItem="SNH-ns-23F" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pjO-yQ-z7q"/>
+                    <constraint firstItem="kCw-B8-aa6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="x49-ze-xL3"/>
                     <constraint firstItem="fgh-Bl-BgM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="yud-Qv-Uwx"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="artist" destination="Ao5-iw-tFw" id="Sj3-0n-AgT"/>
+                <outlet property="playIndicator" destination="kCw-B8-aa6" id="QwQ-0h-kFY"/>
                 <outlet property="songCover" destination="SNH-ns-23F" id="R1g-j2-ds3"/>
                 <outlet property="songName" destination="fgh-Bl-BgM" id="74t-wO-Dlh"/>
             </connections>

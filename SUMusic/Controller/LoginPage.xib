@@ -117,13 +117,14 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5i-R8-Bjb">
-                    <rect key="frame" x="26" y="28" width="25" height="25"/>
-                    <state key="normal" image="Player_hide"/>
+                    <rect key="frame" x="16" y="25" width="44" height="44"/>
+                    <state key="normal" image="back_btn"/>
                     <connections>
                         <action selector="back:" destination="-1" eventType="touchUpInside" id="XCq-AL-b06"/>
                     </connections>
                 </button>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="52K-TG-NC5" secondAttribute="centerX" id="4C8-BN-6vf"/>
@@ -140,7 +141,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="Player_hide" width="25" height="25"/>
+        <image name="back_btn" width="30" height="30"/>
         <image name="login" width="211" height="108"/>
         <image name="login-arm-left" width="40" height="65"/>
         <image name="login-arm-normal" width="100" height="100"/>

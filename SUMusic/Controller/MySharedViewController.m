@@ -1,31 +1,32 @@
 //
-//  MyFavorViewController.m
+//  MySharedViewController.m
 //  SUMusic
 //
-//  Created by 万众科技 on 16/2/1.
+//  Created by 万众科技 on 16/2/2.
 //  Copyright © 2016年 KevinSu. All rights reserved.
 //
 
-#import "MyFavorViewController.h"
+#import "MySharedViewController.h"
 #import "SongTableView.h"
 
-@interface MyFavorViewController ()
+@interface MySharedViewController ()
 
 @property (nonatomic, strong) SongTableView * songList;
 
 @end
 
-@implementation MyFavorViewController
+@implementation MySharedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNavigationTitle:@"我的收藏"];
+    [self setNavigationTitle:@"我分享的歌曲"];
     
     self.songList = [[SongTableView alloc]init];
     [self addChildViewController:self.songList];
     [self.view addSubview:self.songList.view];
-    [self.songList loadListWithType:ListTypeMyFavor];
+    [self.songList loadListWithType:ListTypeShared];
 }
+
 
 
 @end

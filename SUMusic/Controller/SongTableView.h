@@ -1,12 +1,12 @@
 //
-//  SongListView.h
+//  SongTableView.h
 //  SUMusic
 //
-//  Created by 万众科技 on 16/2/1.
+//  Created by 万众科技 on 16/2/2.
 //  Copyright © 2016年 KevinSu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 typedef NS_ENUM(NSInteger, ListType) {
     ListTypeOffLine,
@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger, ListType) {
     ListTypeShared
 };
 
-@interface SongListView : UIView
+@interface SongTableView : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray * songSource;

@@ -30,6 +30,8 @@
     
     [self setupUI];
     [self fetchChannels];
+    
+    RegisterNotify(LOCALPLAY, @selector(refreshChannelList))
 }
 
 #pragma mark - UI
@@ -46,6 +48,11 @@
     [self.view addSubview:_unConnectNotic];
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fetchChannels)];
     [_unConnectNotic addGestureRecognizer:tap];
+}
+
+- (void)refreshChannelList {
+    _appDelegate.player.currentChannelID = @"LOCAL";
+    [_tableView reloadData];
 }
 
 #pragma mark - 网络

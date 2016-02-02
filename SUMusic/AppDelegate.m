@@ -95,7 +95,7 @@
     [info setObject:@(self.player.playTime.intValue) forKey:MPNowPlayingInfoPropertyElapsedPlaybackTime];
     [info setObject:@(1) forKey:MPNowPlayingInfoPropertyPlaybackRate];
     [info setObject:@(self.player.playDuration.intValue) forKey:MPMediaItemPropertyPlaybackDuration];
-    MPMediaItemArtwork * artwork = [[MPMediaItemArtwork alloc] initWithImage:self.playView.coverImg];
+    MPMediaItemArtwork * artwork = [[MPMediaItemArtwork alloc] initWithImage:self.playView.coverImg ? self.playView.coverImg : DefaultImg];
     [info setObject:artwork forKey:MPMediaItemPropertyArtwork];
     [[MPNowPlayingInfoCenter defaultCenter]setNowPlayingInfo:info];
 }

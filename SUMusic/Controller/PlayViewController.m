@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *lyricsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *favorBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
+@property (weak, nonatomic) IBOutlet UIButton *downBtn;
 
 
 @end
@@ -49,10 +50,10 @@
     
     _player = [SUPlayerManager manager];
     
-    RegisterNotify(SONGREADY, @selector(loadSongInfo));
-    RegisterNotify(SONGPLAY, @selector(songBeginNotice));
-    RegisterNotify(SONGPAUSE, @selector(songPauseNotice));
-    RegisterNotify(SONGEND, @selector(songEndPlaying));
+    RegisterNotify(SONGREADY, @selector(loadSongInfo))
+    RegisterNotify(SONGPLAY, @selector(songBeginNotice))
+    RegisterNotify(SONGPAUSE, @selector(songPauseNotice))
+    RegisterNotify(SONGEND, @selector(songEndPlaying))
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -137,6 +138,7 @@
     self.songName.text = _player.currentSong.title;
     self.singer.text = [NSString stringWithFormat:@"—   %@    —",_player.currentSong.artist];
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
+    [self refreshFavorStatus];
     [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.coverImg = image;
         [[AppDelegate delegate] configNowPlayingCenter];
@@ -156,15 +158,13 @@
 }
 
 - (void)songBeginNotice {
-    BASE_INFO_FUN(@"开始播放通知");
-    if (!_timer) [self addTimer];
+    [self addTimer];
     _playBtn.hidden = YES;
     _playBtnBg.hidden = YES;
 }
 
 - (void)songPauseNotice {
-    BASE_INFO_FUN(@"暂停播放通知");
-    if (_timer) [self removeTimer];
+    [self removeTimer];
     self.playBtnBg.hidden = NO;
     self.playBtn.hidden = NO;
 }
@@ -214,6 +214,18 @@
     self.lyricsBtn.enabled = status;
     self.favorBtn.enabled = status;
     self.shareBtn.enabled = status;
+}
+
+- (void)refreshFavorStatus {
+    NSArray * favorSongs = [SuDBManager fetchFavorList];
+    BOOL isFavor = NO;
+    for (SongInfo * info in favorSongs) {
+        if ([info.sid isEqualToString:_player.currentSong.sid]) {
+            isFavor = YES;
+            break;
+        }
+    }
+    self.favorBtn.selected = isFavor;
 }
 
 #pragma mark - timer
@@ -286,18 +298,39 @@
     }
 }
 
-#pragma mark - 离线
+#pragma mark - 收藏
 - (IBAction)favor:(UIButton *)sender {
+    //取消收藏
+    if (sender.selected) {
+        BASE_INFO_FUN(@"取消收藏");
+        
+        sender.selected = NO;
+    }
+    //收藏
+    else {
+        BASE_INFO_FUN(@"收藏成功");
+        [SuDBManager saveToFavorList];
+        sender.selected = YES;
+    }
     
-    [SuDBManager saveToFavorList];
     
-//    [SuDBManager saveToDownList];
-//    [OffLineManager offLineSong];
+//
+//
 //    BASE_INFO_FUN([SuDBManager fetchDownList][0]);
 //    BASE_INFO_FUN([SuDBManager fetchSongInfoWithSid:@"185725"].sid);
     
 }
 
+#pragma mark - 离线
+- (IBAction)downLoad:(UIButton *)sender {
+    
+    //先添加到下载列表
+    [SuDBManager saveToDownList];
+    
+    //下载歌曲
+    [OffLineManager offLineSong];
+    
+}
 
 #pragma mark - 分享
 - (IBAction)share:(UIButton *)sender {

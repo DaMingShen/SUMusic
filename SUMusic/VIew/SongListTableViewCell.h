@@ -16,4 +16,5 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *artist;
 
+@property (weak, nonatomic) IBOutlet UIImageView *playIndicator;
 @end

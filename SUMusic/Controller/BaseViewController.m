@@ -211,7 +211,7 @@
 
 - (void)setNavigationLeft:(NSString *)imageName sel:(SEL)sel
 {
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:[SuButton createButtonWithFrame:CGRectMake(0, 0, 44, 44) Target:self Selector:sel ForgroundImage:imageName ForgroundImageSelected:nil]];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:[SuButton createButtonWithFrame:CGRectMake(0, 0, 44, 44) Target:self Selector:sel ForgroundImage:imageName ForgroundImageSelected:imageName]];
     
     self.navigationItem.leftBarButtonItem = item;
 }

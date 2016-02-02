@@ -12,6 +12,8 @@
 #import "CopyrightViewController.h"
 #import "LoginPage.h"
 #import "MyFavorViewController.h"
+#import "MySharedViewController.h"
+#import "MyOffLineViewController.h"
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate> {
     
@@ -31,7 +33,7 @@
     [super viewDidLoad];
     [self setupUI];
     
-    RegisterNotify(LoginSUCC, @selector(refreshUI));
+    RegisterNotify(LoginSUCC, @selector(refreshUI))
 }
 
 #pragma mark - UI
@@ -98,7 +100,10 @@
     
     switch (indexPath.row) {
         case 0:
-            
+        {
+            MyOffLineViewController * offLine = [[MyOffLineViewController alloc]init];
+            [self.navigationController pushViewController:offLine animated:YES];
+        }
             break;
         case 1:
         {
@@ -107,7 +112,10 @@
         }
             break;
         case 2:
-            
+        {
+            MySharedViewController * shared = [[MySharedViewController alloc]init];
+            [self.navigationController pushViewController:shared animated:YES];
+        }
             break;
         case 3:
             
