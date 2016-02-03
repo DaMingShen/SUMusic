@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray * offLineList;
 
 @property (nonatomic, assign) ListType listType;
+@property (nonatomic, strong) NSTimer * timer;
 
 @end
 
@@ -26,19 +27,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self addUpdateTimer];
+    
+    RegisterNotify(RADIOPLAY, @selector(refreshSongList))
+    RegisterNotify(SONGREADY, @selector(refreshSongList))
+    
+    RegisterNotify(DOWNLOADSUCC, @selector(loadListFromDB))
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void)loadListWithType:(ListType)listType {
     
     self.listType = listType;
-    switch (listType) {
+    [self loadListFromDB];
+}
+
+- (void)loadListFromDB {
+
+    switch (self.listType) {
         case ListTypeOffLine:
         {
             self.downLoadList = [SuDBManager fetchDownList].mutableCopy;
             self.offLineList = [SuDBManager fetchOffLineList].mutableCopy;
             self.songSource = [NSMutableArray array];
-            [self.songSource addObjectsFromArray:self.downLoadList];
-            [self.songSource addObjectsFromArray:self.offLineList];
+            [self.songSource addObjectsFromArray:[[self.downLoadList reverseObjectEnumerator]allObjects]];
+            [self.songSource addObjectsFromArray:[[self.offLineList reverseObjectEnumerator]allObjects]];
         }
             break;
         case ListTypeMyFavor:
@@ -61,6 +79,27 @@
     }
 }
 
+#pragma mark - 定时刷新进度
+- (void)addUpdateTimer {
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
+}
+
+- (void)updateProgress {
+    if ([OffLineManager manager].downLoadingList.count <= 0) return;
+    if (self.tableView.visibleCells.count <= 0) return;
+    
+    for (SongListTableViewCell * cell in self.tableView.visibleCells) {
+        if (cell.progressLabel.hidden) {
+            continue;
+        }else {
+            NSString * sid = [NSString stringWithFormat:@"%d",cell.progressLabel.tag];
+            DownLoadInfo * info = [[OffLineManager manager]checkSongPlayingWithSid:sid];
+            cell.progressLabel.text = [NSString stringWithFormat:@"%d%%",info.percent];
+        }
+    }
+}
+
 #pragma mark - UI
 - (void)setupUI {
     
@@ -70,9 +109,6 @@
     self.tableView.tableFooterView = [UIView new];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SongListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"favorCell"];
-    
-    RegisterNotify(RADIOPLAY, @selector(refreshSongList))
-    RegisterNotify(SONGREADY, @selector(refreshSongList))
 }
 
 - (void)refreshSongList {
@@ -96,7 +132,9 @@
     cell.artist.text = info.artist;
     
     //播放状态
-    if (![self.downLoadList containsObject:info] && [[AppDelegate delegate].player.currentSong.sid isEqualToString:info.sid]) {
+    if (![self.downLoadList containsObject:info] &&
+        [AppDelegate delegate].player.isLocalPlay &&
+        [[AppDelegate delegate].player.currentSong.sid isEqualToString:info.sid]) {
         cell.playIndicator.hidden = NO;
         cell.playIndicator.animationImages = @[[UIImage imageNamed:@"ic_channel_nowplaying1"],
                                                [UIImage imageNamed:@"ic_channel_nowplaying2"],
@@ -115,27 +153,23 @@
         
         //未下载完成
         if ([self.downLoadList containsObject:info]) {
-
-            //是否下载中
-            NSMutableArray * list = [OffLineManager manager].downLoadingList;
-            for (DownLoadInfo * donwInfo in list) {
-                //下载中
-                if ([donwInfo.sid isEqualToString:info.sid]) {
+            
+            cell.progressLabel.tag = info.sid.intValue;
+            //下载中
+            if ([[OffLineManager manager]checkSongPlayingWithSid:info.sid]) {
+                cell.progressLabel.hidden = NO;
+                cell.downLoadBtn.hidden = YES;
+            }
+            //未下载
+            else {
+                cell.progressLabel.hidden = YES;
+                cell.downLoadBtn.hidden = NO;
+                [cell setDownLoadBlock:^(UIButton * sender) {
+                    BASE_INFO_FUN(@"下载");
+                    sender.hidden = YES;
                     cell.progressLabel.hidden = NO;
-                    cell.downLoadBtn.hidden = YES;
-                    break;
-                }
-                //未下载
-                else {
-                    cell.progressLabel.hidden = YES;
-                    cell.downLoadBtn.hidden = NO;
-                    [cell setDownLoadBlock:^(UIButton * sender) {
-                        BASE_INFO_FUN(@"下载");
-                        sender.hidden = YES;
-                        cell.progressLabel.hidden = NO;
-                        [[OffLineManager manager]downLoadSongWithSongInfo:info];
-                    }];
-                }
+                    [[OffLineManager manager]downLoadSongWithSongInfo:info];
+                }];
             }
  
         //下载完成
@@ -167,8 +201,7 @@
     SUPlayerManager * player = [AppDelegate delegate].player;
     if (!player.isLocalPlay) SendNotify(LOCALPLAY, nil)
     
-    
-    if (![player.currentSong.sid isEqualToString:info.sid] ) {
+    if (!player.isLocalPlay || ![player.currentSong.sid isEqualToString:info.sid] ) {
         [player.songList removeAllObjects];
         [player.songList addObjectsFromArray:self.songSource];
         

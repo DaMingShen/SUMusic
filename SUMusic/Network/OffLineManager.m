@@ -70,6 +70,8 @@
         SongInfo * songInfo = [SuDBManager fetchSongInfoWithSid:info.sid];
         [SuDBManager saveToOffLineListWithSongInfo:songInfo];
         [SuDBManager deleteFromDownListWithSid:info.sid];
+        //通知完成
+        SendNotify(DOWNLOADSUCC, nil)
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         
@@ -78,6 +80,16 @@
     }];
     
     [op start];
+}
+
+#pragma mark - 检测歌曲是否在下载中
+- (DownLoadInfo *)checkSongPlayingWithSid:(NSString *)sid {
+    for (DownLoadInfo * info in self.downLoadingList) {
+        if ([info.sid isEqualToString:sid]) {
+            return info;
+        }
+    }
+    return nil;
 }
 
 @end
