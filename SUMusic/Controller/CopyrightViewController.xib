@@ -21,29 +21,39 @@
                 <userLayoutGuide location="349" affinity="minY"/>
             </userGuides>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="== 关于版权 ==    电台律动 中所有的内容均以学习交流为目的，没有任何商业和盈利成分，也不会出售待遇版权的内容。如果您觉得我们的音乐侵犯了您的版权，请联系我们，我们将第一时间下线侵权内容。" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBU-Ev-no7">
-                    <rect key="frame" x="31" y="198" width="313" height="86"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBU-Ev-no7">
+                    <rect key="frame" x="31" y="198" width="313" height="110"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="86" id="xvD-tc-cdc"/>
+                        <constraint firstAttribute="height" constant="110" id="xvD-tc-cdc"/>
                     </constraints>
+                    <string key="text">== 关于版权 ==    
+一、电台律动APP中所有的内容均以学习交流为目的，没有任何商业和盈利成分。
+二、电台律动APP不会出售待遇版权的内容。
+三、如果您觉得电台韵律APP侵犯了您的版权，请联系我们，我们将第一时间下线侵权内容。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="== 关于隐私 ==   电台律动 需要连接互联网获取电台信息，但是不会要求您提供敏感的个人信息。" lineBreakMode="characterWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cd-cA-Azf">
-                    <rect key="frame" x="31" y="319" width="313" height="38"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cd-cA-Azf">
+                    <rect key="frame" x="31" y="334" width="313" height="58"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="38" id="eOL-dF-dex"/>
+                        <constraint firstAttribute="height" constant="58" id="eOL-dF-dex"/>
                     </constraints>
+                    <string key="text">== 关于隐私 ==   
+一、电台律动APP需要连接互联网获取电台信息。
+二、电台韵律APP不会要求提供敏感的个人信息。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="== 其他 ==   如果还有其他问题和建议，请通过用户反馈联系我们。" lineBreakMode="characterWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXg-xD-4Kf">
-                    <rect key="frame" x="31" y="393" width="313" height="36"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXg-xD-4Kf">
+                    <rect key="frame" x="31" y="425" width="313" height="56"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="36" id="TFv-nB-7eY"/>
+                        <constraint firstAttribute="height" constant="56" id="TFv-nB-7eY"/>
                     </constraints>
+                    <string key="text">== 其他 ==   
+一、有其他问题和建议欢迎邮件联系并反馈。
+二、欢迎关注我们的网站以获取更多资讯。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -72,11 +82,11 @@
                 <constraint firstItem="9cd-cA-Azf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EHd-wh-URA"/>
                 <constraint firstItem="uXg-xD-4Kf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="31" id="JLi-iC-O6S"/>
                 <constraint firstItem="D1L-e0-t4N" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="86" id="M3i-fR-vwJ"/>
-                <constraint firstItem="uXg-xD-4Kf" firstAttribute="top" secondItem="9cd-cA-Azf" secondAttribute="bottom" constant="36" id="QSC-4C-6fR"/>
+                <constraint firstItem="uXg-xD-4Kf" firstAttribute="top" secondItem="9cd-cA-Azf" secondAttribute="bottom" constant="33" id="QSC-4C-6fR"/>
                 <constraint firstItem="hDO-om-iwn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RXU-YJ-F2I"/>
                 <constraint firstItem="9cd-cA-Azf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="31" id="ZUc-g1-Qfm"/>
                 <constraint firstItem="TBU-Ev-no7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="198" id="fzh-q2-Ck3"/>
-                <constraint firstItem="9cd-cA-Azf" firstAttribute="top" secondItem="TBU-Ev-no7" secondAttribute="bottom" constant="35" id="gh9-sM-DT1"/>
+                <constraint firstItem="9cd-cA-Azf" firstAttribute="top" secondItem="TBU-Ev-no7" secondAttribute="bottom" constant="26" id="gh9-sM-DT1"/>
                 <constraint firstItem="hDO-om-iwn" firstAttribute="top" secondItem="D1L-e0-t4N" secondAttribute="bottom" constant="17" id="h5k-1S-yIJ"/>
                 <constraint firstAttribute="trailing" secondItem="TBU-Ev-no7" secondAttribute="trailing" constant="31" id="jeL-YE-49S"/>
                 <constraint firstAttribute="trailing" secondItem="uXg-xD-4Kf" secondAttribute="trailing" constant="31" id="k5i-Jm-3Ou"/>

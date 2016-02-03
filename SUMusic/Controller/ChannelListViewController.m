@@ -19,9 +19,28 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray * dataSource;
 
+@property (nonatomic, strong) ChannelInfo * myHeartChannel;
+
 @end
 
 @implementation ChannelListViewController
+
+- (ChannelInfo *)myHeartChannel {
+    if (_myHeartChannel == nil) {
+        _myHeartChannel = [[ChannelInfo alloc]init];
+        _myHeartChannel.channel_id = @"-3";
+        _myHeartChannel.name = @"我的红心";
+    }
+    return _myHeartChannel;
+}
+
+- (NSMutableArray *)dataSource {
+    if (_dataSource == nil) {
+        _dataSource = [NSMutableArray array];
+        if ([SuGlobal checkLogin]) [_dataSource addObject:self.myHeartChannel];
+    }
+    return _dataSource;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,7 +50,8 @@
     [self setupUI];
     [self fetchChannels];
     
-    RegisterNotify(LOCALPLAY, @selector(refreshChannelList))
+    RegisterNotify(LoginSUCC, @selector(userLoginInOutRefresh))
+    RegisterNotify(LOCALPLAY, @selector(localPlayingRefresh))
 }
 
 #pragma mark - UI
@@ -50,7 +70,17 @@
     [_unConnectNotic addGestureRecognizer:tap];
 }
 
-- (void)refreshChannelList {
+- (void)userLoginInOutRefresh {
+    if ([SuGlobal checkLogin] && ![self.dataSource containsObject:self.myHeartChannel]) {
+        [self.dataSource insertObject:self.myHeartChannel atIndex:0];
+        [self.tableView reloadData];
+    }else if (![SuGlobal checkLogin] && [self.dataSource containsObject:self.myHeartChannel]) {
+        [self.dataSource removeObject:self.myHeartChannel];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)localPlayingRefresh {
     _appDelegate.player.currentChannelID = @"LOCAL";
     [_tableView reloadData];
 }
@@ -66,7 +96,7 @@
         
         //refreshUI
         if (isSucc) {
-            self.dataSource = channels.mutableCopy;
+            [self.dataSource addObjectsFromArray:channels];
             _unConnectNotic.hidden = YES;
             self.tableView.hidden = NO;
             [self.tableView reloadData];
