@@ -118,6 +118,11 @@
 @property (nonatomic, assign) BOOL isLocalPlay;
 
 /*
+ * 是否播放离线音乐
+ */
+@property (nonatomic, assign) BOOL isOffLinePlay;
+
+/*
  * 播放本地列表(index: 开始的位置)
  */
 - (void)playLocalListWithIndex:(NSInteger)index;

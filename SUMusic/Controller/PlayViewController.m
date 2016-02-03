@@ -139,6 +139,7 @@
     self.singer.text = [NSString stringWithFormat:@"—   %@    —",_player.currentSong.artist];
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
     [self refreshFavorStatus];
+    [self refreshDownLoadStatus];
     [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.coverImg = image;
         [[AppDelegate delegate] configNowPlayingCenter];
@@ -226,6 +227,24 @@
         }
     }
     self.favorBtn.selected = isFavor;
+}
+
+- (void)refreshDownLoadStatus {
+    NSArray * downloadList = [SuDBManager fetchDownList];
+    for (SongInfo * info in downloadList) {
+        if ([info.sid isEqualToString:_player.currentSong.sid]) {
+            self.downBtn.enabled = NO;
+            return;
+        }
+    }
+    NSArray * offLineList = [SuDBManager fetchOffLineList];
+    for (SongInfo * info in offLineList) {
+        if ([info.sid isEqualToString:_player.currentSong.sid]) {
+            self.downBtn.enabled = NO;
+            return;
+        }
+    }
+    self.downBtn.enabled = YES;
 }
 
 #pragma mark - timer
@@ -324,12 +343,9 @@
 #pragma mark - 离线
 - (IBAction)downLoad:(UIButton *)sender {
     
-    //先添加到下载列表
-    [SuDBManager saveToDownList];
-    
-    //下载歌曲
-    [OffLineManager offLineSong];
-    
+    [[OffLineManager manager] downLoadSong];
+    sender.enabled = NO;
+    [self ToastMessage:@"已添加到离线列表"];
 }
 
 #pragma mark - 分享

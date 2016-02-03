@@ -82,6 +82,7 @@
 		B1B4C94E1C60420800A767CA /* MyOffLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C94D1C60420800A767CA /* MyOffLineViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B1B4C95C1C60BF7200A767CA /* SongTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C95A1C60BF7200A767CA /* SongTableView.m */; settings = {ASSET_TAGS = (); }; };
 		B1B4C95D1C60BF7200A767CA /* SongTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C95B1C60BF7200A767CA /* SongTableView.xib */; settings = {ASSET_TAGS = (); }; };
+		B1B4C9601C619C3700A767CA /* DownLoadInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C95F1C619C3700A767CA /* DownLoadInfo.m */; settings = {ASSET_TAGS = (); }; };
 		C0CC2742934E4E0C2A2BE3CC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C62326311B6DDD31F421887E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -230,6 +231,8 @@
 		B1B4C9591C60BF7100A767CA /* SongTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableView.h; sourceTree = "<group>"; };
 		B1B4C95A1C60BF7200A767CA /* SongTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableView.m; sourceTree = "<group>"; };
 		B1B4C95B1C60BF7200A767CA /* SongTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongTableView.xib; sourceTree = "<group>"; };
+		B1B4C95E1C619C3700A767CA /* DownLoadInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadInfo.h; sourceTree = "<group>"; };
+		B1B4C95F1C619C3700A767CA /* DownLoadInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadInfo.m; sourceTree = "<group>"; };
 		C62326311B6DDD31F421887E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -340,6 +343,8 @@
 				2BDFFCB71C4B9D9000CFE078 /* ChannelInfo.m */,
 				2B7353201C42623B000C51C5 /* SongInfo.h */,
 				2B7353211C42623B000C51C5 /* SongInfo.m */,
+				B1B4C95E1C619C3700A767CA /* DownLoadInfo.h */,
+				B1B4C95F1C619C3700A767CA /* DownLoadInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -784,6 +789,7 @@
 				2BDFFCC71C4BB2D100CFE078 /* TopTabItemView.m in Sources */,
 				B1A340171C4642190011867B /* SuNetworkMonitor.m in Sources */,
 				2B7352F71C425EE5000C51C5 /* main.m in Sources */,
+				B1B4C9601C619C3700A767CA /* DownLoadInfo.m in Sources */,
 				2BB57D9A1C46A45B004A1B27 /* NSObject+SSS.m in Sources */,
 				2BDFFCB81C4B9D9000CFE078 /* ChannelInfo.m in Sources */,
 				B199DC911C57046F00D2E63E /* LyricView.m in Sources */,

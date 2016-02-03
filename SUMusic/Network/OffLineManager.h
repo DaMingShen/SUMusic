@@ -7,9 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DownLoadInfo.h"
 
 @interface OffLineManager : NSObject
 
-+ (void)offLineSong;
+@property (nonatomic, strong) NSMutableArray<DownLoadInfo *> * downLoadingList;
+
++ (instancetype)manager;
+
+- (void)downLoadSong;
+
+- (void)downLoadSongWithSongInfo:(SongInfo *)songInfo;
 
 @end

@@ -16,6 +16,13 @@
 
 + (NSArray *)fetchDownList;
 
++ (void)deleteFromDownListWithSid:(NSString *)sid;
+
+
++ (void)saveToOffLineListWithSongInfo:(SongInfo *)info;
+
++ (NSArray *)fetchOffLineList;
+
 + (SongInfo *)fetchSongInfoWithSid:(NSString *)sid;
 
 #pragma mark - 收藏

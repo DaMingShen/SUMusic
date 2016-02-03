@@ -101,10 +101,29 @@
 
 //加载下一首歌曲信息（reset ：打开app、切歌、ban歌之后）
 - (void)loadSongInfoWithResetStatus:(BOOL)reset {
+    //是否从第一首播放
     self.currentSongIndex = reset ? 0 : self.currentSongIndex + 1;
+    //如果是播放本地列表，则循环播放
     if (self.isLocalPlay && self.currentSongIndex > self.songList.count - 1) self.currentSongIndex = 0;
+    //更新当前歌曲信息
     self.currentSong = self.songList[self.currentSongIndex];
-    [self.player setContentURL:[NSURL URLWithString:self.currentSong.url]];
+    //加载URL（如果是离线播放，则播放离线文件）
+    NSURL * url;
+    if (self.isOffLinePlay) {
+        NSString * filePath = [SuGlobal getOffLineFilePath];
+        NSFileManager * fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:filePath]) {
+            BASE_INFO_FUN(@"文件存在");
+            url = [NSURL fileURLWithPath:filePath];
+        }else {
+            BASE_INFO_FUN(@"文件不存在");
+            url = [NSURL URLWithString:self.currentSong.url];
+        }
+    }else {
+        url = [NSURL URLWithString:self.currentSong.url];
+    }
+    [self.player setContentURL:url];
+    //准备播放
     [self.player prepareToPlay];
     SendNotify(SONGREADY, nil)
 }

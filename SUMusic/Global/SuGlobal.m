@@ -69,7 +69,8 @@
 }
 
 + (NSString *)getOffLineFilePath {
-    NSString *path = [[SuGlobal getOffLinePath] stringByAppendingPathComponent:[AppDelegate delegate].player.currentSong.sid];
+    NSString *path = [[SuGlobal getOffLinePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",[AppDelegate delegate].player.currentSong.sid,@".mp4"]];
+    BASE_INFO_FUN(path);
     return path;
 }
 

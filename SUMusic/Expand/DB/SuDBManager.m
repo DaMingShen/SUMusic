@@ -10,47 +10,45 @@
 #import "SuDBManager+private.h"
 
 #define DownListTable @"DownListTable"
+#define OffLineTable @"OffLineTable"
+
 #define FavorListTable @"FavorListTable"
 #define SharedListTable @"SharedListTable"
 
 @implementation SuDBManager
 
-#pragma mark -
+#pragma mark - 离线(未下载列表)
 + (void)saveToDownList {
-    
-    NSString * path = [SuGlobal getUserDBFile];
-    NSString * sid = [AppDelegate delegate].player.currentSong.sid;
-    NSString * jsonStr = [AppDelegate delegate].player.currentSong.jsonString;
-    NSDictionary * dictContent = [NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",jsonStr,@"songInfo", nil];
-    [SuDBManager save:dictContent primaryKey:@"sid" inTable:DownListTable inDBFile:path];
+    [self saveInfoToTable:DownListTable];
 }
 
 + (NSArray *)fetchDownList {
-    
-    NSString * path = [SuGlobal getUserDBFile];
-    NSArray * result = [SuDBManager fetchWithCondition:nil forFields:@[@"sid", @"songInfo"] inTable:DownListTable inDBFile:path];
-    if (result.count > 0) {
-        NSMutableArray * list = [NSMutableArray array];
-        for (NSDictionary * rsDict in result) {
-            NSString * jsonStr = rsDict[@"songInfo"];
-            [list addObject:[SongInfo infoFromDict:[NSDictionary dictionaryWithJsonString:jsonStr]]];
-        }
-        return list;
-    }
-    return nil;
+    return [self fetchListFromTable:DownListTable];
 }
 
 + (SongInfo *)fetchSongInfoWithSid:(NSString *)sid {
     
-    NSString * path = [SuGlobal getUserDBFile];
-    NSDictionary * dictCondiction = [NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid", nil];
-    NSArray * result = [SuDBManager fetchWithCondition:dictCondiction forFields:@[@"sid", @"songInfo"] inTable:DownListTable inDBFile:path];
-    if (result.count > 0) {
-        NSDictionary * rsDict = result[0];
-        NSString * jsonStr = rsDict[@"songInfo"];
-        return [SongInfo infoFromDict:[NSDictionary dictionaryWithJsonString:jsonStr]];
+    NSArray * songInfos = [self fetchListFromTable:DownListTable];
+    for (SongInfo * info in songInfos) {
+        if ([info.sid isEqualToString:sid]) {
+            return info;
+        }
     }
     return nil;
+}
+
++ (void)deleteFromDownListWithSid:(NSString *)sid {
+    [self deleteWithSid:sid fromTable:DownListTable];
+}
+
+
+#pragma mark - 离线(已下载列表)
++ (void)saveToOffLineListWithSongInfo:(SongInfo *)info {
+    [self saveInfo:info toTable:OffLineTable];
+}
+
++ (NSArray *)fetchOffLineList {
+    return [self fetchListFromTable:OffLineTable];
 }
 
 
@@ -82,6 +80,15 @@
     [SuDBManager save:dictContent primaryKey:@"sid" inTable:table inDBFile:path];
 }
 
++ (void)saveInfo:(SongInfo *)info toTable:(NSString *)table {
+    
+    NSString * path = [SuGlobal getUserDBFile];
+    NSString * sid = info.sid;
+    NSString * jsonStr = info.jsonString;
+    NSDictionary * dictContent = [NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",jsonStr,@"songInfo", nil];
+    [SuDBManager save:dictContent primaryKey:@"sid" inTable:table inDBFile:path];
+}
+
 + (NSArray *)fetchListFromTable:(NSString *)table {
     
     NSString * path = [SuGlobal getUserDBFile];
@@ -96,5 +103,13 @@
     }
     return nil;
 }
+
++ (void)deleteWithSid:(NSString *)sid fromTable:(NSString *)table {
+    
+    NSString * path = [SuGlobal getUserDBFile];
+    NSDictionary * conditionDict = [NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid", nil];
+    [SuDBManager deleteWithCondition:conditionDict inTable:table inDBFile:path];
+}
+
 
 @end
