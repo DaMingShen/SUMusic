@@ -125,8 +125,9 @@ selector:_selector name:_name object:nil];
 #define RADIOPLAY @"PlayRadioMusic"
 #define LOCALPLAY @"PlayLocalList"
 
-#define DOWNLOADSUCC @"DownLoadSucc"
-#define DOWNLOADFAIL @"DownLoadFail"
+#define UpdateOffLineSongList @"UpdateOffLineSongList"
+#define UpdateMyFavorSongList @"UpdateMyFavorSongList"
+#define UpdateMySharedSongList @"UpdateMySharedSongList"
 
 //默认图片
 #define DefaultImg [UIImage imageNamed:@"cover"]

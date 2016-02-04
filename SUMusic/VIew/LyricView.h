@@ -18,6 +18,8 @@
 
 - (void)showInView:(UIView *)sender;
 
+- (void)scrollLyric;
+
 - (void)hide;
 
 - (BOOL)checkLyric;

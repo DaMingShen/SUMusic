@@ -66,20 +66,43 @@
         
         NSLog(@"下载成功");
         info.isSucc = YES;
+        [self.downLoadingList removeObject:info];
+        
         //从download中移到offline中
         SongInfo * songInfo = [SuDBManager fetchSongInfoWithSid:info.sid];
         [SuDBManager saveToOffLineListWithSongInfo:songInfo];
         [SuDBManager deleteFromDownListWithSid:info.sid];
-        //通知完成
-        SendNotify(DOWNLOADSUCC, nil)
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         
         info.isFail = YES;
+        [self.downLoadingList removeObject:info];
         NSLog(@"下载失败");
     }];
     
+    info.op = op;
     [op start];
+}
+
+- (void)deleteSongWithSongInfo:(SongInfo *)songInfo {
+    //如果正在下载，先停止
+    DownLoadInfo * info = [self checkSongPlayingWithSid:songInfo.sid];
+    if (info != nil) {
+        [info.op cancel];
+    }
+    
+    //删除文件
+    NSString * path = [[SuGlobal getOffLinePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",songInfo.sid,@".mp4"]];
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path]) {
+        if ([fileManager removeItemAtPath:path error:nil]) {
+            BASE_INFO_FUN(@"删除成功");
+        }else {
+            BASE_INFO_FUN(@"删除失败");
+        }
+    }else {
+        BASE_INFO_FUN(@"文件不存在");
+    }
 }
 
 #pragma mark - 检测歌曲是否在下载中

@@ -209,28 +209,31 @@
     [[UIApplication sharedApplication] setStatusBarStyle:style];
 }
 
-- (void)setNavigationLeft:(NSString *)imageName sel:(SEL)sel
+- (UIBarButtonItem *)setNavigationLeft:(NSString *)imageName sel:(SEL)sel
 {
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:[SuButton createButtonWithFrame:CGRectMake(0, 0, 44, 44) Target:self Selector:sel ForgroundImage:imageName ForgroundImageSelected:imageName]];
     
     self.navigationItem.leftBarButtonItem = item;
+    return item;
 }
 
-- (void)setNavigationRight:(NSString *)imageName sel:(SEL)sel {
+- (UIBarButtonItem *)setNavigationRight:(NSString *)imageName sel:(SEL)sel {
     
     UIButton * rightBtn = [SuButton createButtonWithFrame:CGRectMake(0, 0, 44, 44) Target:self Selector:sel ForgroundImage:imageName ForgroundImageSelected:imageName];
     [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navigationItem.rightBarButtonItem = item;
+    return item;
 }
 
 
-- (void)setNavigationRightButton:(NSString *)btnName sel:(SEL)sel {
+- (UIBarButtonItem *)setNavigationRightButton:(NSString *)btnName sel:(SEL)sel {
     
-    UIButton * rightBtn = [SuButton createButtonWithFrame:CGRectMake(0, 0, 44, 44) Title:btnName FontSize:15 Color:WhiteColor Target:self Selector:sel];
+    UIButton * rightBtn = [SuButton createButtonWithFrame:CGRectMake(0, 0, 44, 44) Title:btnName FontSize:15 Color:[UIColor grayColor] Target:self Selector:sel];
     //    [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navigationItem.rightBarButtonItem = item;
+    return item;
 }
 
 

@@ -20,6 +20,7 @@
 #pragma mark - 离线(未下载列表)
 + (void)saveToDownList {
     [self saveInfoToTable:DownListTable];
+    SendNotify(UpdateOffLineSongList, nil)
 }
 
 + (NSArray *)fetchDownList {
@@ -39,31 +40,45 @@
 
 + (void)deleteFromDownListWithSid:(NSString *)sid {
     [self deleteWithSid:sid fromTable:DownListTable];
+    SendNotify(UpdateOffLineSongList, nil)
 }
 
 
 #pragma mark - 离线(已下载列表)
 + (void)saveToOffLineListWithSongInfo:(SongInfo *)info {
     [self saveInfo:info toTable:OffLineTable];
+    SendNotify(UpdateOffLineSongList, nil)
 }
 
 + (NSArray *)fetchOffLineList {
     return [self fetchListFromTable:OffLineTable];
 }
 
++ (void)deleteFromOffLineListWithSid:(NSString *)sid {
+    [self deleteWithSid:sid fromTable:OffLineTable];
+    SendNotify(UpdateOffLineSongList, nil)
+}
+
 
 #pragma mark - 收藏
 + (void)saveToFavorList {
     [self saveInfoToTable:FavorListTable];
+    SendNotify(UpdateMyFavorSongList, nil);
 }
 
 + (NSArray *)fetchFavorList {
     return [self fetchListFromTable:FavorListTable];
 }
 
++ (void)deleteFromFavorListWithSid:(NSString *)sid {
+    [self deleteWithSid:sid fromTable:FavorListTable];
+    SendNotify(UpdateMyFavorSongList, nil);
+}
+
 #pragma mark - 分享的歌曲
 + (void)saveToSharedList {
     [self saveInfoToTable:SharedListTable];
+    SendNotify(UpdateMySharedSongList, nil);
 }
 
 + (NSArray *)fetchSharedList {

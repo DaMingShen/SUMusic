@@ -32,7 +32,10 @@
     RegisterNotify(RADIOPLAY, @selector(refreshSongList))
     RegisterNotify(SONGREADY, @selector(refreshSongList))
     
-    RegisterNotify(DOWNLOADSUCC, @selector(loadListFromDB))
+    RegisterNotify(UpdateOffLineSongList, @selector(loadListFromDB))
+    RegisterNotify(UpdateMyFavorSongList, @selector(loadListFromDB))
+    RegisterNotify(UpdateMySharedSongList, @selector(loadListFromDB))
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -71,12 +74,20 @@
 
     if (self.songSource.count > 0) {
         self.noDataNotice.hidden = YES;
+        if (self.editHideBlock) self.editHideBlock(NO);
         self.tableView.hidden = NO;
         [self.tableView reloadData];
     }else {
+        [self.tableView setEditing:NO animated:NO];
+        if (self.editHideBlock) self.editHideBlock(YES);
         self.tableView.hidden = YES;
         self.noDataNotice.hidden = NO;
     }
+}
+
+#pragma mark - 编辑
+- (void)editList:(BOOL)editStatus {
+    [self.tableView setEditing:editStatus animated:YES];
 }
 
 #pragma mark - 定时刷新进度
@@ -159,6 +170,8 @@
             if ([[OffLineManager manager]checkSongPlayingWithSid:info.sid]) {
                 cell.progressLabel.hidden = NO;
                 cell.downLoadBtn.hidden = YES;
+                DownLoadInfo * downLoadInfo = [[OffLineManager manager]checkSongPlayingWithSid:info.sid];
+                cell.progressLabel.text = [NSString stringWithFormat:@"%d%%",downLoadInfo.percent];
             }
             //未下载
             else {
@@ -203,12 +216,29 @@
     
     if (!player.isLocalPlay || ![player.currentSong.sid isEqualToString:info.sid] ) {
         [player.songList removeAllObjects];
-        [player.songList addObjectsFromArray:self.songSource];
+        [player.songList addObjectsFromArray:self.listType == ListTypeOffLine ? self.offLineList : self.songSource];
         
         if (self.listType == ListTypeOffLine) player.isOffLinePlay = YES;
         [player playLocalListWithIndex:indexPath.row];
     }
     [[AppDelegate delegate].playView show];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.listType == ListTypeOffLine) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    SongInfo * songInfo = self.songSource[indexPath.row];
+    if ([self.downLoadList containsObject:songInfo]) {
+        [SuDBManager deleteFromDownListWithSid:songInfo.sid];
+    }else if ([self.offLineList containsObject:songInfo]) {
+        [SuDBManager deleteFromOffLineListWithSid:songInfo.sid];
+    }
+    [[OffLineManager manager]deleteSongWithSongInfo:songInfo];
 }
 
 

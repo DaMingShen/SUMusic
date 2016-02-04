@@ -64,7 +64,7 @@
                             <action selector="downLoadNow:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lPy-UV-vCr"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTY-Kr-O39">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTY-Kr-O39">
                         <rect key="frame" x="286" y="0.0" width="34" height="69"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="671-XK-52t"/>

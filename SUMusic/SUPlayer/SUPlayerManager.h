@@ -39,9 +39,14 @@
 @property (nonatomic, assign) NSInteger currentSongIndex;
 
 /*
- * 当前频道
+ * 当前频道ID
  */
 @property (nonatomic, copy) NSString * currentChannelID;
+
+/*
+ * 当前频道名称
+ */
+@property (nonatomic, copy) NSString * currentChannelName;
 
 /*
  * 缓冲进度

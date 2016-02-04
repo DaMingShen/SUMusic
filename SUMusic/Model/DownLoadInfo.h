@@ -14,6 +14,8 @@
 
 @property (nonatomic, copy) NSString * url;
 
+@property (nonatomic, weak) AFHTTPRequestOperation * op;
+
 @property (nonatomic, assign) int percent;
 
 @property (nonatomic, assign) BOOL isDownLoading;

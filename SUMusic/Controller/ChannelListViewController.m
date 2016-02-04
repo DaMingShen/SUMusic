@@ -144,6 +144,7 @@
     if (![_appDelegate.player.currentChannelID isEqualToString:channel.channel_id]) {
         //改变channel
         _appDelegate.player.currentChannelID = channel.channel_id;
+        _appDelegate.player.currentChannelName = channel.name;
         //开始播放
         [_appDelegate.player newChannelPlay];
         //刷新表格

@@ -26,8 +26,8 @@
 - (void)setNavigationTitle:(NSString *)title;
 - (void)setNavigationTitleView:(UIView *)view;
 - (void)setStatusBarStyle:(UIStatusBarStyle)style;
-- (void)setNavigationLeft:(NSString *)imageName sel:(SEL)sel;
-- (void)setNavigationRight:(NSString *)imageName sel:(SEL)sel;
-- (void)setNavigationRightButton:(NSString *)btnName sel:(SEL)sel;
+- (UIBarButtonItem *)setNavigationLeft:(NSString *)imageName sel:(SEL)sel;
+- (UIBarButtonItem *)setNavigationRight:(NSString *)imageName sel:(SEL)sel;
+- (UIBarButtonItem *)setNavigationRightButton:(NSString *)btnName sel:(SEL)sel;
 
 @end

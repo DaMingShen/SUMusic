@@ -35,6 +35,7 @@
     self.currentSong.sid = @"0";
     self.currentSongIndex = 0;
     self.currentChannelID = @"0";  //默认频道：私人频道
+    self.currentChannelName = @"私人频道";
     
     AVAudioSession * session = [[AVAudioSession alloc]init];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
@@ -195,6 +196,14 @@
 }
 
 #pragma mark - 播放器属性获取
+
+/*
+ * 处理频道名称
+ */
+- (void)setCurrentChannelName:(NSString *)currentChannelName {
+    _currentChannelName = [NSString stringWithFormat:@"🎵 %@ MHz 🎵",currentChannelName];
+}
+
 /*
  * 播放进度
  */
@@ -312,7 +321,7 @@
             BASE_INFO_FUN(@"State:正在播放");
             break;
         case MPMoviePlaybackStatePaused:
-            SendNotify(SONGPAUSE, nil)
+//            SendNotify(SONGPAUSE, nil)
             BASE_INFO_FUN(@"State:暂停播放");
             break;
         case MPMoviePlaybackStateStopped:

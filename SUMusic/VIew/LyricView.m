@@ -19,7 +19,6 @@
     BOOL _isCheck;
     BOOL _isShow;
     
-    NSTimer * _timer;
     UILabel * _noLyricNotice;
 }
 
@@ -114,10 +113,6 @@
     //先显示到当前歌词
     [self scrollToCurrentLyric];
     
-    //定时器
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(scrollLyric) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
-    
     [sender addSubview:self];
     [UIView animateWithDuration:0.2 animations:^{
         self.alpha = 1.0;
@@ -126,9 +121,6 @@
 
 - (void)hide {
     _isShow = NO;
-    
-    [_timer invalidate];
-    _timer = nil;
     
     [UIView animateWithDuration:0.2 animations:^{
         self.alpha = 0.f;

@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *favorBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (weak, nonatomic) IBOutlet UIButton *downBtn;
+@property (weak, nonatomic) IBOutlet UILabel *channelName;
 
 
 @end
@@ -49,6 +50,8 @@
     [super viewDidLoad];
     
     _player = [SUPlayerManager manager];
+    self.channelName.text = _player.currentChannelName;
+    [self songEndPlaying];
     
     RegisterNotify(SONGREADY, @selector(loadSongInfo))
     RegisterNotify(SONGPLAY, @selector(songBeginNotice))
@@ -134,9 +137,12 @@
     //激活UI
     [self enableInfo];
     
+    //设置频道
+    self.channelName.text = _player.currentChannelName;
+    
     //设置封面
     self.songName.text = _player.currentSong.title;
-    self.singer.text = [NSString stringWithFormat:@"—   %@    —",_player.currentSong.artist];
+    self.singer.text = [NSString stringWithFormat:@"- %@ -",_player.currentSong.artist];
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
     [self refreshFavorStatus];
     [self refreshDownLoadStatus];
@@ -201,6 +207,9 @@
     
     //图片旋转
     self.songCover.transform = CGAffineTransformRotate(self.songCover.transform, M_PI / 1440);
+    
+    //歌词
+    if ([_lycView checkShow]) [_lycView scrollLyric];
 }
 
 - (void)enableInfo {
@@ -214,6 +223,7 @@
     self.nextSong.enabled = status;
     self.lyricsBtn.enabled = status;
     self.favorBtn.enabled = status;
+    self.downBtn.enabled = status;
     self.shareBtn.enabled = status;
 }
 
@@ -322,7 +332,7 @@
     //取消收藏
     if (sender.selected) {
         BASE_INFO_FUN(@"取消收藏");
-        
+        [SuDBManager deleteFromFavorListWithSid:_player.currentSong.sid];
         sender.selected = NO;
     }
     //收藏

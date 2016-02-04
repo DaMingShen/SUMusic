@@ -21,10 +21,10 @@
                 <userLayoutGuide location="349" affinity="minY"/>
             </userGuides>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBU-Ev-no7">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBU-Ev-no7">
                     <rect key="frame" x="31" y="198" width="313" height="110"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="110" id="xvD-tc-cdc"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="xvD-tc-cdc"/>
                     </constraints>
                     <string key="text">== 关于版权 ==    
 一、电台律动APP中所有的内容均以学习交流为目的，没有任何商业和盈利成分。
@@ -34,10 +34,10 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cd-cA-Azf">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cd-cA-Azf">
                     <rect key="frame" x="31" y="334" width="313" height="58"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="58" id="eOL-dF-dex"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="58" id="eOL-dF-dex"/>
                     </constraints>
                     <string key="text">== 关于隐私 ==   
 一、电台律动APP需要连接互联网获取电台信息。
@@ -46,10 +46,10 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXg-xD-4Kf">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXg-xD-4Kf">
                     <rect key="frame" x="31" y="425" width="313" height="56"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="TFv-nB-7eY"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="56" id="TFv-nB-7eY"/>
                     </constraints>
                     <string key="text">== 其他 ==   
 一、有其他问题和建议欢迎邮件联系并反馈。

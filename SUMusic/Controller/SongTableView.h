@@ -16,9 +16,14 @@ typedef NS_ENUM(NSInteger, ListType) {
 
 @interface SongTableView : BaseViewController
 
+@property (nonatomic, copy) void(^editHideBlock)(BOOL isHide);
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray * songSource;
 
 - (void)loadListWithType:(ListType)listType;
+
+#pragma mark - 编辑
+- (void)editList:(BOOL)editStatus;
 
 @end

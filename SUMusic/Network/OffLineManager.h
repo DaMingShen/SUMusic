@@ -19,6 +19,8 @@
 
 - (void)downLoadSongWithSongInfo:(SongInfo *)songInfo;
 
+- (void)deleteSongWithSongInfo:(SongInfo *)songInfo;
+
 #pragma mark - 检测歌曲是否在下载中
 - (DownLoadInfo *)checkSongPlayingWithSid:(NSString *)sid;
 
