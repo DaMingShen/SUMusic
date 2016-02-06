@@ -30,14 +30,20 @@
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     
+    AVAudioSession * session = [[AVAudioSession alloc]init];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [session setActive:YES error:nil];
+    
     //初始化用户数据
     [self initialUser];
-    self.player = [SUPlayerManager manager];
     
     //初始化播放器
-    [self.player initialPlayer];
+    self.player = [SUPlayerManager manager];
+    [self.player newChannelPlay];
     self.playView = [[PlayViewController alloc]init];
     [self.playView show];
+    
+    //
     
     //初始化友盟
     [UMSocialData setAppKey:@"56a4941667e58e200d001b8d"];
@@ -95,7 +101,7 @@
     [info setObject:@(self.player.playTime.intValue) forKey:MPNowPlayingInfoPropertyElapsedPlaybackTime];
     [info setObject:@(1) forKey:MPNowPlayingInfoPropertyPlaybackRate];
     [info setObject:@(self.player.playDuration.intValue) forKey:MPMediaItemPropertyPlaybackDuration];
-    MPMediaItemArtwork * artwork = [[MPMediaItemArtwork alloc] initWithImage:self.playView.coverImg ? self.playView.coverImg : DefaultImg];
+    MPMediaItemArtwork * artwork = [[MPMediaItemArtwork alloc] initWithImage:DefaultImg];
     [info setObject:artwork forKey:MPMediaItemPropertyArtwork];
     [[MPNowPlayingInfoCenter defaultCenter]setNowPlayingInfo:info];
 }
@@ -109,23 +115,15 @@
     switch (event.subtype)
     {
         case UIEventSubtypeRemoteControlPlay:
-            [self.playView goOnPlaying:nil];
             BASE_INFO_FUN(@"remote_play");
             break;
         case UIEventSubtypeRemoteControlPause:
-            [self.playView pausePlaying:nil];
             BASE_INFO_FUN(@"remote_pause");
             break;
         case UIEventSubtypeRemoteControlNextTrack:
-            [self.playView skipSong:nil];
             BASE_INFO_FUN(@"remote_skip");
             break;
         case UIEventSubtypeRemoteControlTogglePlayPause:
-            if (self.player.isPlaying) {
-                [self.playView pausePlaying:nil];
-            }else {
-                [self.playView goOnPlaying:nil];
-            }
             BASE_INFO_FUN(@"remote_toggle");
             break;
         default:

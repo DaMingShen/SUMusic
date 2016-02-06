@@ -51,7 +51,6 @@
     [self fetchChannels];
     
     RegisterNotify(LoginSUCC, @selector(userLoginInOutRefresh))
-    RegisterNotify(LOCALPLAY, @selector(localPlayingRefresh))
 }
 
 #pragma mark - UI

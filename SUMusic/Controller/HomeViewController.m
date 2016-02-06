@@ -35,10 +35,6 @@
     [self setupUI];
     [self setupPlayingPet];
     
-    RegisterNotify(SONGPLAY, @selector(songBegin))
-    RegisterNotify(SONGPAUSE, @selector(songStop))
-    RegisterNotify(SONGEND, @selector(songStop))
-    
     [_appDelegate.player newChannelPlay];
 }
 

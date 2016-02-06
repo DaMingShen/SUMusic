@@ -9,20 +9,23 @@
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 
+typedef NS_ENUM(NSInteger, SUPlayStatus) {
+    SUPlayStatusNon,
+    SUPlayStatusReadyToPlay,
+    SUPlayStatusPause,
+    SUPlayStatusStop
+};
 
 @class SongInfo;
 @interface SUPlayerManager : NSObject
 
+#pragma mark - 状态
 /*
- * 播放器
+ * 播放状态
  */
-@property (nonatomic, strong) MPMoviePlayerController * player;
+@property (nonatomic, assign) SUPlayStatus status;
 
-/*
- * 播放器播放状态
- */
-@property (nonatomic, assign) BOOL isPlaying;
-
+#pragma mark - 列表
 /*
  * 歌曲列表
  */
@@ -38,6 +41,7 @@
  */
 @property (nonatomic, assign) NSInteger currentSongIndex;
 
+#pragma mark - 频道
 /*
  * 当前频道ID
  */
@@ -48,15 +52,26 @@
  */
 @property (nonatomic, copy) NSString * currentChannelName;
 
+#pragma mark - 播放器
 /*
- * 缓冲进度
+ * 播放器
  */
-@property (nonatomic, assign) float bufferProgress;
+@property (nonatomic, strong) AVPlayer * player;
+
+/*
+ * 播放器播放状态
+ */
+@property (nonatomic, assign) BOOL isPlaying;
 
 /*
  * 播放进度
  */
 @property (nonatomic, assign) float progress;
+
+/*
+ * 缓冲进度
+ */
+@property (nonatomic, assign) float bufferProgress;
 
 /*
  * 当前播放时间(秒)
@@ -78,17 +93,10 @@
  */
 @property (nonatomic, copy) NSString * duration;
 
-
-#pragma mark - ---> 方法 <---
 /*
  * 获取单例
  */
 + (instancetype)manager;
-
-/*
- * 初始化
- */
-- (void)initialPlayer;
 
 /*
  * 开始播放
@@ -116,11 +124,7 @@
 - (void)banSongWithHandle:(void(^)(BOOL isSucc))handle;
 
 
-#pragma mark - 本地列表播放
-/*
- * 是否播放本地列表
- */
-@property (nonatomic, assign) BOOL isLocalPlay;
+#pragma mark - 离线播放方法
 
 /*
  * 是否播放离线音乐

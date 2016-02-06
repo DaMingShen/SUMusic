@@ -13,34 +13,37 @@
 #import "LyricView.h"
 #import "ShareView.h"
 
-@interface PlayViewController () {
-    
-    SUPlayerManager * _player;
-    NSTimer * _timer;
-    
-    //歌词
-    LyricView * _lycView;
-    
-    //分享
-    ShareView * _shareView;
-}
+@interface PlayViewController ()
+
+@property (nonatomic, strong) SUPlayerManager * player; //播放器类
+@property (nonatomic, strong) LyricView * lycView;      //歌词
+@property (nonatomic, strong) ShareView * shareView;    //分享
+@property (nonatomic, strong) NSTimer * timer;          //界面刷新定时器
+
+@property (weak, nonatomic) IBOutlet UILabel *channelName;
+
+@property (weak, nonatomic) IBOutlet UILabel *songName;
+@property (weak, nonatomic) IBOutlet UILabel *singer;
+
+@property (weak, nonatomic) IBOutlet UIButton *loveSong;
+@property (weak, nonatomic) IBOutlet UIButton *nextSong;
+@property (weak, nonatomic) IBOutlet UIButton *banSong;
 
 @property (weak, nonatomic) IBOutlet UIView *progressBar;
 @property (weak, nonatomic) IBOutlet UIView *currentProgress;
 @property (weak, nonatomic) IBOutlet UIView *progressPoint;
 @property (weak, nonatomic) IBOutlet UILabel *playTime;
 @property (weak, nonatomic) IBOutlet UILabel *totalTime;
+
+@property (weak, nonatomic) IBOutlet UIView *coverView;
 @property (weak, nonatomic) IBOutlet UIImageView *songCover;
-@property (weak, nonatomic) IBOutlet UILabel *singer;
 @property (weak, nonatomic) IBOutlet UIView *playBtnBg;
 @property (weak, nonatomic) IBOutlet UIImageView *playBtn;
-@property (weak, nonatomic) IBOutlet UIView *coverView;
+
 @property (weak, nonatomic) IBOutlet UIButton *lyricsBtn;
 @property (weak, nonatomic) IBOutlet UIButton *favorBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (weak, nonatomic) IBOutlet UIButton *downBtn;
-@property (weak, nonatomic) IBOutlet UILabel *channelName;
-
 
 @end
 
@@ -49,14 +52,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _player = [SUPlayerManager manager];
+    _player = [AppDelegate delegate].player;
     self.channelName.text = _player.currentChannelName;
-    [self songEndPlaying];
+
+    //监听状态变化
+    RegisterNotify(SONGPLAYSTATUSCHANGE, @selector(observeSongPlayStatus))
     
-    RegisterNotify(SONGREADY, @selector(loadSongInfo))
-    RegisterNotify(SONGPLAY, @selector(songBeginNotice))
-    RegisterNotify(SONGPAUSE, @selector(songPauseNotice))
-    RegisterNotify(SONGEND, @selector(songEndPlaying))
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -96,7 +97,7 @@
     if (_timer) [self removeTimer];
 }
 
-#pragma mark - 全屏视图
+#pragma mark - 界面出现和隐藏
 - (void)show {
     
     UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -123,33 +124,52 @@
     }];
 }
 
-- (IBAction)pausePlaying:(UITapGestureRecognizer *)sender {
-    [_player pausePlay];
-}
-
-- (IBAction)goOnPlaying:(UITapGestureRecognizer *)sender {
-    [_player startPlay];
-}
 
 #pragma mark - 通知处理
-- (void)loadSongInfo {
-    BASE_INFO_FUN(@"准备播放通知");
-    //激活UI
-    [self enableInfo];
+- (void)observeSongPlayStatus {
+    switch (_player.status) {
+        case SUPlayStatusNon:
+            
+            break;
+        case SUPlayStatusReadyToPlay:
+            [self synUI];
+            [self addTimer];
+            break;
+        case SUPlayStatusPause:
+            
+            break;
+        case SUPlayStatusStop:
+            
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - 刷新界面
+- (void)synUI {
     
-    //设置频道
+    //激活按钮
+    [self changeAllBtnStatus:YES];
+    
+    //频道
     self.channelName.text = _player.currentChannelName;
     
-    //设置封面
+    //封面
+    self.coverView.userInteractionEnabled = YES;
+    [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    }];
+    
+    //歌名
     self.songName.text = _player.currentSong.title;
     self.singer.text = [NSString stringWithFormat:@"- %@ -",_player.currentSong.artist];
+    
+    //三大金刚
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
+    
+    //四大天王
     [self refreshFavorStatus];
     [self refreshDownLoadStatus];
-    [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.coverImg = image;
-        [[AppDelegate delegate] configNowPlayingCenter];
-    }];
     
     //设置歌词
     [_lycView clearLyric];
@@ -164,35 +184,22 @@
     }
 }
 
-- (void)songBeginNotice {
-    [self addTimer];
-    _playBtn.hidden = YES;
-    _playBtnBg.hidden = YES;
-}
+- (void)resetUI {
 
-- (void)songPauseNotice {
-    [self removeTimer];
-    self.playBtnBg.hidden = NO;
-    self.playBtn.hidden = NO;
-}
-
-- (void)songEndPlaying {
-    BASE_INFO_FUN(@"播放完毕通知");
-    if (_timer) [self removeTimer];
-    
     self.songName.text = @"";
     self.singer.text = @"";
+    
     self.songCover.image = DefaultImg;
-    self.coverImg = nil;
+    self.songCover.transform = CGAffineTransformMakeRotation(0.0);
+    self.coverView.userInteractionEnabled = NO;
+    
     self.playTime.text = @"00:00";
     self.totalTime.text = @"00:00";
     self.progressPoint.x = self.progressBar.x;
-    self.coverView.userInteractionEnabled = NO;
-    self.songCover.transform = CGAffineTransformMakeRotation(0.0);
+    
     [self changeAllBtnStatus:NO];
 }
 
-#pragma mark - 刷新界面
 - (void)refreshProgress {
     
     //显示时间
@@ -201,7 +208,7 @@
     
     //进度条
     float pointW = self.progressPoint.w / 2.0;
-    float progress = isnan(_player.progress) ? 0.f : _player.progress;
+    float progress = _player.progress;
     self.currentProgress.w = pointW  + (self.progressBar.w - pointW) * progress;
     self.progressPoint.centerX = self.progressBar.x + self.currentProgress.w;
     
@@ -212,15 +219,12 @@
     if ([_lycView checkShow]) [_lycView scrollLyric];
 }
 
-- (void)enableInfo {
-    self.coverView.userInteractionEnabled = YES;
-    [self changeAllBtnStatus:YES];
-}
 
 - (void)changeAllBtnStatus:(BOOL)status {
     self.banSong.enabled = status;
     self.loveSong.enabled = status;
     self.nextSong.enabled = status;
+    
     self.lyricsBtn.enabled = status;
     self.favorBtn.enabled = status;
     self.downBtn.enabled = status;
@@ -257,7 +261,7 @@
     self.downBtn.enabled = YES;
 }
 
-#pragma mark - timer
+#pragma mark - 定时器
 - (void)addTimer {
     if (_timer) return;
     BASE_INFO_FUN(@"添加timer");
@@ -274,6 +278,13 @@
 
 
 #pragma mark - 播放控制
+- (IBAction)pausePlaying:(UITapGestureRecognizer *)sender {
+    [_player pausePlay];
+}
+
+- (IBAction)goOnPlaying:(UITapGestureRecognizer *)sender {
+    [_player startPlay];
+}
 
 - (IBAction)skipSong:(UIButton *)sender {
     
@@ -375,7 +386,7 @@
 - (void)shareWithType:(NSInteger)shareType {
     
     NSArray * types = @[UMShareToSina, UMShareToWechatSession, UMShareToWechatTimeline];
-    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[types[shareType]] content:[NSString stringWithFormat:@"%@%@",_player.currentSong.title,_player.currentSong.artist] image:self.coverImg ? self.coverImg : DefaultImg location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
+    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[types[shareType]] content:[NSString stringWithFormat:@"%@%@",_player.currentSong.title,_player.currentSong.artist] image:DefaultImg location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
         
         [_shareView dismiss:nil];
         if (response.responseCode == UMSResponseCodeSuccess) {

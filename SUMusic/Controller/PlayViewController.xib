@@ -148,14 +148,14 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QP-1L-yEN" userLabel="封面">
                     <rect key="frame" x="0.0" y="84" width="375" height="311"/>
                     <subviews>
-                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-2S-RAE" userLabel="cover">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-2S-RAE" userLabel="cover">
                             <rect key="frame" x="77" y="46" width="220" height="220"/>
                             <gestureRecognizers/>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="zMw-km-SdO" appends="YES" id="qln-mq-UkW"/>
                             </connections>
                         </imageView>
-                        <view hidden="YES" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hid-aw-stf" userLabel="play_btn_bg">
+                        <view hidden="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hid-aw-stf" userLabel="play_btn_bg">
                             <rect key="frame" x="77" y="46" width="220" height="220"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <gestureRecognizers/>

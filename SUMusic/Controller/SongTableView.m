@@ -28,13 +28,6 @@
     [super viewDidLoad];
     [self setupUI];
     [self addUpdateTimer];
-    
-    RegisterNotify(RADIOPLAY, @selector(refreshSongList))
-    RegisterNotify(SONGREADY, @selector(refreshSongList))
-    
-    RegisterNotify(UpdateOffLineSongList, @selector(loadListFromDB))
-    RegisterNotify(UpdateMyFavorSongList, @selector(loadListFromDB))
-    RegisterNotify(UpdateMySharedSongList, @selector(loadListFromDB))
 
 }
 
@@ -144,7 +137,6 @@
     
     //播放状态
     if (![self.downLoadList containsObject:info] &&
-        [AppDelegate delegate].player.isLocalPlay &&
         [[AppDelegate delegate].player.currentSong.sid isEqualToString:info.sid]) {
         cell.playIndicator.hidden = NO;
         cell.playIndicator.animationImages = @[[UIImage imageNamed:@"ic_channel_nowplaying1"],
@@ -212,9 +204,8 @@
     
     //其他情况
     SUPlayerManager * player = [AppDelegate delegate].player;
-    if (!player.isLocalPlay) SendNotify(LOCALPLAY, nil)
     
-    if (!player.isLocalPlay || ![player.currentSong.sid isEqualToString:info.sid] ) {
+    if (![player.currentSong.sid isEqualToString:info.sid] ) {
         [player.songList removeAllObjects];
         [player.songList addObjectsFromArray:self.listType == ListTypeOffLine ? self.offLineList : self.songSource];
         

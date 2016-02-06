@@ -74,42 +74,18 @@ selector:_selector name:_name object:nil];
 #define DBFile              @"SuMusic.db"
 #define OffLineFile         @"OffLine"
 
-// iOS系统版本
-#define IOS_9     9.0
-#define IOS_8     8.0
-#define IOS_7     7.0
-
-#define Is_iOS_9_Later      [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0
-#define Is_iOS_8_Later      [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
-#define Is_iOS_7_Later      [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
-
 //用户信息
-#define UserID      @"mobile"
-#define UserToken   @"token"
-#define UserSig     @"userSig"
 #define UserLogin     @"userIsLogin"
 #define UserLauch     @"appIsJustLauch"
-#define isFirstOpen @"appFirstOpen"
-#define LoginSUCC   @"loginSUCC"
-#define LoginFAIL   @"LoginFAIL"
-#define ChangeVillage @"ChangeVillage"
-
-//商城
-#define UpdateCar @"updateShoppingCarInfo"
-#define UpdateCarCount @"updateShoppingCarCount"
-
+#define isFirstOpen   @"appFirstOpen"
+#define LoginSUCC     @"loginSUCC"
+#define LoginFAIL     @"LoginFAIL"
 
 //网络相关
 #define NetResult           @"r"
-#define NetResultCode       @"code"
 #define NetOk               0
-#define NetData             @"data"
 #define NetSong             @"song"
 #define NetChannel          @"channels"
-#define NetInvalidateToken  @"invalidetoken"
-#define HTTPSchema          @"http:"
-#define HTTPGET             @"GET"
-#define HTTPPOST            @"POST"
 #define RequestTimeout      8
 
 //网络变化
@@ -117,22 +93,19 @@ selector:_selector name:_name object:nil];
 #define NetworkDisable @"NetworkIsNotReachability"
 
 //通知
-#define SONGREADY @"BeginPlayingSong"
-#define SONGPLAY @"playingSong"
-#define SONGPAUSE @"pausePlayingSong"
-#define SONGEND @"EndPlayingSong"
-
-#define RADIOPLAY @"PlayRadioMusic"
-#define LOCALPLAY @"PlayLocalList"
-
-#define UpdateOffLineSongList @"UpdateOffLineSongList"
-#define UpdateMyFavorSongList @"UpdateMyFavorSongList"
-#define UpdateMySharedSongList @"UpdateMySharedSongList"
+#define SONGPLAYSTATUSCHANGE @"SongPlayStatusChange"
+#define OFFLINEPLAY @"PlayOffLineSong"
+#define UpdateSongList @"UpdateSongList"
 
 //默认图片
 #define DefaultImg [UIImage imageNamed:@"cover"]
 
 //弱引用
 #define WEAKSELF __weak __typeof(self) weakSelf = self;
+
+// iOS系统版本
+#define Is_iOS_9_Later      [[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0
+#define Is_iOS_8_Later      [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
+#define Is_iOS_7_Later      [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
 
 #endif
