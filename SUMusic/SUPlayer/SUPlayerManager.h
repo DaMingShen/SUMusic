@@ -12,12 +12,16 @@
 typedef NS_ENUM(NSInteger, SUPlayStatus) {
     SUPlayStatusNon,
     SUPlayStatusReadyToPlay,
+    SUPlayStatusPlay,
     SUPlayStatusPause,
     SUPlayStatusStop
 };
 
 @class SongInfo;
-@interface SUPlayerManager : NSObject
+@interface SUPlayerManager : NSObject {
+    
+    id _timeObserve; //监控进度
+}
 
 #pragma mark - 状态
 /*

@@ -148,14 +148,14 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QP-1L-yEN" userLabel="封面">
                     <rect key="frame" x="0.0" y="84" width="375" height="311"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-2S-RAE" userLabel="cover">
+                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-2S-RAE" userLabel="cover">
                             <rect key="frame" x="77" y="46" width="220" height="220"/>
                             <gestureRecognizers/>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="zMw-km-SdO" appends="YES" id="qln-mq-UkW"/>
                             </connections>
                         </imageView>
-                        <view hidden="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hid-aw-stf" userLabel="play_btn_bg">
+                        <view hidden="YES" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hid-aw-stf" userLabel="play_btn_bg">
                             <rect key="frame" x="77" y="46" width="220" height="220"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
@@ -196,7 +196,7 @@
                                 <constraint firstAttribute="width" constant="261" id="qrs-8B-R9l"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -277,10 +277,9 @@
                     <rect key="frame" x="0.0" y="35" width="375" height="34"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🎵 我的红心 MHz 🎵" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lb1-64-AzP">
-                            <rect key="frame" x="57" y="2" width="261" height="30"/>
+                            <rect key="frame" x="57" y="4" width="261" height="27"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="8Cd-nv-nSR"/>
-                                <constraint firstAttribute="width" constant="261" id="bS8-Wp-5mP"/>
+                                <constraint firstAttribute="height" constant="27" id="MvO-7G-jsG"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>

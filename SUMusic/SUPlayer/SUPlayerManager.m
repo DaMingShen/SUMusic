@@ -26,8 +26,6 @@
         self.songList = [NSMutableArray array];
         self.currentChannelID = @"0";  //默认频道：私人频道
         self.currentChannelName = @"私人频道";
-//        self.playTime = @"0";
-//        self.duration = @"0";
     }
     return self;
 }
@@ -69,7 +67,13 @@
  */
 - (void)startPlay {
     
-    [self.player play];
+    if (self.status == SUPlayStatusPause) {
+        self.status = SUPlayStatusPlay;
+        [self.player play];
+        SendNotify(SONGPLAYSTATUSCHANGE, nil)
+    }else {
+        [self.player play];
+    }
     
     //如果是最后一首，加载更多歌曲
     if (self.currentSongIndex == self.songList.count - 1) [self loadMoreSong];
@@ -80,15 +84,32 @@
  */
 - (void)pausePlay {
     
-    if (!self.isPlaying) return;
+    self.status = SUPlayStatusPause;
     [self.player pause];
+    SendNotify(SONGPLAYSTATUSCHANGE, nil)
 }
 
 /*
  * 播放完毕
  */
 - (void)endPlay {
+    if (!self.player) return;
     
+    self.status = SUPlayStatusStop;
+    [self.player pause];
+    
+    //移除监控
+    if (self.player) {
+        [self addObserver];
+        self.player = nil;
+    }
+    
+    //重置进度
+    self.progress = 0.f;
+    self.playTime = @"0";
+    self.playDuration = @"0";
+
+    SendNotify(SONGPLAYSTATUSCHANGE, nil)
 }
 
 /*
@@ -96,11 +117,13 @@
  */
 - (void)playNext {
     
+    [self endPlay];
     if (!self.isOffLinePlay) {
         //先报告上一首歌已完成
         [self reportSongEnd];
     }
-    
+    [self loadSongInfoWithNewList:NO];
+    [self startPlay];
 }
 
 #pragma mark - 加载歌曲
@@ -128,12 +151,6 @@
         url = [NSURL URLWithString:self.currentSong.url];
     }
     
-    //移除监控
-    if (self.player) {
-        [self addObserver];
-        self.player = nil;
-    }
-    
     //重置播放器
     AVPlayerItem * songItem = [[AVPlayerItem alloc]initWithURL:url];
     self.player = [[AVPlayer alloc]initWithPlayerItem:songItem];
@@ -152,7 +169,7 @@
     
     //更新播放器进度
     WEAKSELF
-    [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1.0, 1.0) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+    _timeObserve = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1.0, 1.0) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         float current = CMTimeGetSeconds(time);
         float total = CMTimeGetSeconds(songItem.duration);
 //        SuLog(@"%f, %f",current, total);
@@ -175,6 +192,11 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
+    if (_timeObserve) {
+        [self.player removeTimeObserver:_timeObserve];
+        _timeObserve = nil;
+    }
+    
     [songItem removeObserver:self forKeyPath:@"status"];
     [songItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
 }
@@ -182,6 +204,7 @@
 
 - (void)playbackFinished:(NSNotification *)notice {
     BASE_INFO_FUN(@"播放完成");
+    [self playNext];
 }
 
 /**
@@ -200,26 +223,26 @@
         
         switch (self.player.status) {
             case AVPlayerStatusUnknown:
-                BASE_INFO_FUN(@"未知状态");
+                BASE_INFO_FUN(@"KVO：未知状态");
                 break;
             case AVPlayerStatusReadyToPlay:
                 self.status = SUPlayStatusReadyToPlay;
-                SendNotify(SONGPLAYSTATUSCHANGE, nil)
-                BASE_INFO_FUN(@"正在播放");
+                BASE_INFO_FUN(@"KVO：准备完毕");
                 break;
             case AVPlayerStatusFailed:
-                BASE_INFO_FUN(@"加载失败");
+                BASE_INFO_FUN(@"KVO：加载失败");
                 break;
             default:
                 break;
         }
+        SendNotify(SONGPLAYSTATUSCHANGE, nil)
     }
     if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
         
         NSArray * array = songItem.loadedTimeRanges;
         CMTimeRange timeRange = [array.firstObject CMTimeRangeValue]; //本次缓冲的时间范围
         NSTimeInterval totalBuffer = CMTimeGetSeconds(timeRange.start) + CMTimeGetSeconds(timeRange.duration); //缓冲总长度
-        SuLog(@"共缓冲%.2f",totalBuffer);
+//        SuLog(@"共缓冲%.2f",totalBuffer);
     }
 }
 
@@ -230,6 +253,7 @@
  */
 - (void)newChannelPlay {
     
+    [self endPlay];
     [SUNetwork fetchPlayListWithType:OperationTypeNone completion:^(BOOL isSucc) {
         if (isSucc) {
             [self loadSongInfoWithNewList:YES];
@@ -244,13 +268,15 @@
  * 切歌
  */
 - (void)skipSongWithHandle:(void(^)(BOOL isSucc))handle {
-
-        [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
-            if (isSucc) {
-                
-            }
-            if (handle) handle(isSucc);
-        }];
+    
+    [self endPlay];
+    [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
+        if (isSucc) {
+            [self loadSongInfoWithNewList:YES];
+            [self startPlay];
+        }
+        if (handle) handle(isSucc);
+    }];
 
 }
 
@@ -259,9 +285,11 @@
  */
 - (void)banSongWithHandle:(void(^)(BOOL isSucc))handle {
     
+    [self endPlay];
     [SUNetwork fetchPlayListWithType:OperationTypeBan completion:^(BOOL isSucc) {
         if (isSucc) {
-            [self endPlay];
+            [self loadSongInfoWithNewList:YES];
+            [self startPlay];
         }
         if (handle) handle(isSucc);
     }];

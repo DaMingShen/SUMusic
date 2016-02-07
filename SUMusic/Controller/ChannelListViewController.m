@@ -77,6 +77,7 @@
         [self.dataSource removeObject:self.myHeartChannel];
         [self.tableView reloadData];
     }
+    [_appDelegate.player newChannelPlay];
 }
 
 - (void)localPlayingRefresh {

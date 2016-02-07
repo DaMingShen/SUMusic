@@ -52,9 +52,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _player = [AppDelegate delegate].player;
-    self.channelName.text = _player.currentChannelName;
+    self.player = [AppDelegate delegate].player;
 
+    [self resetUI];
+    
     //监听状态变化
     RegisterNotify(SONGPLAYSTATUSCHANGE, @selector(observeSongPlayStatus))
     
@@ -129,17 +130,27 @@
 - (void)observeSongPlayStatus {
     switch (_player.status) {
         case SUPlayStatusNon:
-            
+            BASE_INFO_FUN(@"播放界面：未知状态");
             break;
         case SUPlayStatusReadyToPlay:
             [self synUI];
             [self addTimer];
+            BASE_INFO_FUN(@"播放界面：准备完成");
+            break;
+        case SUPlayStatusPlay:
+            [self refreshCoverPlayingStatus];
+            [self addTimer];
+            BASE_INFO_FUN(@"播放界面：开始播放");
             break;
         case SUPlayStatusPause:
-            
+            [self removeTimer];
+            [self refreshCoverPlayingStatus];
+            BASE_INFO_FUN(@"播放界面：暂停播放");
             break;
         case SUPlayStatusStop:
-            
+            [self removeTimer];
+            [self resetUI];
+            BASE_INFO_FUN(@"播放界面：停止播放");
             break;
         default:
             break;
@@ -153,7 +164,7 @@
     [self changeAllBtnStatus:YES];
     
     //频道
-    self.channelName.text = _player.currentChannelName;
+    self.channelName.text = self.player.currentChannelName;
     
     //封面
     self.coverView.userInteractionEnabled = YES;
@@ -163,6 +174,10 @@
     //歌名
     self.songName.text = _player.currentSong.title;
     self.singer.text = [NSString stringWithFormat:@"- %@ -",_player.currentSong.artist];
+    
+    //进度条
+    self.playTime.hidden = NO;
+    self.totalTime.hidden = NO;
     
     //三大金刚
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
@@ -185,6 +200,8 @@
 }
 
 - (void)resetUI {
+    
+    self.channelName.text = self.player.currentChannelName;
 
     self.songName.text = @"";
     self.singer.text = @"";
@@ -194,8 +211,11 @@
     self.coverView.userInteractionEnabled = NO;
     
     self.playTime.text = @"00:00";
+    self.playTime.hidden = YES;
     self.totalTime.text = @"00:00";
+    self.totalTime.hidden = YES;
     self.progressPoint.x = self.progressBar.x;
+    self.currentProgress.w = 1.0;
     
     [self changeAllBtnStatus:NO];
 }
@@ -229,6 +249,12 @@
     self.favorBtn.enabled = status;
     self.downBtn.enabled = status;
     self.shareBtn.enabled = status;
+}
+
+- (void)refreshCoverPlayingStatus {
+
+    self.playBtnBg.hidden = self.player.isPlaying;
+    self.playBtn.hidden = self.player.isPlaying;
 }
 
 - (void)refreshFavorStatus {
@@ -279,38 +305,44 @@
 
 #pragma mark - 播放控制
 - (IBAction)pausePlaying:(UITapGestureRecognizer *)sender {
-    [_player pausePlay];
+    [self.player pausePlay];
 }
 
 - (IBAction)goOnPlaying:(UITapGestureRecognizer *)sender {
-    [_player startPlay];
+    [self.player startPlay];
 }
 
 - (IBAction)skipSong:(UIButton *)sender {
     
-    UIView * loading = [self showLoadingInView:sender];
-    [_player skipSongWithHandle:^(BOOL isSucc) {
-        [self hideLoading:loading];
-        if (!isSucc) [self ToastMessage:@"网络错误"];
+    [self.player skipSongWithHandle:^(BOOL isSucc) {
+        if (isSucc) {
+            BASE_INFO_FUN(@"跳到下一首");
+        }else {
+            [self ToastMessage:@"网络错误"];
+        }
     }];
 }
 
 - (IBAction)loveSong:(UIButton *)sender {
     
-    UIView * loading = [self showLoadingInView:sender];
     OperationType type = sender.selected ? OperationTypeUnHeart : OperationTypeHeart;
     [SUNetwork fetchPlayListWithType:type completion:^(BOOL isSucc) {
-        if (isSucc) sender.selected = !sender.selected;
-        [self hideLoading:loading];
-        if (!isSucc) [self ToastMessage:@"网络错误"];
+        if (isSucc) {
+            sender.selected = !sender.selected;
+            BASE_INFO_FUN(@"红心/取消红心");
+        }else {
+            [self ToastMessage:@"网络错误"];
+        }
     }];
 }
 
 - (IBAction)banSong:(UIButton *)sender {
-    UIView * loading = [self showLoadingInView:sender];
     [_player banSongWithHandle:^(BOOL isSucc) {
-        [self hideLoading:loading];
-        if (!isSucc) [self ToastMessage:@"网络错误"];
+        if (isSucc) {
+            BASE_INFO_FUN(@"BAN歌");
+        }else {
+            [self ToastMessage:@"网络错误"];
+        }
     }];
 }
 
@@ -352,13 +384,6 @@
         [SuDBManager saveToFavorList];
         sender.selected = YES;
     }
-    
-    
-//
-//
-//    BASE_INFO_FUN([SuDBManager fetchDownList][0]);
-//    BASE_INFO_FUN([SuDBManager fetchSongInfoWithSid:@"185725"].sid);
-    
 }
 
 #pragma mark - 离线

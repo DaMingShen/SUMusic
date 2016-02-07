@@ -92,18 +92,17 @@
     //请求数据
     [[SUNetwork manager] GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
 //        BASE_INFO_FUN(responseObject);
-        BASE_INFO_FUN(@"成功");
         if ([[responseObject objectForKey:NetResult] intValue] == NetOk) {
             //正常播放完一首歌 : 直接返回请求结果，不用切歌
             if (type == OperationTypeEnd) {
-                
+                BASE_INFO_FUN(@"歌曲播放完毕上报成功");
                 if (completion) completion(YES);
             }
             //单纯获取歌曲、跳过、ban掉歌曲 : 停止播放然后切歌
             else if (type == OperationTypeNone  ||
                      type == OperationTypeSkip  ||
                      type == OperationTypeBan ) {
-                
+                BASE_INFO_FUN(@"（单纯获取歌曲、跳过、ban掉歌曲）获取新列表成功");
                 [player.songList removeAllObjects];
                 [player.songList addObjectsFromArray:[SongInfo arrayFromDict:responseObject]];
                 if (completion) completion(YES);
@@ -112,7 +111,7 @@
             else if (type == OperationTypePlay  ||
                      type == OperationTypeHeart ||
                      type == OperationTypeUnHeart) {
-                
+                BASE_INFO_FUN(@"（播放最后一首、红心、取消红心）获取新列表成功");
                 SongInfo * currentSong = [player.songList objectAtIndex:player.currentSongIndex];
                 [player.songList removeAllObjects];
                 [player.songList addObject:currentSong];
