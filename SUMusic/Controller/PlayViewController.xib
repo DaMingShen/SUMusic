@@ -22,6 +22,7 @@
                 <outlet property="playTime" destination="r56-AN-opF" id="54a-e8-9XD"/>
                 <outlet property="progressBar" destination="Xmx-kl-m1E" id="n1B-Jl-xln"/>
                 <outlet property="progressPoint" destination="qOB-qt-trC" id="e7d-aP-CnG"/>
+                <outlet property="progressView" destination="Ghl-87-Umy" id="1DG-Ow-Ebk"/>
                 <outlet property="shareBtn" destination="NRV-bl-pGQ" id="fJG-rF-2Q3"/>
                 <outlet property="singer" destination="HKS-vE-0HF" id="unv-XN-Bag"/>
                 <outlet property="songCover" destination="Lv0-2S-RAE" id="Qnd-cu-bn8"/>

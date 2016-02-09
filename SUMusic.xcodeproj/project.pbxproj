@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B4F5DBF1C6A0BAE008E6A28 /* MySharedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4F5DBE1C6A0BAE008E6A28 /* MySharedViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		2B4F5DC11C6A13BC008E6A28 /* MyOffLineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4F5DC01C6A13BC008E6A28 /* MyOffLineViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		2B4F5DC51C6A2535008E6A28 /* DownLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4F5DC31C6A2535008E6A28 /* DownLoadingViewController.m */; settings = {ASSET_TAGS = (); }; };
+		2B4F5DC61C6A2535008E6A28 /* DownLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B4F5DC41C6A2535008E6A28 /* DownLoadingViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		2B4FA9351C4542E60033FE92 /* SUNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4FA9341C4542E60033FE92 /* SUNetwork.m */; settings = {ASSET_TAGS = (); }; };
+		2B5197001C68638800A0AE47 /* MyFavorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5196FF1C68638800A0AE47 /* MyFavorViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		2B7352F71C425EE5000C51C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352F61C425EE5000C51C5 /* main.m */; };
 		2B7352FA1C425EE5000C51C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7352F91C425EE5000C51C5 /* AppDelegate.m */; };
 		2B7353021C425EE5000C51C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7353011C425EE5000C51C5 /* Assets.xcassets */; };
@@ -88,10 +93,16 @@
 
 /* Begin PBXFileReference section */
 		262DEA8BDAAA1AEC925980C1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2B4F5DBE1C6A0BAE008E6A28 /* MySharedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MySharedViewController.xib; sourceTree = "<group>"; };
+		2B4F5DC01C6A13BC008E6A28 /* MyOffLineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOffLineViewController.xib; sourceTree = "<group>"; };
+		2B4F5DC21C6A2534008E6A28 /* DownLoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadingViewController.h; sourceTree = "<group>"; };
+		2B4F5DC31C6A2535008E6A28 /* DownLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadingViewController.m; sourceTree = "<group>"; };
+		2B4F5DC41C6A2535008E6A28 /* DownLoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownLoadingViewController.xib; sourceTree = "<group>"; };
 		2B4FA9311C4541E20033FE92 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		2B4FA9331C4542E60033FE92 /* SUNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUNetwork.h; sourceTree = "<group>"; };
 		2B4FA9341C4542E60033FE92 /* SUNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUNetwork.m; sourceTree = "<group>"; };
 		2B4FA9371C4543DE0033FE92 /* DouAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DouAPI.h; sourceTree = "<group>"; };
+		2B5196FF1C68638800A0AE47 /* MyFavorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFavorViewController.xib; sourceTree = "<group>"; };
 		2B7352F21C425EE5000C51C5 /* SUMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SUMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7352F61C425EE5000C51C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B7352F81C425EE5000C51C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -430,10 +441,16 @@
 				B1B4C95B1C60BF7200A767CA /* SongTableView.xib */,
 				B1B4C93E1C5F851000A767CA /* MyFavorViewController.h */,
 				B1B4C93F1C5F851000A767CA /* MyFavorViewController.m */,
+				2B5196FF1C68638800A0AE47 /* MyFavorViewController.xib */,
 				B1B4C9491C60419200A767CA /* MySharedViewController.h */,
 				B1B4C94A1C60419200A767CA /* MySharedViewController.m */,
+				2B4F5DBE1C6A0BAE008E6A28 /* MySharedViewController.xib */,
 				B1B4C94C1C60420800A767CA /* MyOffLineViewController.h */,
 				B1B4C94D1C60420800A767CA /* MyOffLineViewController.m */,
+				2B4F5DC01C6A13BC008E6A28 /* MyOffLineViewController.xib */,
+				2B4F5DC21C6A2534008E6A28 /* DownLoadingViewController.h */,
+				2B4F5DC31C6A2535008E6A28 /* DownLoadingViewController.m */,
+				2B4F5DC41C6A2535008E6A28 /* DownLoadingViewController.xib */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -681,7 +698,9 @@
 				B1B4C93D1C5F79DB00A767CA /* SongListTableViewCell.xib in Resources */,
 				2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */,
 				2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */,
+				2B4F5DC61C6A2535008E6A28 /* DownLoadingViewController.xib in Resources */,
 				B1B4C95D1C60BF7200A767CA /* SongTableView.xib in Resources */,
+				2B5197001C68638800A0AE47 /* MyFavorViewController.xib in Resources */,
 				B1B4C9301C5F386C00A767CA /* ShareView.xib in Resources */,
 				2BDFFCD51C4BDAB300CFE078 /* Mine.xcassets in Resources */,
 				2BDFFCD31C4BD7AE00CFE078 /* MineHeader.xib in Resources */,
@@ -690,9 +709,11 @@
 				2BDFFCDA1C4BDB7000CFE078 /* MineTableViewCell.xib in Resources */,
 				2BDFFCC91C4BB2DF00CFE078 /* TopTabItemView.xib in Resources */,
 				2BDFFCCE1C4BCB0800CFE078 /* ChannelTableViewCell.xib in Resources */,
+				2B4F5DBF1C6A0BAE008E6A28 /* MySharedViewController.xib in Resources */,
 				2B7353281C428491000C51C5 /* PlayViewController.xib in Resources */,
 				2B7353021C425EE5000C51C5 /* Assets.xcassets in Resources */,
 				2BDFFCA21C4B5A9800CFE078 /* ChannelListViewController.xib in Resources */,
+				2B4F5DC11C6A13BC008E6A28 /* MyOffLineViewController.xib in Resources */,
 				2BDFFCC11C4BB05A00CFE078 /* MineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -768,6 +789,7 @@
 				2BDFFCD91C4BDB7000CFE078 /* MineTableViewCell.m in Sources */,
 				B1A3401B1C4642190011867B /* SuViewTool.m in Sources */,
 				B1A340061C4642190011867B /* UIImage+SU.m in Sources */,
+				2B4F5DC51C6A2535008E6A28 /* DownLoadingViewController.m in Sources */,
 				B1A340021C4642190011867B /* NSDictionary+SU.m in Sources */,
 				2BDFFCC01C4BB05A00CFE078 /* MineViewController.m in Sources */,
 				B1A3401A1C4642190011867B /* SuString.m in Sources */,

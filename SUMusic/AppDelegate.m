@@ -94,14 +94,13 @@
 #pragma mark - NowPlayingCenter & Remote Control
 - (void)configNowPlayingCenter {
     
-    //[UIApplication sharedApplication].applicationState == UIApplicationStateActive;
     NSMutableDictionary * info = [NSMutableDictionary dictionary];
     [info setObject:_player.currentSong.title forKey:MPMediaItemPropertyTitle];
     [info setObject:_player.currentSong.artist forKey:MPMediaItemPropertyArtist];
     [info setObject:@(self.player.playTime.intValue) forKey:MPNowPlayingInfoPropertyElapsedPlaybackTime];
     [info setObject:@(1) forKey:MPNowPlayingInfoPropertyPlaybackRate];
     [info setObject:@(self.player.playDuration.intValue) forKey:MPMediaItemPropertyPlaybackDuration];
-    MPMediaItemArtwork * artwork = [[MPMediaItemArtwork alloc] initWithImage:DefaultImg];
+    MPMediaItemArtwork * artwork = [[MPMediaItemArtwork alloc] initWithImage:_player.coverImg];
     [info setObject:artwork forKey:MPMediaItemPropertyArtwork];
     [[MPNowPlayingInfoCenter defaultCenter]setNowPlayingInfo:info];
 }
@@ -115,15 +114,19 @@
     switch (event.subtype)
     {
         case UIEventSubtypeRemoteControlPlay:
+            [self.player startPlay];
             BASE_INFO_FUN(@"remote_play");
             break;
         case UIEventSubtypeRemoteControlPause:
+            [self.player pausePlay];
             BASE_INFO_FUN(@"remote_pause");
             break;
         case UIEventSubtypeRemoteControlNextTrack:
+            [self.playView skipSong:nil];
             BASE_INFO_FUN(@"remote_skip");
             break;
         case UIEventSubtypeRemoteControlTogglePlayPause:
+            self.player.isPlaying ? [self.player pausePlay] : [self.player startPlay];
             BASE_INFO_FUN(@"remote_toggle");
             break;
         default:

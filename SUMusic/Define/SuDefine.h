@@ -95,7 +95,7 @@ selector:_selector name:_name object:nil];
 //通知
 #define SONGPLAYSTATUSCHANGE @"SongPlayStatusChange"
 #define OFFLINEPLAY @"PlayOffLineSong"
-#define UpdateSongList @"UpdateSongList"
+#define REFRESHSONGLIST @"RefreshSongList"
 
 //默认图片
 #define DefaultImg [UIImage imageNamed:@"cover"]

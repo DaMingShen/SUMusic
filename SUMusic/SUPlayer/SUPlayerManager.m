@@ -7,7 +7,6 @@
 //
 
 #import "SUPlayerManager.h"
-#import "SongInfo.h"
 
 @implementation SUPlayerManager
 
@@ -24,18 +23,25 @@
 - (id)init {
     if (self = [super init]) {
         self.songList = [NSMutableArray array];
-        self.currentChannelID = @"0";  //默认频道：私人频道
-        self.currentChannelName = @"私人频道";
+        self.coverImg = DefaultImg;
     }
     return self;
 }
 
 #pragma mark - 频道
+
 /*
- * 处理频道名称
+ * 当前频道
  */
-- (void)setCurrentChannelName:(NSString *)currentChannelName {
-    _currentChannelName = [NSString stringWithFormat:@"🎵 %@ MHz 🎵",currentChannelName];
+- (ChannelInfo *)currentChannel {
+    if (_currentChannel == nil) {
+        _currentChannel = [ChannelInfo infoFromDict:@{@"abbr_en":@"My",
+                                                      @"channel_id":@"0",
+                                                      @"name":@"私人频道",
+                                                      @"name_en":@"Personal Radio",
+                                                      @"seq_id":@"0"}];
+    }
+    return _currentChannel;
 }
 
 #pragma mark - 播放器
@@ -66,7 +72,6 @@
  * 开始播放
  */
 - (void)startPlay {
-    
     if (self.status == SUPlayStatusPause) {
         self.status = SUPlayStatusPlay;
         [self.player play];
@@ -83,7 +88,6 @@
  * 暂停播放
  */
 - (void)pausePlay {
-    
     self.status = SUPlayStatusPause;
     [self.player pause];
     SendNotify(SONGPLAYSTATUSCHANGE, nil)
@@ -93,21 +97,21 @@
  * 播放完毕
  */
 - (void)endPlay {
-    if (!self.player) return;
+    if (self.player == nil) return;
     
     self.status = SUPlayStatusStop;
     [self.player pause];
     
     //移除监控
-    if (self.player) {
-        [self addObserver];
-        self.player = nil;
-    }
+    [self removeObserver];
     
     //重置进度
     self.progress = 0.f;
     self.playTime = @"0";
     self.playDuration = @"0";
+    
+    //重置封面
+    self.coverImg = DefaultImg;
 
     SendNotify(SONGPLAYSTATUSCHANGE, nil)
 }
@@ -153,7 +157,11 @@
     
     //重置播放器
     AVPlayerItem * songItem = [[AVPlayerItem alloc]initWithURL:url];
-    self.player = [[AVPlayer alloc]initWithPlayerItem:songItem];
+    if (self.player == nil) {
+        self.player = [[AVPlayer alloc]initWithPlayerItem:songItem];
+    }else {
+        [self.player replaceCurrentItemWithPlayerItem:songItem];
+    }
     
     //给当前歌曲添加监控
     [self addObserver];
@@ -165,7 +173,7 @@
     AVPlayerItem * songItem = self.player.currentItem;
     
     //给AVPlayerItem添加播放完成通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:songItem];
     
     //更新播放器进度
     WEAKSELF
@@ -175,7 +183,7 @@
 //        SuLog(@"%f, %f",current, total);
         if (current) {
             weakSelf.progress = current / total;
-            weakSelf.playTime = [NSString stringWithFormat:@"%.2f",current];
+            weakSelf.playTime = [NSString stringWithFormat:@"%.f",current];
             weakSelf.playDuration = [NSString stringWithFormat:@"%.2f",total];
         }
     }];
@@ -192,13 +200,12 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    if (_timeObserve) {
-        [self.player removeTimeObserver:_timeObserve];
-        _timeObserve = nil;
-    }
+    [self.player removeTimeObserver:_timeObserve];
     
     [songItem removeObserver:self forKeyPath:@"status"];
     [songItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
+    
+    [self.player replaceCurrentItemWithPlayerItem:nil];
 }
 
 
@@ -227,6 +234,7 @@
                 break;
             case AVPlayerStatusReadyToPlay:
                 self.status = SUPlayStatusReadyToPlay;
+                [[AppDelegate delegate] configNowPlayingCenter];
                 BASE_INFO_FUN(@"KVO：准备完毕");
                 break;
             case AVPlayerStatusFailed:
@@ -244,6 +252,7 @@
         NSTimeInterval totalBuffer = CMTimeGetSeconds(timeRange.start) + CMTimeGetSeconds(timeRange.duration); //缓冲总长度
 //        SuLog(@"共缓冲%.2f",totalBuffer);
     }
+
 }
 
 
@@ -313,9 +322,21 @@
     }];
 }
 
-#pragma mark - 离线播放方法
+#pragma mark - 离线播放
 - (void)playLocalListWithIndex:(NSInteger)index {
     
+}
+
+#pragma mark - 播放分享歌曲
+- (void)playSharedSong:(SongInfo *)info {
+    
+    if (![self.currentSong.sid isEqualToString:info.sid] ) {
+        [self endPlay];
+        [self.songList removeAllObjects];
+        [self.songList addObject:info];
+        [self loadSongInfoWithNewList:YES];
+        [self startPlay];
+    }
 }
 
 

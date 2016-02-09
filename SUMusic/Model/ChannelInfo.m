@@ -10,4 +10,10 @@
 
 @implementation ChannelInfo
 
++ (instancetype)infoFromDict:(NSDictionary *)dict {
+    ChannelInfo * info = [[self alloc]initWithStringDict:dict];
+    info.jsonString = [SuString dictionaryToJson:dict];
+    return info;
+}
+
 @end

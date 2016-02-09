@@ -80,8 +80,11 @@
     [_appDelegate.player newChannelPlay];
 }
 
-- (void)localPlayingRefresh {
-    _appDelegate.player.currentChannelID = @"LOCAL";
+- (void)offLinePlayingRefresh {
+    ChannelInfo * info = [[ChannelInfo alloc]init];
+    info.channel_id = @"OffLine";
+    info.name = @"离线歌曲";
+    _appDelegate.player.currentChannel = info;
     [_tableView reloadData];
 }
 
@@ -121,7 +124,7 @@
     ChannelInfo * channel = [self.dataSource objectAtIndex:indexPath.row];
     cell.channelName.text = channel.name;
     
-    if ([_appDelegate.player.currentChannelID isEqualToString:channel.channel_id]) {
+    if ([_appDelegate.player.currentChannel.channel_id isEqualToString:channel.channel_id]) {
         cell.playIndicator.hidden = NO;
         cell.playIndicator.animationImages = @[[UIImage imageNamed:@"ic_channel_nowplaying1"],
                                                [UIImage imageNamed:@"ic_channel_nowplaying2"],
@@ -141,10 +144,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ChannelInfo * channel = [self.dataSource objectAtIndex:indexPath.row];
-    if (![_appDelegate.player.currentChannelID isEqualToString:channel.channel_id]) {
+    if (![_appDelegate.player.currentChannel.channel_id isEqualToString:channel.channel_id]) {
         //改变channel
-        _appDelegate.player.currentChannelID = channel.channel_id;
-        _appDelegate.player.currentChannelName = channel.name;
+        _appDelegate.player.currentChannel = channel;
         //开始播放
         [_appDelegate.player newChannelPlay];
         //刷新表格

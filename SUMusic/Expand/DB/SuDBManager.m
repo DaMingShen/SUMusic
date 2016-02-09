@@ -45,6 +45,7 @@
 #pragma mark - 离线(已下载列表)
 + (void)saveToOffLineListWithSongInfo:(SongInfo *)info {
     [self saveInfo:info toTable:OffLineTable];
+    SendNotify(REFRESHSONGLIST, nil)
 }
 
 + (NSArray *)fetchOffLineList {
@@ -53,16 +54,17 @@
 
 + (void)deleteFromOffLineListWithSid:(NSString *)sid {
     [self deleteWithSid:sid fromTable:OffLineTable];
+    SendNotify(REFRESHSONGLIST, nil)
 }
 
 
 #pragma mark - 收藏
 + (void)saveToFavorList {
-    [self saveInfoToTable:FavorListTable];
+    [self saveChannelToTable:FavorListTable];
 }
 
 + (NSArray *)fetchFavorList {
-    return [self fetchListFromTable:FavorListTable];
+    return [self fetchChannelFromTable:FavorListTable];
 }
 
 + (void)deleteFromFavorListWithSid:(NSString *)sid {
@@ -72,6 +74,7 @@
 #pragma mark - 分享的歌曲
 + (void)saveToSharedList {
     [self saveInfoToTable:SharedListTable];
+    SendNotify(REFRESHSONGLIST, nil)
 }
 
 + (NSArray *)fetchSharedList {
@@ -86,6 +89,15 @@
     NSString * jsonStr = [AppDelegate delegate].player.currentSong.jsonString;
     NSDictionary * dictContent = [NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",jsonStr,@"songInfo", nil];
     [SuDBManager save:dictContent primaryKey:@"sid" inTable:table inDBFile:path];
+}
+
++ (void)saveChannelToTable:(NSString *)table {
+    
+    NSString * path = [SuGlobal getUserDBFile];
+    NSString * channelID = [AppDelegate delegate].player.currentChannel.channel_id;
+    NSString * jsonStr = [AppDelegate delegate].player.currentChannel.jsonString;
+    NSDictionary * dictContent = [NSDictionary dictionaryWithObjectsAndKeys:channelID,@"channelID",jsonStr,@"channelInfo", nil];
+    [SuDBManager save:dictContent primaryKey:@"channelID" inTable:table inDBFile:path];
 }
 
 + (void)saveInfo:(SongInfo *)info toTable:(NSString *)table {
@@ -106,6 +118,21 @@
         for (NSDictionary * rsDict in result) {
             NSString * jsonStr = rsDict[@"songInfo"];
             [list addObject:[SongInfo infoFromDict:[NSDictionary dictionaryWithJsonString:jsonStr]]];
+        }
+        return list;
+    }
+    return nil;
+}
+
++ (NSArray *)fetchChannelFromTable:(NSString *)table {
+    
+    NSString * path = [SuGlobal getUserDBFile];
+    NSArray * result = [SuDBManager fetchWithCondition:nil forFields:@[@"channelID", @"channelInfo"] inTable:table inDBFile:path];
+    if (result.count > 0) {
+        NSMutableArray * list = [NSMutableArray array];
+        for (NSDictionary * rsDict in result) {
+            NSString * jsonStr = rsDict[@"channelInfo"];
+            [list addObject:[ChannelInfo infoFromDict:[NSDictionary dictionaryWithJsonString:jsonStr]]];
         }
         return list;
     }

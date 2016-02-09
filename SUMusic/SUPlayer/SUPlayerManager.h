@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "SongInfo.h"
+#import "ChannelInfo.h"
 
 typedef NS_ENUM(NSInteger, SUPlayStatus) {
     SUPlayStatusNon,
@@ -17,7 +19,6 @@ typedef NS_ENUM(NSInteger, SUPlayStatus) {
     SUPlayStatusStop
 };
 
-@class SongInfo;
 @interface SUPlayerManager : NSObject {
     
     id _timeObserve; //监控进度
@@ -45,16 +46,18 @@ typedef NS_ENUM(NSInteger, SUPlayStatus) {
  */
 @property (nonatomic, assign) NSInteger currentSongIndex;
 
-#pragma mark - 频道
 /*
- * 当前频道ID
+ * 当前播放歌曲图片
  */
-@property (nonatomic, copy) NSString * currentChannelID;
+@property (nonatomic, strong) UIImage * coverImg;
+
+#pragma mark - 频道
 
 /*
- * 当前频道名称
+ * 当前频道
  */
-@property (nonatomic, copy) NSString * currentChannelName;
+@property (nonatomic, strong) ChannelInfo * currentChannel;
+
 
 #pragma mark - 播放器
 /*
@@ -127,8 +130,11 @@ typedef NS_ENUM(NSInteger, SUPlayStatus) {
  */
 - (void)banSongWithHandle:(void(^)(BOOL isSucc))handle;
 
+/*
+ * 播放分享歌曲
+ */
+- (void)playSharedSong:(SongInfo *)info;
 
-#pragma mark - 离线播放方法
 
 /*
  * 是否播放离线音乐

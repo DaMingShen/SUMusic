@@ -83,9 +83,9 @@
     NSArray * operationTypeList = @[@"n", @"e", @"u", @"r", @"s", @"b",@"p"];
     NSString * url;
     if ([SuGlobal checkLogin]) {
-        url = [NSString stringWithFormat:DOU_API_PlayList_Login,operationTypeList[type],player.currentSong.sid,player.playTime,player.currentChannelID,userInfo.user_id,userInfo.expire,userInfo.token];
+        url = [NSString stringWithFormat:DOU_API_PlayList_Login,operationTypeList[type],player.currentSong.sid,player.playTime,player.currentChannel.channel_id,userInfo.user_id,userInfo.expire,userInfo.token];
     }else {
-        url = [NSString stringWithFormat:DOU_API_PlayList,operationTypeList[type],player.currentSong.sid,player.playTime,player.currentChannelID];
+        url = [NSString stringWithFormat:DOU_API_PlayList,operationTypeList[type],player.currentSong.sid,player.playTime,player.currentChannel.channel_id];
     }
 //    BASE_INFO_FUN(url);
     

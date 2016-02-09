@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextSong;
 @property (weak, nonatomic) IBOutlet UIButton *banSong;
 
+@property (weak, nonatomic) IBOutlet UIView *progressView;
 @property (weak, nonatomic) IBOutlet UIView *progressBar;
 @property (weak, nonatomic) IBOutlet UIView *currentProgress;
 @property (weak, nonatomic) IBOutlet UIView *progressPoint;
@@ -86,8 +87,8 @@
         self.playBtnBg.layer.cornerRadius = self.playBtnBg.h / 2.0;
         
         //歌词
-        _lycView = [[LyricView alloc]initWithFrame:self.coverView.frame];
-
+        self.lycView = [[LyricView alloc]initWithFrame:CGRectMake(0, self.coverView.y, ScreenW, self.progressView.y + self.progressView.h - self.coverView.y)];
+        [self.view addSubview:self.lycView];
     });
     
     if (_player.isPlaying) [self addTimer];
@@ -164,11 +165,13 @@
     [self changeAllBtnStatus:YES];
     
     //频道
-    self.channelName.text = self.player.currentChannelName;
+    self.channelName.text = [NSString stringWithFormat:@"🎵 %@ MHz 🎵",self.player.currentChannel.name];
     
     //封面
     self.coverView.userInteractionEnabled = YES;
     [self.songCover sd_setImageWithURL:[NSURL URLWithString:_player.currentSong.picture] placeholderImage:DefaultImg completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.player.coverImg = image;
+        [[AppDelegate delegate] configNowPlayingCenter];
     }];
     
     //歌名
@@ -187,22 +190,14 @@
     [self refreshDownLoadStatus];
     
     //设置歌词
-    [_lycView clearLyric];
-    if ([_lycView checkShow]) {
-        [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
-            if (isSucc) {
-                [_lycView loadLyric:lyric];
-            }else {
-                
-            }
-        }];
-    }
+//    [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
+//        [self.lycView loadLyric:lyric];
+//    }];
 }
 
 - (void)resetUI {
     
-    self.channelName.text = self.player.currentChannelName;
-
+    self.channelName.text = [NSString stringWithFormat:@"🎵 %@ MHz 🎵",self.player.currentChannel.name];;
     self.songName.text = @"";
     self.singer.text = @"";
     
@@ -218,6 +213,8 @@
     self.currentProgress.w = 1.0;
     
     [self changeAllBtnStatus:NO];
+    
+    [self.lycView clearLyric];
 }
 
 - (void)refreshProgress {
@@ -236,7 +233,6 @@
     self.songCover.transform = CGAffineTransformRotate(self.songCover.transform, M_PI / 1440);
     
     //歌词
-    if ([_lycView checkShow]) [_lycView scrollLyric];
 }
 
 
@@ -258,10 +254,10 @@
 }
 
 - (void)refreshFavorStatus {
-    NSArray * favorSongs = [SuDBManager fetchFavorList];
+    NSArray * favorChannels = [SuDBManager fetchFavorList];
     BOOL isFavor = NO;
-    for (SongInfo * info in favorSongs) {
-        if ([info.sid isEqualToString:_player.currentSong.sid]) {
+    for (ChannelInfo * info in favorChannels) {
+        if ([info.channel_id isEqualToString:_player.currentChannel.channel_id]) {
             isFavor = YES;
             break;
         }
@@ -346,31 +342,16 @@
     }];
 }
 
-#pragma mark - 歌词
+#pragma mark - 歌词／收藏／离线／分享
 - (IBAction)lyrics:(UIButton *)sender {
     
-    if ([_lycView checkLyric]) {
-        if ([_lycView checkShow]) {
-            [_lycView hide];
-        }else {
-            [_lycView showInView:self.view];
-        }
+    if (self.lycView.hidden) {
+        [self.lycView show];
     }else {
-        
-        UIView * loading = [self showLoadingInView:sender];
-        [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
-            if (isSucc) {
-                [_lycView loadLyric:lyric];
-                [_lycView showInView:self.view];
-            }else {
-                [self ToastMessage:@"获取歌词失败"];
-            }
-            [self hideLoading:loading];
-        }];
+        [self.lycView hide];
     }
 }
 
-#pragma mark - 收藏
 - (IBAction)favor:(UIButton *)sender {
     //取消收藏
     if (sender.selected) {
@@ -386,7 +367,6 @@
     }
 }
 
-#pragma mark - 离线
 - (IBAction)downLoad:(UIButton *)sender {
     
     [[OffLineManager manager] downLoadSong];
@@ -394,7 +374,6 @@
     [self ToastMessage:@"已添加到离线列表"];
 }
 
-#pragma mark - 分享
 - (IBAction)share:(UIButton *)sender {
     
     if (_shareView == nil) {

@@ -10,20 +10,33 @@
 
 @interface LyricView : UIView
 
+@property (nonatomic, strong) NSDictionary * lyric;
+
 @property (nonatomic, copy) void(^tapBlock)(LyricView * lyrView);
 
+/*
+ * 加载歌词
+ */
 - (void)loadLyric:(NSDictionary *)dict;
 
+/*
+ * 清除歌词
+ */
 - (void)clearLyric;
 
-- (void)showInView:(UIView *)sender;
-
+/*
+ * 滚动歌词
+ */
 - (void)scrollLyric;
 
+/*
+ * 显示
+ */
+- (void)show;
+
+/*
+ * 隐藏
+ */
 - (void)hide;
-
-- (BOOL)checkLyric;
-
-- (BOOL)checkShow;
 
 @end

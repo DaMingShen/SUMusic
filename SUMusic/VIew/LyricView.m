@@ -16,9 +16,6 @@
     NSMutableArray * _timeSource;
     NSMutableArray * _lycSource;
     
-    BOOL _isCheck;
-    BOOL _isShow;
-    
     UILabel * _noLyricNotice;
 }
 
@@ -39,9 +36,8 @@
 - (void)setupUI {
     
     self.alpha = 0.f;
-    
-    _isCheck = NO;
-    _isShow = NO;
+    self.hidden = YES;
+
     _timeSource = [NSMutableArray array];
     _lycSource = [NSMutableArray array];
     
@@ -60,20 +56,19 @@
     _noLyricNotice = [[UILabel alloc]initWithFrame:self.bounds];
     _noLyricNotice.font = [UIFont systemFontOfSize:18];
     _noLyricNotice.textAlignment = NSTextAlignmentCenter;
-    _noLyricNotice.text = @"该歌曲暂时没有歌词";
+    _noLyricNotice.text = @"正在加载歌词...";
     _noLyricNotice.textColor = [UIColor grayColor];
-    _noLyricNotice.hidden = YES;
     [self addSubview:_noLyricNotice];
 }
 
 - (void)loadLyric:(NSDictionary *)dict {
-    
-    //状态
-    _isCheck = YES;
+
+    self.lyric = dict;
     
     if (dict == nil) {
         
         //show no lyric
+        _noLyricNotice.text = @"该歌曲暂时没有歌词";
         _noLyricNotice.hidden = NO;
         
     }else {
@@ -99,54 +94,45 @@
 }
 
 - (void)clearLyric {
-    _isCheck = NO;
-    _noLyricNotice.hidden = YES;
+    self.lyric = nil;
+    _noLyricNotice.text = @"正在加载歌词...";
+    _noLyricNotice.hidden = NO;
     [_timeSource removeAllObjects];
     [_lycSource removeAllObjects];
     [_tableView reloadData];
 }
 
-- (void)showInView:(UIView *)sender {
-    _isShow = YES;
+- (void)show{
     
-    [_tableView reloadData];
     //先显示到当前歌词
-    [self scrollToCurrentLyric];
-    
-    [sender addSubview:self];
+//    [self scrollToCurrentLyric];
+    self.hidden = NO;
     [UIView animateWithDuration:0.2 animations:^{
         self.alpha = 1.0;
     }];
 }
 
 - (void)hide {
-    _isShow = NO;
-    
     [UIView animateWithDuration:0.2 animations:^{
         self.alpha = 0.f;
     } completion:^(BOOL finished) {
-        [self removeFromSuperview];
+        self.hidden = YES;
     }];
-}
-
-- (BOOL)checkLyric {
-    return _isCheck;
-}
-
-- (BOOL)checkShow {
-    return _isShow;
 }
 
 #pragma mark - scroll lyric
 //根据当前秒数滚动到对应的行
 - (void)scrollLyric {
+    //正在加载歌词或者无歌词
+    if (!_noLyricNotice.hidden) return;
     
+    //有歌词
     NSString * secNow = [AppDelegate delegate].player.playTime;
     for (int i = 0; i < _timeSource.count; i ++) {
         if ([_timeSource[i] isEqualToString:secNow]) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             //滚动
-            [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
             //突出显示
             UITableViewCell * cell = [_tableView cellForRowAtIndexPath:indexPath];
             UILabel * lyc = (UILabel *)[cell.contentView viewWithTag:666];

@@ -53,56 +53,26 @@
                             <constraint firstAttribute="width" constant="21" id="Ejt-YC-Rme"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6d-by-Bot">
-                        <rect key="frame" x="286" y="0.0" width="34" height="69"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="69" id="TW8-L3-NYc"/>
-                            <constraint firstAttribute="width" constant="34" id="Tcu-fP-Xb8"/>
-                        </constraints>
-                        <state key="normal" image="downLoad"/>
-                        <connections>
-                            <action selector="downLoadNow:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lPy-UV-vCr"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTY-Kr-O39">
-                        <rect key="frame" x="286" y="0.0" width="34" height="69"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="34" id="671-XK-52t"/>
-                            <constraint firstAttribute="height" constant="69" id="lKr-dr-xst"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.66666666666666663" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="iTY-Kr-O39" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8sS-oM-5PJ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Ao5-iw-tFw" secondAttribute="trailing" constant="14" id="EqJ-Vr-tqN"/>
                     <constraint firstItem="Ao5-iw-tFw" firstAttribute="leading" secondItem="SNH-ns-23F" secondAttribute="trailing" constant="15" id="K8v-Pk-uhu"/>
-                    <constraint firstItem="y6d-by-Bot" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KlN-19-7uN"/>
-                    <constraint firstAttribute="trailing" secondItem="y6d-by-Bot" secondAttribute="trailing" id="OmM-2s-QAq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fgh-Bl-BgM" secondAttribute="trailing" constant="34" id="SAX-hS-jHw"/>
                     <constraint firstItem="fgh-Bl-BgM" firstAttribute="leading" secondItem="SNH-ns-23F" secondAttribute="trailing" constant="15" id="Tp5-RM-rpY"/>
                     <constraint firstItem="SNH-ns-23F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="XBw-78-R5r"/>
                     <constraint firstAttribute="trailing" secondItem="kCw-B8-aa6" secondAttribute="trailing" constant="6" id="XsN-0p-dcu"/>
                     <constraint firstAttribute="bottom" secondItem="Ao5-iw-tFw" secondAttribute="bottom" constant="10" id="ZkX-O4-HeQ"/>
                     <constraint firstItem="SNH-ns-23F" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pjO-yQ-z7q"/>
-                    <constraint firstAttribute="trailing" secondItem="iTY-Kr-O39" secondAttribute="trailing" id="wV9-Hh-dtb"/>
                     <constraint firstItem="kCw-B8-aa6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="x49-ze-xL3"/>
                     <constraint firstItem="fgh-Bl-BgM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="yud-Qv-Uwx"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="artist" destination="Ao5-iw-tFw" id="Sj3-0n-AgT"/>
-                <outlet property="downLoadBtn" destination="y6d-by-Bot" id="mD1-6t-ZKB"/>
                 <outlet property="playIndicator" destination="kCw-B8-aa6" id="QwQ-0h-kFY"/>
-                <outlet property="progressLabel" destination="iTY-Kr-O39" id="53P-1h-sc0"/>
                 <outlet property="songCover" destination="SNH-ns-23F" id="R1g-j2-ds3"/>
                 <outlet property="songName" destination="fgh-Bl-BgM" id="74t-wO-Dlh"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="downLoad" width="24" height="24"/>
-    </resources>
 </document>

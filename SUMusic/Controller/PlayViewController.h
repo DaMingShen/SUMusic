@@ -15,4 +15,9 @@
  */
 - (void)show;
 
+/**
+ *  下一首歌曲
+ */
+- (IBAction)skipSong:(UIButton *)sender;
+
 @end
