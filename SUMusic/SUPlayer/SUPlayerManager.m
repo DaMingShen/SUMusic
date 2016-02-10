@@ -53,6 +53,19 @@
 }
 
 /*
+ * 总时长(秒)
+ */
+- (void)setPlayDuration:(NSString *)playDuration {
+    if (![_playDuration isEqualToString:playDuration] &&
+        ![playDuration isEqualToString:@"0"]) {
+        _playDuration = playDuration;
+        [[AppDelegate delegate] configNowPlayingCenter];
+    }else {
+        _playDuration = playDuration;
+    }
+}
+
+/*
  * 当前播放时间(00:00)
  */
 - (NSString *)timeNow {
@@ -234,7 +247,6 @@
                 break;
             case AVPlayerStatusReadyToPlay:
                 self.status = SUPlayStatusReadyToPlay;
-                [[AppDelegate delegate] configNowPlayingCenter];
                 BASE_INFO_FUN(@"KVO：准备完毕");
                 break;
             case AVPlayerStatusFailed:

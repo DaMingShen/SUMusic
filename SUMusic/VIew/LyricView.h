@@ -10,8 +10,6 @@
 
 @interface LyricView : UIView
 
-@property (nonatomic, strong) NSDictionary * lyric;
-
 @property (nonatomic, copy) void(^tapBlock)(LyricView * lyrView);
 
 /*

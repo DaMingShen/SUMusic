@@ -190,9 +190,10 @@
     [self refreshDownLoadStatus];
     
     //设置歌词
-//    [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
-//        [self.lycView loadLyric:lyric];
-//    }];
+    [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
+        BASE_INFO_FUN(lyric);
+        [self.lycView loadLyric:lyric];
+    }];
 }
 
 - (void)resetUI {
@@ -231,8 +232,6 @@
     
     //图片旋转
     self.songCover.transform = CGAffineTransformRotate(self.songCover.transform, M_PI / 1440);
-    
-    //歌词
 }
 
 

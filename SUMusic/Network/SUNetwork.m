@@ -140,8 +140,8 @@
                                   @"ssid":player.currentSong.ssid};
     
     [[SUNetwork manager] POST:DOU_API_Lyric parameters:lyricParam success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-//        BASE_INFO_FUN(responseObject);
-        BASE_INFO_FUN(@"成功");
+        BASE_INFO_FUN(responseObject);
+        BASE_INFO_FUN(@"下载歌词成功");
         NSString * lyricString = [responseObject getObjectFromKey:@"lyric"];
         if (lyricString.length > 0) {
             NSDictionary * dict = [SuLyricTool parseLyricStirng:lyricString];

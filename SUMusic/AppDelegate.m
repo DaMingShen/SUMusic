@@ -93,7 +93,7 @@
 
 #pragma mark - NowPlayingCenter & Remote Control
 - (void)configNowPlayingCenter {
-    
+    BASE_INFO_FUN(@"配置NowPlayingCenter");
     NSMutableDictionary * info = [NSMutableDictionary dictionary];
     [info setObject:_player.currentSong.title forKey:MPMediaItemPropertyTitle];
     [info setObject:_player.currentSong.artist forKey:MPMediaItemPropertyArtist];

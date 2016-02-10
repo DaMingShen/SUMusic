@@ -40,7 +40,9 @@
                     [lyrDict setValue:lyr forKey:[NSString stringWithFormat:@"%d",seconds]];
                 }
                 
-            }else {
+            }
+            /*
+            else {
                 
                 //5 如果不是0-9则是头部信息
                 NSString * preStr = [lineArray[0] substringWithRange:NSMakeRange(1, 2)];
@@ -49,8 +51,10 @@
                 if ([preStr isEqualToString:@"al"]) [lyrDict setValue:preStr forKey:@"al"];
                 if ([preStr isEqualToString:@"by"]) [lyrDict setValue:preStr forKey:@"by"];
             }
+             */
         }
     }
+    if ([lyrDict isEqualToDictionary:@{}]) lyrDict = nil;
     return lyrDict;
 }
 
