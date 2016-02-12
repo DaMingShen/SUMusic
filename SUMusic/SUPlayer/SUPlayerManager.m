@@ -91,6 +91,7 @@
         SendNotify(SONGPLAYSTATUSCHANGE, nil)
     }else {
         [self.player play];
+        
     }
     
     //如果是最后一首，加载更多歌曲
@@ -178,6 +179,9 @@
     
     //给当前歌曲添加监控
     [self addObserver];
+    
+    self.status = SUPlayStatusLoadSongInfo;
+    SendNotify(SONGPLAYSTATUSCHANGE, nil)
 }
 
 #pragma mark - KVO
@@ -264,7 +268,6 @@
         NSTimeInterval totalBuffer = CMTimeGetSeconds(timeRange.start) + CMTimeGetSeconds(timeRange.duration); //缓冲总长度
 //        SuLog(@"共缓冲%.2f",totalBuffer);
     }
-
 }
 
 

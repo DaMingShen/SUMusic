@@ -13,6 +13,7 @@
 
 typedef NS_ENUM(NSInteger, SUPlayStatus) {
     SUPlayStatusNon,
+    SUPlayStatusLoadSongInfo,
     SUPlayStatusReadyToPlay,
     SUPlayStatusPlay,
     SUPlayStatusPause,

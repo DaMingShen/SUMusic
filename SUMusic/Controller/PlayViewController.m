@@ -133,15 +133,18 @@
         case SUPlayStatusNon:
             BASE_INFO_FUN(@"播放界面：未知状态");
             break;
-        case SUPlayStatusReadyToPlay:
+        case SUPlayStatusLoadSongInfo:
             [self synUI];
+            BASE_INFO_FUN(@"播放界面：加载信息");
+            break;
+        case SUPlayStatusReadyToPlay:
             [self addTimer];
-            BASE_INFO_FUN(@"播放界面：准备完成");
+            BASE_INFO_FUN(@"播放界面：准备播放");
             break;
         case SUPlayStatusPlay:
             [self refreshCoverPlayingStatus];
             [self addTimer];
-            BASE_INFO_FUN(@"播放界面：开始播放");
+            BASE_INFO_FUN(@"播放界面：继续播放");
             break;
         case SUPlayStatusPause:
             [self removeTimer];

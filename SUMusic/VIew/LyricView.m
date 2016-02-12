@@ -60,6 +60,8 @@
     _noLyricNotice.text = @"正在加载歌词...";
     _noLyricNotice.textColor = [UIColor grayColor];
     [self addSubview:_noLyricNotice];
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hide)];
+    [self addGestureRecognizer:tap];
     
     _currentIndex = 0;
     _timer = [CADisplayLink displayLinkWithTarget:self selector:@selector(scrollLyric)];
@@ -92,6 +94,11 @@
                     [_lycSource exchangeObjectAtIndex:i withObjectAtIndex:j];
                 }
             }
+        }
+        //因为默认高亮第一句，所有为第一句不是0开始的加一句
+        if (![_timeSource[0] isEqualToString:@"0"]) {
+            [_timeSource insertObject:@"0" atIndex:0];
+            [_lycSource insertObject:@"" atIndex:0];
         }
         [_tableView reloadData];
     }
@@ -132,7 +139,7 @@
     
     //有歌词
     NSString * secNow = [AppDelegate delegate].player.playTime;
-    for (int i = _currentIndex + 1; i < _timeSource.count; i ++) {
+    for (NSInteger i = _currentIndex + 1; i < _timeSource.count; i ++) {
         //定位下一句
         if ([_timeSource[i] isEqualToString:secNow]) {
             NSArray * reloadRows = @[[NSIndexPath indexPathForRow:_currentIndex inSection:0],

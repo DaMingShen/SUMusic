@@ -34,6 +34,9 @@
     
     [self setupUI];
     [self setupPlayingPet];
+    
+    //监听状态变化
+    RegisterNotify(SONGPLAYSTATUSCHANGE, @selector(observeSongPlayStatus))
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,7 +84,6 @@
 #pragma mark - PlayingPet
 - (void)setupPlayingPet {
 
-//    _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, ScreenH - 75, 85, 75)];
     _playingPet = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 76, 76)];
     _playingPet.center = CGPointMake(ScreenW / 2, ScreenH - 38);
     _playingPet.contentMode = UIViewContentModeScaleAspectFill;
@@ -119,12 +121,14 @@
 }
 
 #pragma mark - 通知处理
-- (void)songBegin {
-    [_playingPet startAnimating];
-}
-
-- (void)songStop {
-    [_playingPet stopAnimating];
+- (void)observeSongPlayStatus {
+    SUPlayStatus status = [AppDelegate delegate].player.status;
+    if (status == SUPlayStatusPause) {
+        [_playingPet stopAnimating];
+    }
+    if (status == SUPlayStatusPlay) {
+        [_playingPet startAnimating];
+    }
 }
 
 @end
