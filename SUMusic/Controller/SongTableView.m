@@ -210,7 +210,6 @@
         [player.songList addObjectsFromArray:self.listType == ListTypeOffLine ? self.offLineList : self.songSource];
         
         if (self.listType == ListTypeOffLine) player.isOffLinePlay = YES;
-        [player playLocalListWithIndex:indexPath.row];
     }
     [[AppDelegate delegate].playView show];
 }

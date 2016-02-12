@@ -77,7 +77,8 @@
     cell.artist.text = info.artist;
     
     //播放状态
-    if ([[AppDelegate delegate].player.currentSong.sid isEqualToString:info.sid]) {
+    if ([AppDelegate delegate].player.isOffLinePlay &&
+        [[AppDelegate delegate].player.currentSong.sid isEqualToString:info.sid]) {
         cell.playIndicator.hidden = NO;
         cell.playIndicator.animationImages = @[[UIImage imageNamed:@"ic_channel_nowplaying1"],
                                                [UIImage imageNamed:@"ic_channel_nowplaying2"],
@@ -97,8 +98,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SongInfo * info = [self.songSource objectAtIndex:indexPath.row];
-    [[AppDelegate delegate].player playSharedSong:info];
+    if (![[AppDelegate delegate].player.currentSong.sid isEqualToString:info.sid]) {
+        [[AppDelegate delegate].player playOffLineList:self.songSource index:indexPath.row];
+    }
     [[AppDelegate delegate].playView show];
+    [tableView reloadData];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {

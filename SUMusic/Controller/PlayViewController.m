@@ -194,7 +194,7 @@
     
     //设置歌词
     [SUNetwork fetchLyricWithCompletion:^(BOOL isSucc, BOOL isExist, NSDictionary *lyric) {
-        BASE_INFO_FUN(lyric);
+//        BASE_INFO_FUN(lyric);
         [self.lycView loadLyric:lyric];
     }];
 }

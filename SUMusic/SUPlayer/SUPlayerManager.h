@@ -143,9 +143,9 @@ typedef NS_ENUM(NSInteger, SUPlayStatus) {
 @property (nonatomic, assign) BOOL isOffLinePlay;
 
 /*
- * 播放本地列表(index: 开始的位置)
+ * 播放离线音乐(index: 开始的位置)
  */
-- (void)playLocalListWithIndex:(NSInteger)index;
+- (void)playOffLineList:(NSArray *)songList index:(NSInteger)index;
 
 
 @end

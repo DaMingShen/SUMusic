@@ -35,11 +35,7 @@
  */
 - (ChannelInfo *)currentChannel {
     if (_currentChannel == nil) {
-        _currentChannel = [ChannelInfo infoFromDict:@{@"abbr_en":@"My",
-                                                      @"channel_id":@"0",
-                                                      @"name":@"私人频道",
-                                                      @"name_en":@"Personal Radio",
-                                                      @"seq_id":@"0"}];
+        _currentChannel = DEFAULTCHANNEL;
     }
     return _currentChannel;
 }
@@ -82,6 +78,18 @@
 }
 
 /*
+ * 是否播放离线音乐
+ */
+- (void)setIsOffLinePlay:(BOOL)isOffLinePlay {
+    _isOffLinePlay = isOffLinePlay;
+    if (isOffLinePlay) {
+        SendNotify(PLAYMODECHANGE, nil)
+    }else {
+        SendNotify(PLAYMODECHANGE, nil)
+    }
+}
+
+/*
  * 开始播放
  */
 - (void)startPlay {
@@ -95,7 +103,7 @@
     }
     
     //如果是最后一首，加载更多歌曲
-    if (self.currentSongIndex == self.songList.count - 1) [self loadMoreSong];
+    if (!self.isOffLinePlay && self.currentSongIndex == self.songList.count - 1) [self loadMoreSong];
 }
 
 /*
@@ -151,8 +159,11 @@
  */
 - (void)loadSongInfoWithNewList:(BOOL)isNew {
     
-    //更新当前歌曲信息
+    //更新当前歌曲位置
     self.currentSongIndex = isNew ? 0 : self.currentSongIndex + 1;
+    //如果离线播放到最后一首则回到第一首
+    if (self.isOffLinePlay && self.currentSongIndex >= self.songList.count) self.currentSongIndex = 0;
+    //更新当前歌曲信息
     self.currentSong = self.songList[self.currentSongIndex];
     
     //加载URL（如果是离线播放，则播放离线文件）
@@ -280,6 +291,7 @@
     [self endPlay];
     [SUNetwork fetchPlayListWithType:OperationTypeNone completion:^(BOOL isSucc) {
         if (isSucc) {
+            if (self.isOffLinePlay) self.isOffLinePlay = NO;
             [self loadSongInfoWithNewList:YES];
             [self startPlay];
         }else {
@@ -294,14 +306,20 @@
 - (void)skipSongWithHandle:(void(^)(BOOL isSucc))handle {
     
     [self endPlay];
-    [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
-        if (isSucc) {
-            [self loadSongInfoWithNewList:YES];
-            [self startPlay];
-        }
-        if (handle) handle(isSucc);
-    }];
-
+    
+    if (self.isOffLinePlay) {
+        [self loadSongInfoWithNewList:NO];
+        [self startPlay];
+    }
+    else {
+        [SUNetwork fetchPlayListWithType:OperationTypeSkip completion:^(BOOL isSucc) {
+            if (isSucc) {
+                [self loadSongInfoWithNewList:YES];
+                [self startPlay];
+            }
+            if (handle) handle(isSucc);
+        }];
+    }
 }
 
 /*
@@ -338,20 +356,36 @@
 }
 
 #pragma mark - 离线播放
-- (void)playLocalListWithIndex:(NSInteger)index {
-    
+- (void)playOffLineList:(NSArray *)songList index:(NSInteger)index {
+    [self endPlay];
+    //切换到离线播放
+    if (!self.isOffLinePlay) self.isOffLinePlay = YES;
+    //加载列表
+    [self.songList removeAllObjects];
+    [self.songList addObjectsFromArray:songList];
+    //因为加载的是下一首歌的信息， 这里要减1
+    self.currentSongIndex = index - 1;
+    //加载信息
+    [self loadSongInfoWithNewList:NO];
+    //播放
+    [self startPlay];
 }
 
 #pragma mark - 播放分享歌曲
 - (void)playSharedSong:(SongInfo *)info {
-    
-    if (![self.currentSong.sid isEqualToString:info.sid] ) {
-        [self endPlay];
-        [self.songList removeAllObjects];
-        [self.songList addObject:info];
-        [self loadSongInfoWithNewList:YES];
-        [self startPlay];
+    //正在播放该歌曲的情况
+    if (!self.isOffLinePlay && [self.currentSong.sid isEqualToString:info.sid]) return;
+    //设置为非离线播放
+    if (self.isOffLinePlay) {
+        self.currentChannel = DEFAULTCHANNEL;
+        self.isOffLinePlay = NO;
     }
+    
+    [self endPlay];
+    [self.songList removeAllObjects];
+    [self.songList addObject:info];
+    [self loadSongInfoWithNewList:YES];
+    [self startPlay];
 }
 
 

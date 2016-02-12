@@ -51,6 +51,7 @@
     [self fetchChannels];
     
     RegisterNotify(LoginSUCC, @selector(userLoginInOutRefresh))
+    RegisterNotify(PLAYMODECHANGE, @selector(offLinePlayingRefresh))
 }
 
 #pragma mark - UI
@@ -77,14 +78,15 @@
         [self.dataSource removeObject:self.myHeartChannel];
         [self.tableView reloadData];
     }
+    _appDelegate.player.currentChannel = [self.dataSource objectAtIndex:0];
     [_appDelegate.player newChannelPlay];
 }
 
 - (void)offLinePlayingRefresh {
-    ChannelInfo * info = [[ChannelInfo alloc]init];
-    info.channel_id = @"OffLine";
-    info.name = @"离线歌曲";
-    _appDelegate.player.currentChannel = info;
+    if (_appDelegate.player.isOffLinePlay) {
+        ChannelInfo * info = OFFLINECHANNEL;
+        _appDelegate.player.currentChannel = info;
+    }
     [_tableView reloadData];
 }
 

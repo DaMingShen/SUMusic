@@ -94,8 +94,13 @@ selector:_selector name:_name object:nil];
 
 //通知
 #define SONGPLAYSTATUSCHANGE @"SongPlayStatusChange"
-#define OFFLINEPLAY @"PlayOffLineSong"
+#define PLAYMODECHANGE @"On/OffLineSongPlay"
 #define REFRESHSONGLIST @"RefreshSongList"
+
+//频道
+#define DEFAULTCHANNEL [ChannelInfo infoFromDict:@{@"abbr_en":@"My", @"channel_id":@"0", @"name":@"私人频道", @"name_en":@"Personal Radio", @"seq_id":@"0"}]
+#define OFFLINECHANNEL [ChannelInfo infoFromDict:@{@"abbr_en":@"OffLine", @"channel_id":@"666", @"name":@"我的离线", @"name_en":@"My OffLine", @"seq_id":@"666"}]
+
 
 //默认图片
 #define DefaultImg [UIImage imageNamed:@"cover"]
