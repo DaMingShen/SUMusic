@@ -19,6 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavigationTitle:@"设置"];
+    
+    [self setupUI];
 
     [self refreshLogoutBtnStatus];
 
@@ -43,7 +46,7 @@
 }
 
 - (IBAction)logout:(UIButton *)sender {
-    UIActionSheet * sheet = [[UIActionSheet alloc]initWithTitle:@"确定要退出当前账号吗" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"确定", nil];
+    UIActionSheet * sheet = [[UIActionSheet alloc]initWithTitle:@"确定要退出当前账号吗" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [sheet showInView:self.view];
 }
 

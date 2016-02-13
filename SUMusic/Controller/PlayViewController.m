@@ -201,6 +201,7 @@
     
     //三大金刚
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;
+    self.loveSong.enabled = !_player.isOffLinePlay;
     
     //四大天王
     [self refreshFavorStatus];
