@@ -161,8 +161,17 @@
     
     //更新当前歌曲位置
     self.currentSongIndex = isNew ? 0 : self.currentSongIndex + 1;
-    //如果离线播放到最后一首则回到第一首
-    if (self.isOffLinePlay && self.currentSongIndex >= self.songList.count) self.currentSongIndex = 0;
+    //离线播放
+    if (self.isOffLinePlay) {
+        //上一首<0则回到最后一首
+        if (self.currentSongIndex < 0) {
+            self.currentSongIndex = self.songList.count - 1;
+        }
+        //播放到最后一首则回到第一首
+        if (self.currentSongIndex >= self.songList.count) {
+            self.currentSongIndex = 0;
+        }
+    };
     //更新当前歌曲信息
     self.currentSong = self.songList[self.currentSongIndex];
     
@@ -328,13 +337,22 @@
 - (void)banSongWithHandle:(void(^)(BOOL isSucc))handle {
     
     [self endPlay];
-    [SUNetwork fetchPlayListWithType:OperationTypeBan completion:^(BOOL isSucc) {
-        if (isSucc) {
-            [self loadSongInfoWithNewList:YES];
-            [self startPlay];
-        }
-        if (handle) handle(isSucc);
-    }];
+    
+    if (self.isOffLinePlay) {
+        //因为loadsong会将index加1，这里要减2，才是上一首
+        self.currentSongIndex -= 2;
+        [self loadSongInfoWithNewList:NO];
+        [self startPlay];
+    }
+    else {
+        [SUNetwork fetchPlayListWithType:OperationTypeBan completion:^(BOOL isSucc) {
+            if (isSucc) {
+                [self loadSongInfoWithNewList:YES];
+                [self startPlay];
+            }
+            if (handle) handle(isSucc);
+        }];
+    }
 }
 
 /*

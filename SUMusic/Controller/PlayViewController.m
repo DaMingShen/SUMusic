@@ -59,6 +59,7 @@
     
     //监听状态变化
     RegisterNotify(SONGPLAYSTATUSCHANGE, @selector(observeSongPlayStatus))
+    RegisterNotify(PLAYMODECHANGE, @selector(playModeChange))
     
 }
 
@@ -161,6 +162,19 @@
     }
 }
 
+- (void)playModeChange {
+    //离线：变为上一首
+    if (_player.isOffLinePlay) {
+        [self.banSong setImage:[UIImage imageNamed:@"ic_action_prev"] forState:UIControlStateNormal];
+        [self.banSong setImage:[UIImage imageNamed:@"ic_action_prev_pressed"] forState:UIControlStateHighlighted];
+    }
+    //在线：变为ban歌
+    else {
+        [self.banSong setImage:[UIImage imageNamed:@"ic_action_ban"] forState:UIControlStateNormal];
+        [self.banSong setImage:[UIImage imageNamed:@"ic_action_ban_pressed"] forState:UIControlStateHighlighted];
+    }
+}
+
 #pragma mark - 刷新界面
 - (void)synUI {
     
@@ -208,6 +222,8 @@
     self.songCover.image = DefaultImg;
     self.songCover.transform = CGAffineTransformMakeRotation(0.0);
     self.coverView.userInteractionEnabled = NO;
+    self.playBtn.hidden = YES;
+    self.playBtnBg.hidden = YES;
     
     self.playTime.text = @"00:00";
     self.playTime.hidden = YES;

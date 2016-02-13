@@ -50,7 +50,7 @@
     [self setupUI];
     [self fetchChannels];
     
-    RegisterNotify(LoginSUCC, @selector(userLoginInOutRefresh))
+    RegisterNotify(LOGINSTATUSCHANGE, @selector(userLoginInOutRefresh))
     RegisterNotify(PLAYMODECHANGE, @selector(offLinePlayingRefresh))
 }
 

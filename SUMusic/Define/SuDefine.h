@@ -78,8 +78,6 @@ selector:_selector name:_name object:nil];
 #define UserLogin     @"userIsLogin"
 #define UserLauch     @"appIsJustLauch"
 #define isFirstOpen   @"appFirstOpen"
-#define LoginSUCC     @"loginSUCC"
-#define LoginFAIL     @"LoginFAIL"
 
 //网络相关
 #define NetResult           @"r"
@@ -93,6 +91,7 @@ selector:_selector name:_name object:nil];
 #define NetworkDisable @"NetworkIsNotReachability"
 
 //通知
+#define LOGINSTATUSCHANGE     @"LoginStatusChange"
 #define SONGPLAYSTATUSCHANGE @"SongPlayStatusChange"
 #define PLAYMODECHANGE @"On/OffLineSongPlay"
 #define REFRESHSONGLIST @"RefreshSongList"

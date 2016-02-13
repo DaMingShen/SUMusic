@@ -33,6 +33,7 @@
     
     [self UISetting];
     
+    [self loadUserNameAndPwd];
 }
 
 #pragma mark - UI
@@ -52,6 +53,19 @@
     _passwordTextField.layer.borderColor = ClearColor.CGColor;
     _loginView.layer.borderColor = ClearColor.CGColor;
     _passwordTextField.secureTextEntry = YES;
+
+}
+
+- (void)loadUserNameAndPwd {
+    if (![SuAppSetting getValue:@"userName"]) return;
+    
+    _userNameTextField.text = [SuAppSetting getValue:@"userName"];
+    _passwordTextField.text = [SuAppSetting getValue:@"userPwd"];
+}
+
+- (void)saveUserNameAndPwd {
+    [SuAppSetting setValue:_userNameTextField.text forKey:@"userName"];
+    [SuAppSetting setValue:_passwordTextField.text forKey:@"userPwd"];
 }
 
 #pragma mark - textField代理
@@ -138,7 +152,10 @@
    [SUNetwork loginWithUserName:_userNameTextField.text password:_passwordTextField.text completion:^(BOOL isSucc, NSString *msg) {
        if (isSucc) {
            BASE_INFO_FUN(msg);
-           SendNotify(LoginSUCC, nil)
+           //保存账号密码
+           [self saveUserNameAndPwd];
+           //登录通知
+           SendNotify(LOGINSTATUSCHANGE, nil)
            [self back:nil];
        }else {
            BASE_INFO_FUN(msg);

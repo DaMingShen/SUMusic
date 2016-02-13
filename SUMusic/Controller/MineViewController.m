@@ -14,6 +14,7 @@
 #import "MyFavorViewController.h"
 #import "MySharedViewController.h"
 #import "MyOffLineViewController.h"
+#import "SettingViewController.h"
 
 @interface MineViewController ()<UITableViewDataSource,UITableViewDelegate> {
     
@@ -33,7 +34,7 @@
     [super viewDidLoad];
     [self setupUI];
     
-    RegisterNotify(LoginSUCC, @selector(refreshUI))
+    RegisterNotify(LOGINSTATUSCHANGE, @selector(refreshUI))
 }
 
 #pragma mark - UI
@@ -51,7 +52,7 @@
     self.tableView.tableFooterView = [UIView new];
     
     //表格头部设置
-    UIView * tableHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 140)];
+    UIView * tableHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenW, 110)];
     _header = [[NSBundle mainBundle]loadNibNamed:@"MineHeader" owner:self options:nil][0];
     _header.frame = tableHeader.bounds;
     [_header.userIcon addTarget:self action:@selector(goLoginPage) forControlEvents:UIControlEventTouchUpInside];
@@ -74,9 +75,11 @@
 - (void)refreshUI {
     if ([SuGlobal checkLogin]) {
         _header.userName.text = _appDelegate.userInfo.user_name;
+        [_header.userIcon setBackgroundImage:[UIImage imageNamed:@"zero_data"] forState:UIControlStateNormal];
         _header.userIcon.userInteractionEnabled = NO;
     }else {
         _header.userName.text = @"未登陆";
+        [_header.userIcon setBackgroundImage:[UIImage imageNamed:@"user_avatar"] forState:UIControlStateNormal];
         _header.userIcon.userInteractionEnabled = YES;
     }
 }
@@ -118,7 +121,10 @@
         }
             break;
         case 3:
-            
+        {
+            SettingViewController * settingVC = [[SettingViewController alloc]init];
+            [self.navigationController pushViewController:settingVC animated:YES];
+        }
             break;
         case 4:
         {
