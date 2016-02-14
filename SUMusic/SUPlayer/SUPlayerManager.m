@@ -23,9 +23,18 @@
 - (id)init {
     if (self = [super init]) {
         self.songList = [NSMutableArray array];
-        self.coverImg = DefaultImg;
     }
     return self;
+}
+#pragma mark - 列表
+/*
+ * 当前播放歌曲图片
+ */
+- (UIImage *)coverImg {
+    if (_coverImg == nil) {
+        return DefaultImg;
+    }
+    return _coverImg;
 }
 
 #pragma mark - 频道
@@ -95,12 +104,9 @@
 - (void)startPlay {
     if (self.status == SUPlayStatusPause) {
         self.status = SUPlayStatusPlay;
-        [self.player play];
         SendNotify(SONGPLAYSTATUSCHANGE, nil)
-    }else {
-        [self.player play];
-        
     }
+    [self.player play];
     
     //如果是最后一首，加载更多歌曲
     if (!self.isOffLinePlay && self.currentSongIndex == self.songList.count - 1) [self loadMoreSong];

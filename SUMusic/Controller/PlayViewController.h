@@ -11,9 +11,13 @@
 @interface PlayViewController : BaseViewController
 
 /**
- *  弹出界面
+ *  界面
  */
 - (void)show;
+
+- (void)launchShow;
+
+- (IBAction)hide:(UIButton *)sender;
 
 /**
  *  下一首歌曲

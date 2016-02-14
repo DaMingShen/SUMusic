@@ -57,8 +57,6 @@
     _header.frame = tableHeader.bounds;
     [_header.userIcon addTarget:self action:@selector(goLoginPage) forControlEvents:UIControlEventTouchUpInside];
     [tableHeader addSubview:_header];
-    UIView * line = [UIView drawHorizonLineWithFrame:CGRectMake(0, tableHeader.h, tableHeader.w, 1)];
-//    [tableHeader addSubview:line];
     self.tableView.tableHeaderView = tableHeader;
     
     //刷新头部

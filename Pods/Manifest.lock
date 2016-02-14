@@ -28,6 +28,7 @@ PODS:
     - FMDB/common
   - MJRefresh (2.4.10)
   - pop (1.0.8)
+  - Reachability (3.2)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - FMDB (~> 2.5)
   - MJRefresh (~> 2.4.10)
   - pop (~> 1.0.8)
+  - Reachability (~> 3.2)
   - SDWebImage (~> 3.7.3)
   - UMengSocial (~> 4.2.3)
 
@@ -48,6 +50,7 @@ SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   MJRefresh: e52328552ed9cbfce3501e3820b18bf7643c65cc
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   UMengSocial: 85882abe5b20aa38ad558ece71360e16b5d50909
 

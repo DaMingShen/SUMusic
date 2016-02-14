@@ -10,11 +10,16 @@
 
 @interface SuNetworkMonitor : NSObject
 
-+ (instancetype)manager;
++ (instancetype)monitor;
 
+/**
+ *  开启网络状态的监听
+ */
 - (void)startMonitorNetwork;
 
-+ (BOOL)isNetworkEnabled;
+- (BOOL)isWiFiEnable;
+
+- (BOOL)isNetworkEnable;
 
 
 @end

@@ -91,6 +91,7 @@ selector:_selector name:_name object:nil];
 #define NetworkDisable @"NetworkIsNotReachability"
 
 //通知
+#define NETWORKSTATUSCHANGE @"NetworkStatusChange"
 #define LOGINSTATUSCHANGE     @"LoginStatusChange"
 #define SONGPLAYSTATUSCHANGE @"SongPlayStatusChange"
 #define PLAYMODECHANGE @"On/OffLineSongPlay"

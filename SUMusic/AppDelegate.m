@@ -34,6 +34,9 @@
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     [session setActive:YES error:nil];
     
+    //监听网络变化
+    [[SuNetworkMonitor monitor]startMonitorNetwork];
+    
     //初始化用户数据
     [self initialUser];
     
@@ -41,9 +44,7 @@
     self.player = [SUPlayerManager manager];
     [self.player newChannelPlay];
     self.playView = [[PlayViewController alloc]init];
-    [self.playView show];
-    
-    //
+    [self.playView launchShow];
     
     //初始化友盟
     [UMSocialData setAppKey:@"56a4941667e58e200d001b8d"];
@@ -69,6 +70,16 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+}
+
+#pragma mark - network
+- (void)setNetworkStatus:(NetworkStatus)networkStatus {
+    if (_networkStatus != networkStatus) {
+        _networkStatus = networkStatus;
+        SendNotify(NETWORKSTATUSCHANGE, nil)
+    }else {
+        _networkStatus = networkStatus;
+    }
 }
 
 #pragma mark - URL 

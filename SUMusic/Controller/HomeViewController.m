@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "ChannelListViewController.h"
+#import "MyOffLineViewController.h"
 #import "MineViewController.h"
 #import "TopTabItemView.h"
 
@@ -37,6 +38,7 @@
     
     //监听状态变化
     RegisterNotify(SONGPLAYSTATUSCHANGE, @selector(observeSongPlayStatus))
+    RegisterNotify(NETWORKSTATUSCHANGE, @selector(networkStatusChange))
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -128,6 +130,29 @@
     }
     if (status == SUPlayStatusPlay) {
         [_playingPet startAnimating];
+    }
+}
+
+- (void)networkStatusChange {
+    //如果没有网络，则跳转离线播放
+    if (![[SuNetworkMonitor monitor] isNetworkEnable]) {
+        BASE_INFO_FUN(@"无网络：离线播放");
+        NSString * currentVC = NSStringFromClass([[self.navigationController.viewControllers lastObject] class]);
+        //切换到离线播放
+        if (!_appDelegate.player.isOffLinePlay) {
+            BASE_INFO_FUN(@"切换模式");
+            [_appDelegate.playView hide:nil];
+            NSArray * offlineSongList = [SuDBManager fetchOffLineList];
+            [_appDelegate.player playOffLineList:offlineSongList index:0];
+        }
+        //跳转到离线列表页面
+        if (![currentVC isEqualToString:@"MyOffLineViewController"]) {
+            BASE_INFO_FUN(@"切换页面");
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+            MyOffLineViewController * offLine = [[MyOffLineViewController alloc]init];
+            [self.navigationController pushViewController:offLine animated:YES];
+        }
     }
 }
 

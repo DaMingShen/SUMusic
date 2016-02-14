@@ -60,7 +60,10 @@
     //监听状态变化
     RegisterNotify(SONGPLAYSTATUSCHANGE, @selector(observeSongPlayStatus))
     RegisterNotify(PLAYMODECHANGE, @selector(playModeChange))
-    
+    //音频打断监听
+    RegisterNotify(AVAudioSessionInterruptionNotification, @selector(audioInterruption:))
+    //播出耳机通知
+    RegisterNotify(AVAudioSessionRouteChangeNotification, @selector(routeChangeObserve:))
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -115,6 +118,19 @@
     }];
 }
 
+- (void)launchShow {
+    UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
+    self.view.frame = CGRectMake(0, 0, ScreenW, ScreenH);
+    self.view.alpha = 0.f;
+    [keyWindow addSubview:self.view];
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        self.view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        keyWindow.userInteractionEnabled = YES;
+    }];
+}
+
 - (IBAction)hide:(UIButton *)sender {
     UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
     
@@ -135,27 +151,27 @@
             BASE_INFO_FUN(@"播放界面：未知状态");
             break;
         case SUPlayStatusLoadSongInfo:
-            [self synUI];
             BASE_INFO_FUN(@"播放界面：加载信息");
+            [self synUI];
             break;
         case SUPlayStatusReadyToPlay:
-            [self addTimer];
             BASE_INFO_FUN(@"播放界面：准备播放");
+            [self addTimer];
             break;
         case SUPlayStatusPlay:
+            BASE_INFO_FUN(@"播放界面：继续播放");
             [self refreshCoverPlayingStatus];
             [self addTimer];
-            BASE_INFO_FUN(@"播放界面：继续播放");
             break;
         case SUPlayStatusPause:
+            BASE_INFO_FUN(@"播放界面：暂停播放");
             [self removeTimer];
             [self refreshCoverPlayingStatus];
-            BASE_INFO_FUN(@"播放界面：暂停播放");
             break;
         case SUPlayStatusStop:
+            BASE_INFO_FUN(@"播放界面：停止播放");
             [self removeTimer];
             [self resetUI];
-            BASE_INFO_FUN(@"播放界面：停止播放");
             break;
         default:
             break;
@@ -172,6 +188,55 @@
     else {
         [self.banSong setImage:[UIImage imageNamed:@"ic_action_ban"] forState:UIControlStateNormal];
         [self.banSong setImage:[UIImage imageNamed:@"ic_action_ban_pressed"] forState:UIControlStateHighlighted];
+    }
+}
+
+- (void)audioInterruption:(NSNotification *)notification {
+    
+//    BASE_INFO_FUN(notification.userInfo);
+    NSDictionary * interruptionDict = notification.userInfo;
+    NSNumber * interruptionType = [interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey];
+    if (interruptionType.intValue == AVAudioSessionInterruptionTypeBegan) {
+        BASE_INFO_FUN(@"打断开始");
+        [self pausePlaying:nil];
+    }
+    else if (interruptionType.intValue == AVAudioSessionInterruptionTypeEnded) {
+        BASE_INFO_FUN(@"打断结束");
+        //在后台不能恢复播放
+        if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
+            BASE_INFO_FUN(@"APP在后台，不能继续播放");
+        }
+        //在前台继续播放
+        else {
+            [self goOnPlaying:nil];
+        }
+    }
+}
+
+- (void)routeChangeObserve:(NSNotification *)notification {
+    
+    NSDictionary * routeChangeDict = notification.userInfo;
+    //信号路径变更的原因
+    AVAudioSessionRouteChangeReason changeReason = [[routeChangeDict valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
+    //旧设备描述
+    AVAudioSessionRouteDescription * routeDesc = [routeChangeDict valueForKey:AVAudioSessionRouteChangePreviousRouteKey];
+    //旧设备输出描述
+    AVAudioSessionPortDescription * portDesc = routeDesc.outputs[0];
+    
+    switch (changeReason) {
+        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
+            BASE_INFO_FUN(@"插入新设备");
+            break;
+        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
+            if ([portDesc.portType isEqualToString:@"Headphones"]) {
+                BASE_INFO_FUN(@"拔出耳机");
+                [self pausePlaying:nil];
+            }else {
+                BASE_INFO_FUN(@"移除其他设备");
+            }
+            break;
+        default:
+            break;
     }
 }
 
@@ -267,9 +332,10 @@
 }
 
 - (void)refreshCoverPlayingStatus {
-
-    self.playBtnBg.hidden = self.player.isPlaying;
-    self.playBtn.hidden = self.player.isPlaying;
+    
+    BOOL status = self.player.status == SUPlayStatusPause ? NO : YES;
+    self.playBtnBg.hidden = status;
+    self.playBtn.hidden = status;
 }
 
 - (void)refreshFavorStatus {
@@ -306,7 +372,7 @@
 - (void)addTimer {
     if (_timer) return;
     BASE_INFO_FUN(@"添加timer");
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refreshProgress) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.f / 20 target:self selector:@selector(refreshProgress) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 

@@ -10,6 +10,7 @@
 #import "SUPlayerManager.h"
 #import "UserInfo.h"
 #import "PlayViewController.h"
+#import <Reachability.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -29,6 +30,11 @@
  * 播放界面
  */
 @property (nonatomic, strong) PlayViewController * playView;
+
+/*
+ * 网络状态
+ */
+@property (nonatomic, assign) NetworkStatus networkStatus;
 
 /*
  * 获取app代理
