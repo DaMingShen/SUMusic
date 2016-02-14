@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -149,15 +150,18 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QP-1L-yEN" userLabel="封面">
                     <rect key="frame" x="0.0" y="84" width="375" height="311"/>
                     <subviews>
-                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-2S-RAE" userLabel="cover">
-                            <rect key="frame" x="77" y="46" width="220" height="220"/>
+                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-2S-RAE" userLabel="cover">
+                            <rect key="frame" x="42" y="11" width="290" height="290"/>
                             <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Lv0-2S-RAE" secondAttribute="height" multiplier="1:1" id="M85-UU-GGz"/>
+                            </constraints>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="zMw-km-SdO" appends="YES" id="qln-mq-UkW"/>
                             </connections>
                         </imageView>
-                        <view hidden="YES" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hid-aw-stf" userLabel="play_btn_bg">
-                            <rect key="frame" x="77" y="46" width="220" height="220"/>
+                        <view hidden="YES" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hid-aw-stf" userLabel="play_btn_bg">
+                            <rect key="frame" x="42" y="11" width="290" height="290"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
                             <connections>
@@ -175,6 +179,13 @@
                     <constraints>
                         <constraint firstItem="xL4-RG-w2B" firstAttribute="centerX" secondItem="3QP-1L-yEN" secondAttribute="centerX" id="4P3-xw-Vxy"/>
                         <constraint firstItem="xL4-RG-w2B" firstAttribute="centerY" secondItem="3QP-1L-yEN" secondAttribute="centerY" id="5If-qx-F5h"/>
+                        <constraint firstItem="hid-aw-stf" firstAttribute="centerX" secondItem="3QP-1L-yEN" secondAttribute="centerX" id="Oiz-dV-XAm"/>
+                        <constraint firstItem="Lv0-2S-RAE" firstAttribute="centerX" secondItem="3QP-1L-yEN" secondAttribute="centerX" id="WIy-eq-8j8"/>
+                        <constraint firstItem="hid-aw-stf" firstAttribute="width" secondItem="Lv0-2S-RAE" secondAttribute="width" id="cPT-CE-DiZ"/>
+                        <constraint firstItem="hid-aw-stf" firstAttribute="centerY" secondItem="3QP-1L-yEN" secondAttribute="centerY" id="d62-5R-sij"/>
+                        <constraint firstItem="hid-aw-stf" firstAttribute="height" secondItem="Lv0-2S-RAE" secondAttribute="height" id="fFj-8f-Z4c"/>
+                        <constraint firstItem="Lv0-2S-RAE" firstAttribute="centerY" secondItem="3QP-1L-yEN" secondAttribute="centerY" id="lDL-B5-Box"/>
+                        <constraint firstItem="Lv0-2S-RAE" firstAttribute="height" secondItem="3QP-1L-yEN" secondAttribute="height" multiplier="0.93" id="nln-LY-k3w"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2W-0M-kMn" userLabel="歌名&amp;艺术家">

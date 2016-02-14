@@ -64,6 +64,7 @@
     
     _unConnectNotic = [[UIImageView alloc]initWithFrame:ScreenB];
     _unConnectNotic.image = [UIImage imageNamed:@"network_404"];
+    _unConnectNotic.userInteractionEnabled = YES;
     _unConnectNotic.hidden = YES;
     [self.view addSubview:_unConnectNotic];
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fetchChannels)];
@@ -94,11 +95,13 @@
 - (void)fetchChannels {
     
     //showAni
+    _unConnectNotic.hidden = YES;
+    [self showLoadingAni];
     
     //loadData
     [SUNetwork fetchChannelsWithCompletion:^(BOOL isSucc, NSArray *channels) {
         //stopAni
-        
+        [self hideAni];
         //refreshUI
         if (isSucc) {
             [self.dataSource addObjectsFromArray:channels];

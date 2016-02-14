@@ -30,21 +30,23 @@
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     
+    //监听网络变化
+    [[SuNetworkMonitor monitor]startMonitorNetwork];
+    
+    //打开音频会话
     AVAudioSession * session = [[AVAudioSession alloc]init];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     [session setActive:YES error:nil];
-    
-    //监听网络变化
-    [[SuNetworkMonitor monitor]startMonitorNetwork];
     
     //初始化用户数据
     [self initialUser];
     
     //初始化播放器
     self.player = [SUPlayerManager manager];
-    [self.player newChannelPlay];
     self.playView = [[PlayViewController alloc]init];
     [self.playView launchShow];
+    [self.player launchPlay];
+    
     
     //初始化友盟
     [UMSocialData setAppKey:@"56a4941667e58e200d001b8d"];

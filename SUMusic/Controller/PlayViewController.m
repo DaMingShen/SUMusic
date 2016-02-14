@@ -76,17 +76,11 @@
         self.progressPoint.layer.cornerRadius = self.progressPoint.h / 2.0;
         
         //封面
-        CGRect coverBounds = CGRectMake(0, 0, self.coverView.h * 0.93, self.coverView.h * 0.93);
-        CGPoint coverCenter = CGPointMake(self.coverView.w / 2, self.coverView.h / 2);
-        self.songCover.bounds = coverBounds;
-        self.songCover.center = coverCenter;
         self.songCover.layer.masksToBounds = YES;
         self.songCover.layer.cornerRadius = self.songCover.h / 2.0;
         self.songCover.layer.borderWidth = 5.0;
         self.songCover.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        
-        self.playBtnBg.bounds = coverBounds;
-        self.playBtnBg.center = coverCenter;
+
         self.playBtnBg.layer.masksToBounds = YES;
         self.playBtnBg.layer.cornerRadius = self.playBtnBg.h / 2.0;
         

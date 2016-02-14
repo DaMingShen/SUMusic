@@ -117,6 +117,11 @@ typedef NS_ENUM(NSInteger, SUPlayStatus) {
 - (void)pausePlay;
 
 /*
+ * app启动完成的播放
+ */
+- (void)launchPlay;
+
+/*
  * 纯粹获取播放列表(打开app、切换频道)
  */
 - (void)newChannelPlay;

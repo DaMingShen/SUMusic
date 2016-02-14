@@ -142,7 +142,7 @@
     rotationAni.repeatCount = NSIntegerMax;
     [[_aniView viewWithTag:666].layer addAnimation:rotationAni forKey:@"rotationAni"];
 
-    [[UIApplication sharedApplication].keyWindow addSubview:_aniView];
+    [self.view addSubview:_aniView];
     [UIView animateWithDuration:0.2 animations:^{
         _aniView.alpha = 1.0;
     }];

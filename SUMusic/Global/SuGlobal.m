@@ -78,7 +78,7 @@
 #pragma mark - 系统提示
 
 + (void)alertMessage:(NSString *)message {
-    [[[UIAlertView alloc] initWithTitle:nil message:@"确定" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil]show];
+    [[[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
 }
 
 

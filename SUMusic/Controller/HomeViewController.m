@@ -144,14 +144,15 @@
             [_appDelegate.playView hide:nil];
             NSArray * offlineSongList = [SuDBManager fetchOffLineList];
             [_appDelegate.player playOffLineList:offlineSongList index:0];
-        }
-        //跳转到离线列表页面
-        if (![currentVC isEqualToString:@"MyOffLineViewController"]) {
-            BASE_INFO_FUN(@"切换页面");
-            [self.navigationController popToRootViewControllerAnimated:YES];
             
-            MyOffLineViewController * offLine = [[MyOffLineViewController alloc]init];
-            [self.navigationController pushViewController:offLine animated:YES];
+            //跳转到离线列表页面
+            if (![currentVC isEqualToString:@"MyOffLineViewController"]) {
+                BASE_INFO_FUN(@"切换页面");
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                
+                MyOffLineViewController * offLine = [[MyOffLineViewController alloc]init];
+                [self.navigationController pushViewController:offLine animated:YES];
+            }
         }
     }
 }

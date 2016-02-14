@@ -299,7 +299,28 @@
 
 #pragma mark - 播放器网络操作
 /*
- * 纯粹获取播放列表(打开app、切换频道)
+ * app启动完成的播放
+ */
+- (void)launchPlay {
+    
+    //有网络：播放私人频道
+    if ([[SuNetworkMonitor monitor] isNetworkEnable]) {
+        [self newChannelPlay];
+    }
+    else {
+        //无网络and有离线歌曲：播放离线歌曲
+        if ([SuDBManager fetchOffLineList].count > 0) {
+            [self playOffLineList:[SuDBManager fetchOffLineList] index:0];
+        }
+        //无网络and无离线歌曲：提示没有歌曲播放
+        else {
+            [SuGlobal alertMessage:@"没有歌曲播放"];
+        }
+    }
+}
+
+/*
+ * 纯粹获取播放列表(切换频道)
  */
 - (void)newChannelPlay {
     
@@ -423,6 +444,8 @@
     NSString * timeStr = [NSString stringWithFormat:@"%@:%@",minStr, secStr];
     return timeStr;
 }
+
+#pragma mark - 网络权限
 
 
 @end
