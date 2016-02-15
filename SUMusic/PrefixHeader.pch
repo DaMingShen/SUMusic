@@ -26,4 +26,6 @@
 #import "SuGlobal.h"
 #import "SuDBManager.h"
 
+#import "TopAlertView.h"
+
 #endif /* PrefixHeader_pch */

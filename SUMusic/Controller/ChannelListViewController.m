@@ -153,12 +153,16 @@
         //改变channel
         _appDelegate.player.currentChannel = channel;
         //开始播放
-        [_appDelegate.player newChannelPlay];
-        //刷新表格
-        [tableView reloadData];
+        if ([_appDelegate.player newChannelPlay]) {
+            //刷新表格
+            [tableView reloadData];
+            //弹出播放器
+            [_appDelegate.playView show];
+        }
+    }else {
+        //弹出播放器
+        [_appDelegate.playView show];
     }
-    //弹出播放器
-    [_appDelegate.playView show];
 }
 
 @end

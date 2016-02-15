@@ -450,7 +450,7 @@
     
     [[OffLineManager manager] downLoadSong];
     sender.enabled = NO;
-    [self ToastMessage:@"已添加到离线列表"];
+    [TopAlertView showWithType:TopAlertTypeAdd message:@"添加到离线列表"];
 }
 
 - (IBAction)share:(UIButton *)sender {

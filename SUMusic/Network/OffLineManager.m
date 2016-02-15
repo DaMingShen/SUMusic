@@ -79,11 +79,26 @@
         [SuDBManager deleteFromDownListWithSid:info.sid];
         [SuDBManager saveToOffLineListWithSongInfo:songInfo];
         
+        //是否已离线完毕
+        if (self.downLoadingList.count <= 0) {
+            NSArray * array = [SuDBManager fetchDownList];
+            if (array.count <= 0) {
+                [TopAlertView showWithType:TopAlertTypeCheck message:@"所有歌曲已离线完毕"];
+            }else {
+                [TopAlertView showWithType:TopAlertTypeCheck message:[NSString stringWithFormat:@"离线完毕, %d首离线失败",array.count]];
+            }
+        }
+        
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         
         info.isFail = YES;
         [self.downLoadingList removeObject:info];
         NSLog(@"下载失败");
+        
+        if (self.downLoadingList.count <= 0) {
+            NSArray * array = [SuDBManager fetchDownList];
+            [TopAlertView showWithType:TopAlertTypeCheck message:[NSString stringWithFormat:@"离线完毕, %d首离线失败",array.count]];
+        }
     }];
     
     info.op = op;

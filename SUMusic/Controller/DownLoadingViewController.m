@@ -77,7 +77,7 @@
         
         NSString * sid = [NSString stringWithFormat:@"%d",cell.progressIndicator.tag];
         DownLoadInfo * info = [[OffLineManager manager]checkSongDownloadingWithSid:sid];
-        cell.progressIndicator.w = ScreenW * (info.percent / 100.0);
+        if (info) cell.progressIndicator.w = ScreenW * (info.percent / 100.0);
     }
 }
 
@@ -100,7 +100,7 @@
     cell.progressIndicator.hidden = NO;
     cell.progressIndicator.tag = info.sid.intValue;
     DownLoadInfo * downLoadInfo = [[OffLineManager manager]checkSongDownloadingWithSid:info.sid];
-    cell.progressIndicator.w = ScreenW * (downLoadInfo.percent / 100.0);
+    if (downLoadInfo) cell.progressIndicator.w = ScreenW * (downLoadInfo.percent / 100.0);
     return cell;
 }
 

@@ -325,9 +325,15 @@
 /*
  * 纯粹获取播放列表(切换频道)
  */
-- (void)newChannelPlay {
+- (BOOL)newChannelPlay {
     
     [self endPlay];
+    
+    if (![[SuNetworkMonitor monitor] isNetworkEnable]) {
+        [TopAlertView showWithType:TopAlertTypeBan message:@"网络不可用"];
+        return NO;
+    }
+
     [SUNetwork fetchPlayListWithType:OperationTypeNone completion:^(BOOL isSucc) {
         if (isSucc) {
             if (self.isOffLinePlay) self.isOffLinePlay = NO;
@@ -337,6 +343,8 @@
             //跳转到离线播放
         };
     }];
+    
+    return YES;
 }
 
 /*
