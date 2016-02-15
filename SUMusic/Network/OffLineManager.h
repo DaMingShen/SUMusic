@@ -24,6 +24,11 @@
 - (void)downLoadSong;
 
 /*
+ * 下载未下载完成的歌曲
+ */
+- (void)downLoadUncompletedSongs;
+
+/*
  * 下载指定歌曲
  */
 - (void)downLoadSongWithSongInfo:(SongInfo *)songInfo;
@@ -36,6 +41,6 @@
 /*
  * 检测歌曲是否在下载中
  */
-- (DownLoadInfo *)checkSongPlayingWithSid:(NSString *)sid;
+- (DownLoadInfo *)checkSongDownloadingWithSid:(NSString *)sid;
 
 @end

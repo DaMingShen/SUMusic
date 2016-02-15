@@ -87,8 +87,6 @@
 		B1B4C9401C5F851000A767CA /* MyFavorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C93F1C5F851000A767CA /* MyFavorViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B1B4C94B1C60419200A767CA /* MySharedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C94A1C60419200A767CA /* MySharedViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B1B4C94E1C60420800A767CA /* MyOffLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C94D1C60420800A767CA /* MyOffLineViewController.m */; settings = {ASSET_TAGS = (); }; };
-		B1B4C95C1C60BF7200A767CA /* SongTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C95A1C60BF7200A767CA /* SongTableView.m */; settings = {ASSET_TAGS = (); }; };
-		B1B4C95D1C60BF7200A767CA /* SongTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B4C95B1C60BF7200A767CA /* SongTableView.xib */; settings = {ASSET_TAGS = (); }; };
 		B1B4C9601C619C3700A767CA /* DownLoadInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B4C95F1C619C3700A767CA /* DownLoadInfo.m */; settings = {ASSET_TAGS = (); }; };
 		C0CC2742934E4E0C2A2BE3CC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C62326311B6DDD31F421887E /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -244,9 +242,6 @@
 		B1B4C94A1C60419200A767CA /* MySharedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySharedViewController.m; sourceTree = "<group>"; };
 		B1B4C94C1C60420800A767CA /* MyOffLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOffLineViewController.h; sourceTree = "<group>"; };
 		B1B4C94D1C60420800A767CA /* MyOffLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOffLineViewController.m; sourceTree = "<group>"; };
-		B1B4C9591C60BF7100A767CA /* SongTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableView.h; sourceTree = "<group>"; };
-		B1B4C95A1C60BF7200A767CA /* SongTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableView.m; sourceTree = "<group>"; };
-		B1B4C95B1C60BF7200A767CA /* SongTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongTableView.xib; sourceTree = "<group>"; };
 		B1B4C95E1C619C3700A767CA /* DownLoadInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadInfo.h; sourceTree = "<group>"; };
 		B1B4C95F1C619C3700A767CA /* DownLoadInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadInfo.m; sourceTree = "<group>"; };
 		C62326311B6DDD31F421887E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -441,9 +436,6 @@
 				2BDFFCDD1C4BE26400CFE078 /* CopyrightViewController.h */,
 				2BDFFCDE1C4BE26400CFE078 /* CopyrightViewController.m */,
 				2BDFFCDF1C4BE26400CFE078 /* CopyrightViewController.xib */,
-				B1B4C9591C60BF7100A767CA /* SongTableView.h */,
-				B1B4C95A1C60BF7200A767CA /* SongTableView.m */,
-				B1B4C95B1C60BF7200A767CA /* SongTableView.xib */,
 				B1B4C93E1C5F851000A767CA /* MyFavorViewController.h */,
 				B1B4C93F1C5F851000A767CA /* MyFavorViewController.m */,
 				2B5196FF1C68638800A0AE47 /* MyFavorViewController.xib */,
@@ -707,7 +699,6 @@
 				2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */,
 				2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */,
 				2B4F5DC61C6A2535008E6A28 /* DownLoadingViewController.xib in Resources */,
-				B1B4C95D1C60BF7200A767CA /* SongTableView.xib in Resources */,
 				2B5197001C68638800A0AE47 /* MyFavorViewController.xib in Resources */,
 				B1B4C9301C5F386C00A767CA /* ShareView.xib in Resources */,
 				2B5503201C6ED881005C8767 /* SettingViewController.xib in Resources */,
@@ -829,7 +820,6 @@
 				B1A3400C1C4642190011867B /* SuCaptureCodeView.m in Sources */,
 				2B55031F1C6ED881005C8767 /* SettingViewController.m in Sources */,
 				B1B4C93C1C5F79DB00A767CA /* SongListTableViewCell.m in Sources */,
-				B1B4C95C1C60BF7200A767CA /* SongTableView.m in Sources */,
 				B1A3400B1C4642190011867B /* SuButton.m in Sources */,
 				B1A340181C4642190011867B /* SUPictureScroll.m in Sources */,
 				B1A3400D1C4642190011867B /* SuTabBarController.m in Sources */,

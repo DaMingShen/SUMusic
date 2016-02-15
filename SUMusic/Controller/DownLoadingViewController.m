@@ -27,19 +27,22 @@
     
     [self setupUI];
     [self loadListFromDB];
+    [self addUpdateTimer];
 
     RegisterNotify(REFRESHSONGLIST, @selector(loadListFromDB))
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.timer invalidate];
-    self.timer = nil;
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 - (void)loadListFromDB {
     
-    self.songSource = [SuDBManager fetchDownList];
+    self.songSource = [[[SuDBManager fetchDownList] reverseObjectEnumerator] allObjects];
     
     if (self.songSource.count > 0) {
         self.noDataNotice.hidden = YES;
@@ -65,16 +68,16 @@
 #pragma mark - 定时刷新进度
 - (void)addUpdateTimer {
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
 }
 
 - (void)updateProgress {
     
     for (SongListTableViewCell * cell in self.tableView.visibleCells) {
         
-        NSString * sid = [NSString stringWithFormat:@"%d",cell.progressLabel.tag];
-        DownLoadInfo * info = [[OffLineManager manager]checkSongPlayingWithSid:sid];
-        cell.progressLabel.text = [NSString stringWithFormat:@"%d%%",info.percent];
+        NSString * sid = [NSString stringWithFormat:@"%d",cell.progressIndicator.tag];
+        DownLoadInfo * info = [[OffLineManager manager]checkSongDownloadingWithSid:sid];
+        cell.progressIndicator.w = ScreenW * (info.percent / 100.0);
     }
 }
 
@@ -94,18 +97,11 @@
     cell.artist.text = info.artist;
     
     //下载进度
-    cell.progressLabel.tag = info.sid.intValue;
-    DownLoadInfo * downLoadInfo = [[OffLineManager manager]checkSongPlayingWithSid:info.sid];
-    cell.progressLabel.text = [NSString stringWithFormat:@"%d%%",downLoadInfo.percent];
-    
+    cell.progressIndicator.hidden = NO;
+    cell.progressIndicator.tag = info.sid.intValue;
+    DownLoadInfo * downLoadInfo = [[OffLineManager manager]checkSongDownloadingWithSid:info.sid];
+    cell.progressIndicator.w = ScreenW * (downLoadInfo.percent / 100.0);
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    SongInfo * info = [self.songSource objectAtIndex:indexPath.row];
-    [[AppDelegate delegate].player playSharedSong:info];
-    [[AppDelegate delegate].playView show];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,6 +112,7 @@
     SongInfo * songInfo = self.songSource[indexPath.row];
     [SuDBManager deleteFromDownListWithSid:songInfo.sid];
     [[OffLineManager manager]deleteSongWithSongInfo:songInfo];
+    [self loadListFromDB];
 }
 
 @end

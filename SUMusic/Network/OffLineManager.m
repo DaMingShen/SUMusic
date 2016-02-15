@@ -37,6 +37,12 @@
 }
 
 #pragma mark - 下载未下载完成的歌曲
+- (void)downLoadUncompletedSongs {
+    for (SongInfo * songInfo in [SuDBManager fetchDownList]) {
+        [self downLoadSongWithSongInfo:songInfo];
+    }
+}
+
 - (void)downLoadSongWithSongInfo:(SongInfo *)songInfo {
     
     //添加模型
@@ -70,8 +76,8 @@
         
         //从download中移到offline中
         SongInfo * songInfo = [SuDBManager fetchSongInfoWithSid:info.sid];
-        [SuDBManager saveToOffLineListWithSongInfo:songInfo];
         [SuDBManager deleteFromDownListWithSid:info.sid];
+        [SuDBManager saveToOffLineListWithSongInfo:songInfo];
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
         
@@ -86,10 +92,11 @@
 
 - (void)deleteSongWithSongInfo:(SongInfo *)songInfo {
     //如果正在下载，先停止
-    DownLoadInfo * info = [self checkSongPlayingWithSid:songInfo.sid];
+    DownLoadInfo * info = [self checkSongDownloadingWithSid:songInfo.sid];
     if (info != nil) {
         [info.op cancel];
     }
+    [self.downLoadingList removeObject:info];
     
     //删除文件
     NSString * path = [[SuGlobal getOffLinePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@",songInfo.sid,@".mp4"]];
@@ -106,7 +113,7 @@
 }
 
 #pragma mark - 检测歌曲是否在下载中
-- (DownLoadInfo *)checkSongPlayingWithSid:(NSString *)sid {
+- (DownLoadInfo *)checkSongDownloadingWithSid:(NSString *)sid {
     for (DownLoadInfo * info in self.downLoadingList) {
         if ([info.sid isEqualToString:sid]) {
             return info;

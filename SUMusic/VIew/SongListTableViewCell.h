@@ -20,9 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *playIndicator;
 
-@property (weak, nonatomic) IBOutlet UIButton *downLoadBtn;
-
-@property (weak, nonatomic) IBOutlet UILabel *progressLabel;
-
+@property (weak, nonatomic) IBOutlet UIView *progressIndicator;
 
 @end

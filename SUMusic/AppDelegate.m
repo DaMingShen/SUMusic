@@ -10,6 +10,7 @@
 #import "HomeViewController.h"
 #import <UMSocial.h>
 #import <UMSocialWechatHandler.h>
+#import "OffLineManager.h"
 
 @interface AppDelegate ()
 
@@ -55,6 +56,9 @@
     //Remote Control
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self becomeFirstResponder];
+    
+    //下载未完成的离线歌曲
+    [[OffLineManager manager]downLoadUncompletedSongs];
     
     return YES;
 }

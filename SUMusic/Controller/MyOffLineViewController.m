@@ -8,12 +8,17 @@
 
 #import "MyOffLineViewController.h"
 #import "SongListTableViewCell.h"
+#import "DownLoadingViewController.h"
 
 @interface MyOffLineViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *noDataNotice;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray * songSource;
+
+@property (weak, nonatomic) IBOutlet UILabel *downloadingCount;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
+
 
 @end
 
@@ -30,15 +35,17 @@
     RegisterNotify(REFRESHSONGLIST, @selector(loadListFromDB))
 }
 
+#pragma mark - 通知处理
 - (void)observeSongPlayStatus {
     if ([AppDelegate delegate].player.status == SUPlayStatusReadyToPlay) {
         [self.tableView reloadData];
     }
 }
 
+#pragma mark - 读取数据库
 - (void)loadListFromDB {
     
-    self.songSource = [SuDBManager fetchOffLineList];
+    self.songSource = [[[SuDBManager fetchOffLineList] reverseObjectEnumerator] allObjects];
     
     if (self.songSource.count > 0) {
         self.noDataNotice.hidden = YES;
@@ -49,8 +56,24 @@
         self.tableView.hidden = YES;
         self.noDataNotice.hidden = NO;
     }
+    
+    NSArray * downloadingList = [SuDBManager fetchDownList];
+    if (downloadingList.count > 0) {
+        self.downloadingCount.text = [NSString stringWithFormat:@"正在离线%d首歌曲, 点击查看",downloadingList.count];
+        if (self.tableViewTopConstraint.constant == 64) {
+            self.tableViewTopConstraint.constant = 64 + 32;
+        }
+    }else {
+        if (self.tableViewTopConstraint.constant == 64 + 32) {
+            [UIView animateWithDuration:0.4 animations:^{
+                self.tableViewTopConstraint.constant = 64;
+                [self.view layoutIfNeeded];
+            }];
+        }
+    }
 }
 
+#pragma mark - UI
 - (void)setupUI {
     
     self.view.frame = ScreenB;
@@ -59,6 +82,16 @@
     self.tableView.tableFooterView = [UIView new];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SongListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"OffLineCell"];
+    
+    self.downloadingCount.backgroundColor = BaseColor;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showDownloadingSong)];
+    [self.downloadingCount addGestureRecognizer:tap];
+}
+
+#pragma mark - 跳转到下载歌曲列表
+- (void)showDownloadingSong {
+    DownLoadingViewController * downloadVC = [[DownLoadingViewController alloc]init];
+    [self.navigationController pushViewController:downloadVC animated:YES];
 }
 
 #pragma mark - 表格代理

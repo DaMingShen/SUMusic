@@ -20,6 +20,7 @@
 #pragma mark - 离线(未下载列表)
 + (void)saveToDownList {
     [self saveInfoToTable:DownListTable];
+    SendNotify(REFRESHSONGLIST, nil)
 }
 
 + (NSArray *)fetchDownList {

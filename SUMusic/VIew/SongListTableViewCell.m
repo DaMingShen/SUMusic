@@ -11,8 +11,4 @@
 @implementation SongListTableViewCell
 
 
-- (IBAction)downLoadNow:(UIButton *)sender {
-    if (self.downLoadBlock) self.downLoadBlock(sender);
-}
-
 @end
