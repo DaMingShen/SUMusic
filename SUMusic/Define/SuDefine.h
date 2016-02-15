@@ -78,6 +78,7 @@ selector:_selector name:_name object:nil];
 #define UserLogin     @"userIsLogin"
 #define UserLauch     @"appIsJustLauch"
 #define isFirstOpen   @"appFirstOpen"
+#define isFlowUsable   @"appCanUseFlow"
 
 //网络相关
 #define NetResult           @"r"

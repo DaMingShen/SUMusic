@@ -43,6 +43,17 @@
     [SuAppSetting setBool:!status forKey:isFirstOpen];
 }
 
+#pragma mark - 是否使用流量收听
++ (BOOL)checkFlowUsable {
+    
+    return [SuAppSetting getBool:isFlowUsable];
+}
+
++ (void)setFlowUsableStatus:(BOOL)status {
+    
+    [SuAppSetting setBool:status forKey:isFlowUsable];
+}
+
 
 #pragma mark - 缓存路径
 

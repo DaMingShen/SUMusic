@@ -28,6 +28,12 @@
 + (BOOL)checkFirstOpenAPP;
 + (void)setFirstOpenStatus:(BOOL)status;
 
+/*
+ * 是否使用流量收听
+ */
++ (BOOL)checkFlowUsable;
++ (void)setFlowUsableStatus:(BOOL)status;
+
 // 缓存路径
 + (NSString *)getRootPath;
 + (NSString *)getArchiverFile;

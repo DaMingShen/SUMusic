@@ -64,7 +64,7 @@
 
 - (void)show {
     
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.center = CGPointMake(self.layer.position.x, self.layer.position.y + 64);
     } completion:^(BOOL finished) {
         [self performSelector:@selector(hide) withObject:nil afterDelay:2.0];
