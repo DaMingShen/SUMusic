@@ -92,5 +92,21 @@
     [[[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
 }
 
+#pragma mark - 可收听验证
++ (BOOL)checkNetworkEnable {
+    
+    if (![[SuNetworkMonitor monitor] isNetworkEnable]) {
+        [TopAlertView showWithType:TopAlertTypeBan message:@"网络不可用"];
+        return NO;
+    }
+    
+    if (![[SuNetworkMonitor monitor] isWiFiEnable] && ![SuGlobal checkFlowUsable]) {
+        [TopAlertView showWithType:TopAlertTypeBan message:@"不能使用流量收听"];
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 @end

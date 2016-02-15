@@ -51,9 +51,9 @@
 		2BF6B1441C54FA76003B4C7F /* SuDBManager+private.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6B13F1C54FA76003B4C7F /* SuDBManager+private.m */; settings = {ASSET_TAGS = (); }; };
 		2BF6B1451C54FA76003B4C7F /* SuDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6B1411C54FA76003B4C7F /* SuDBManager.m */; settings = {ASSET_TAGS = (); }; };
 		B176E12E1C71ABC100665BA1 /* TopAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B176E12D1C71ABC100665BA1 /* TopAlertView.m */; settings = {ASSET_TAGS = (); }; };
-		B176E1331C71B29500665BA1 /* TopAlert_add.png in Resources */ = {isa = PBXBuildFile; fileRef = B176E1301C71B29500665BA1 /* TopAlert_add.png */; settings = {ASSET_TAGS = (); }; };
-		B176E1341C71B29500665BA1 /* TopAlert_ban.png in Resources */ = {isa = PBXBuildFile; fileRef = B176E1311C71B29500665BA1 /* TopAlert_ban.png */; settings = {ASSET_TAGS = (); }; };
-		B176E1351C71B29500665BA1 /* TopAlert_check.png in Resources */ = {isa = PBXBuildFile; fileRef = B176E1321C71B29500665BA1 /* TopAlert_check.png */; settings = {ASSET_TAGS = (); }; };
+		B176E1391C71E50400665BA1 /* TopAlert_add.png in Resources */ = {isa = PBXBuildFile; fileRef = B176E1361C71E50400665BA1 /* TopAlert_add.png */; settings = {ASSET_TAGS = (); }; };
+		B176E13A1C71E50400665BA1 /* TopAlert_ban.png in Resources */ = {isa = PBXBuildFile; fileRef = B176E1371C71E50400665BA1 /* TopAlert_ban.png */; settings = {ASSET_TAGS = (); }; };
+		B176E13B1C71E50400665BA1 /* TopAlert_check.png in Resources */ = {isa = PBXBuildFile; fileRef = B176E1381C71E50400665BA1 /* TopAlert_check.png */; settings = {ASSET_TAGS = (); }; };
 		B199DC8B1C55C86100D2E63E /* SuLyricTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B199DC8A1C55C86100D2E63E /* SuLyricTool.m */; settings = {ASSET_TAGS = (); }; };
 		B199DC911C57046F00D2E63E /* LyricView.m in Sources */ = {isa = PBXBuildFile; fileRef = B199DC901C57046F00D2E63E /* LyricView.m */; settings = {ASSET_TAGS = (); }; };
 		B1A340011C4642190011867B /* NSDate+SU.m in Sources */ = {isa = PBXBuildFile; fileRef = B1A33FC41C4642190011867B /* NSDate+SU.m */; settings = {ASSET_TAGS = (); }; };
@@ -172,9 +172,9 @@
 		AA1EFFC62DA7BFC1F7FBFCF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B176E12C1C71ABC100665BA1 /* TopAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopAlertView.h; sourceTree = "<group>"; };
 		B176E12D1C71ABC100665BA1 /* TopAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopAlertView.m; sourceTree = "<group>"; };
-		B176E1301C71B29500665BA1 /* TopAlert_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopAlert_add.png; sourceTree = "<group>"; };
-		B176E1311C71B29500665BA1 /* TopAlert_ban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopAlert_ban.png; sourceTree = "<group>"; };
-		B176E1321C71B29500665BA1 /* TopAlert_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopAlert_check.png; sourceTree = "<group>"; };
+		B176E1361C71E50400665BA1 /* TopAlert_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopAlert_add.png; sourceTree = "<group>"; };
+		B176E1371C71E50400665BA1 /* TopAlert_ban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopAlert_ban.png; sourceTree = "<group>"; };
+		B176E1381C71E50400665BA1 /* TopAlert_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopAlert_check.png; sourceTree = "<group>"; };
 		B199DC891C55C86100D2E63E /* SuLyricTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuLyricTool.h; sourceTree = "<group>"; };
 		B199DC8A1C55C86100D2E63E /* SuLyricTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuLyricTool.m; sourceTree = "<group>"; };
 		B199DC8F1C57046F00D2E63E /* LyricView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricView.h; sourceTree = "<group>"; };
@@ -524,9 +524,9 @@
 		B176E12F1C71B24D00665BA1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				B176E1301C71B29500665BA1 /* TopAlert_add.png */,
-				B176E1311C71B29500665BA1 /* TopAlert_ban.png */,
-				B176E1321C71B29500665BA1 /* TopAlert_check.png */,
+				B176E1361C71E50400665BA1 /* TopAlert_add.png */,
+				B176E1371C71E50400665BA1 /* TopAlert_ban.png */,
+				B176E1381C71E50400665BA1 /* TopAlert_check.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -728,13 +728,13 @@
 				B1B4C93D1C5F79DB00A767CA /* SongListTableViewCell.xib in Resources */,
 				2BDFFCE11C4BE26400CFE078 /* CopyrightViewController.xib in Resources */,
 				2BB57DA01C46AED5004A1B27 /* Player.xcassets in Resources */,
-				B176E1351C71B29500665BA1 /* TopAlert_check.png in Resources */,
+				B176E13B1C71E50400665BA1 /* TopAlert_check.png in Resources */,
 				2B4F5DC61C6A2535008E6A28 /* DownLoadingViewController.xib in Resources */,
-				B176E1331C71B29500665BA1 /* TopAlert_add.png in Resources */,
+				B176E1391C71E50400665BA1 /* TopAlert_add.png in Resources */,
 				2B5197001C68638800A0AE47 /* MyFavorViewController.xib in Resources */,
 				B1B4C9301C5F386C00A767CA /* ShareView.xib in Resources */,
 				2B5503201C6ED881005C8767 /* SettingViewController.xib in Resources */,
-				B176E1341C71B29500665BA1 /* TopAlert_ban.png in Resources */,
+				B176E13A1C71E50400665BA1 /* TopAlert_ban.png in Resources */,
 				2BDFFCD51C4BDAB300CFE078 /* Mine.xcassets in Resources */,
 				2BDFFCD31C4BD7AE00CFE078 /* MineHeader.xib in Resources */,
 				2BDFFCB01C4B905600CFE078 /* LoginPage.xib in Resources */,

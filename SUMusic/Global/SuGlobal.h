@@ -44,4 +44,7 @@
 // 系统提示
 + (void)alertMessage:(NSString *)message;
 
+#pragma mark - 可收听验证
++ (BOOL)checkNetworkEnable;
+
 @end

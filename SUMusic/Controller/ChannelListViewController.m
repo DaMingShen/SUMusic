@@ -80,7 +80,7 @@
         [self.tableView reloadData];
     }
     _appDelegate.player.currentChannel = [self.dataSource objectAtIndex:0];
-    [_appDelegate.player newChannelPlay];
+    [_appDelegate.player newChannelPlayWithChannel:nil];
 }
 
 - (void)offLinePlayingRefresh {
@@ -149,20 +149,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ChannelInfo * channel = [self.dataSource objectAtIndex:indexPath.row];
-    if (![_appDelegate.player.currentChannel.channel_id isEqualToString:channel.channel_id]) {
-        //改变channel
-        _appDelegate.player.currentChannel = channel;
-        //开始播放
-        if ([_appDelegate.player newChannelPlay]) {
-            //刷新表格
-            [tableView reloadData];
-            //弹出播放器
-            [_appDelegate.playView show];
-        }
-    }else {
-        //弹出播放器
-        [_appDelegate.playView show];
-    }
+    [_appDelegate.player newChannelPlayWithChannel:channel];
+    [tableView reloadData];
 }
 
 @end

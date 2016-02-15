@@ -87,17 +87,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ChannelInfo * channel = [self.channelSource objectAtIndex:indexPath.row];
-    SUPlayerManager * player = [AppDelegate delegate].player;
-    if (![player.currentChannel.channel_id isEqualToString:channel.channel_id]) {
-        //改变channel
-        player.currentChannel = channel;
-        //开始播放
-        [player newChannelPlay];
-        //刷新表格
-        [tableView reloadData];
-    }
-    //弹出播放器
-    [[AppDelegate delegate].playView show];
+    [[AppDelegate delegate].player newChannelPlayWithChannel:channel];
+    [tableView reloadData];
 }
 
 @end

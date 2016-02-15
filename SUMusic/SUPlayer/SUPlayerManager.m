@@ -308,7 +308,7 @@
     
     //有网络：播放私人频道
     if ([[SuNetworkMonitor monitor] isNetworkEnable]) {
-        [self newChannelPlay];
+        [self newChannelPlayWithChannel:nil];
     }
     else {
         //无网络and有离线歌曲：播放离线歌曲
@@ -325,27 +325,38 @@
 /*
  * 纯粹获取播放列表(切换频道)
  */
-- (BOOL)newChannelPlay {
+- (void)newChannelPlayWithChannel:(ChannelInfo *)channel {
     
-    [self endPlay];
-    
-    if (![[SuNetworkMonitor monitor] isNetworkEnable]) {
-        [TopAlertView showWithType:TopAlertTypeBan message:@"网络不可用"];
-        return NO;
+    if (channel && [self.currentChannel.channel_id isEqualToString:channel.channel_id]) {
+        
+        //弹出界面
+        [[AppDelegate delegate].playView show];
+        
+    }else {
+        
+        //网络可用
+        if (![SuGlobal checkNetworkEnable]) return;
+        
+        if (channel) self.currentChannel = channel;
+        
+        [self endPlay];
+        
+        //列表获取
+        [SUNetwork fetchPlayListWithType:OperationTypeNone completion:^(BOOL isSucc) {
+            if (isSucc) {
+                if (self.isOffLinePlay) self.isOffLinePlay = NO;
+                [self loadSongInfoWithNewList:YES];
+                [self startPlay];
+            }else {
+                //跳转到离线播放
+            };
+        }];
+        
+        //弹出界面
+        [[AppDelegate delegate].playView show];
     }
-
-    [SUNetwork fetchPlayListWithType:OperationTypeNone completion:^(BOOL isSucc) {
-        if (isSucc) {
-            if (self.isOffLinePlay) self.isOffLinePlay = NO;
-            [self loadSongInfoWithNewList:YES];
-            [self startPlay];
-        }else {
-            //跳转到离线播放
-        };
-    }];
-    
-    return YES;
 }
+
 
 /*
  * 切歌

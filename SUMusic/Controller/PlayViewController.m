@@ -19,6 +19,7 @@
 @property (nonatomic, strong) LyricView * lycView;      //歌词
 @property (nonatomic, strong) ShareView * shareView;    //分享
 @property (nonatomic, strong) NSTimer * timer;          //界面刷新定时器
+@property (nonatomic, assign) BOOL isShow;
 
 @property (weak, nonatomic) IBOutlet UILabel *channelName;
 
@@ -100,6 +101,10 @@
 #pragma mark - 界面出现和隐藏
 - (void)show {
     
+    if (self.isShow) return;
+    
+    self.isShow = YES;
+    
     UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
     self.view.frame = CGRectMake(0, ScreenH, ScreenW, ScreenH);
     [keyWindow addSubview:self.view];
@@ -113,6 +118,11 @@
 }
 
 - (void)launchShow {
+    
+    if (self.isShow) return;
+    
+    self.isShow = YES;
+    
     UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
     self.view.frame = CGRectMake(0, 0, ScreenW, ScreenH);
     self.view.alpha = 0.f;
@@ -126,8 +136,12 @@
 }
 
 - (IBAction)hide:(UIButton *)sender {
-    UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
     
+    if (!self.isShow) return;
+    
+    self.isShow = NO;
+    
+    UIWindow * keyWindow = [UIApplication sharedApplication].keyWindow;
     keyWindow.userInteractionEnabled = NO;
     [UIView animateWithDuration:0.4 animations:^{
         self.view.y = ScreenH;
@@ -450,7 +464,7 @@
     
     [[OffLineManager manager] downLoadSong];
     sender.enabled = NO;
-    [TopAlertView showWithType:TopAlertTypeAdd message:@"添加到离线列表"];
+    [TopAlertView showWithType:TopAlertTypeAdd message:[NSString stringWithFormat:@"正在离线%@",_player.currentSong.title]];
 }
 
 - (IBAction)share:(UIButton *)sender {
