@@ -42,7 +42,7 @@
 
 - (void)loadListFromDB {
     
-    self.songSource = [[[SuDBManager fetchDownList] reverseObjectEnumerator] allObjects];
+    self.songSource = [SuDBManager fetchDownList];
     
     if (self.songSource.count > 0) {
         self.noDataNotice.hidden = YES;

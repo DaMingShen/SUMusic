@@ -120,7 +120,7 @@
             NSString * jsonStr = rsDict[@"songInfo"];
             [list addObject:[SongInfo infoFromDict:[NSDictionary dictionaryWithJsonString:jsonStr]]];
         }
-        return list;
+        return [[list reverseObjectEnumerator] allObjects];
     }
     return nil;
 }
@@ -135,7 +135,7 @@
             NSString * jsonStr = rsDict[@"channelInfo"];
             [list addObject:[ChannelInfo infoFromDict:[NSDictionary dictionaryWithJsonString:jsonStr]]];
         }
-        return list;
+        return [[list reverseObjectEnumerator] allObjects];
     }
     return nil;
 }

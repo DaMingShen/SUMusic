@@ -243,7 +243,10 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [self.player removeTimeObserver:_timeObserve];
+    if (_timeObserve) {
+        [self.player removeTimeObserver:_timeObserve];
+        _timeObserve = nil;
+    }
     
     [songItem removeObserver:self forKeyPath:@"status"];
     [songItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
@@ -403,6 +406,11 @@
 #pragma mark - 离线播放
 - (void)playOffLineList:(NSArray *)songList index:(NSInteger)index {
     [self endPlay];
+    //如果songlist为nil则无离线歌曲
+    if (songList == nil) {
+        [SuGlobal alertMessage:@"没有歌曲播放"];
+        return;
+    }
     //切换到离线播放
     if (!self.isOffLinePlay) self.isOffLinePlay = YES;
     //加载列表

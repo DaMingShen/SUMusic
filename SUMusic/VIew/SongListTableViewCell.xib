@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qR-MA-hCv" userLabel="progress">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                        <rect key="frame" x="0.0" y="0.0" width="5" height="70"/>
                         <color key="backgroundColor" red="0.6942170081444845" green="0.92637310606060608" blue="0.82721682631409332" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SNH-ns-23F">

@@ -45,7 +45,7 @@
 #pragma mark - 读取数据库
 - (void)loadListFromDB {
     
-    self.songSource = [[[SuDBManager fetchOffLineList] reverseObjectEnumerator] allObjects];
+    self.songSource = [SuDBManager fetchOffLineList];
     
     if (self.songSource.count > 0) {
         self.noDataNotice.hidden = YES;
@@ -59,11 +59,13 @@
     
     NSArray * downloadingList = [SuDBManager fetchDownList];
     if (downloadingList.count > 0) {
+        self.downloadingCount.hidden = NO;
         self.downloadingCount.text = [NSString stringWithFormat:@"正在离线%d首歌曲, 点击查看",downloadingList.count];
         if (self.tableViewTopConstraint.constant == 64) {
             self.tableViewTopConstraint.constant = 64 + 32;
         }
     }else {
+        self.downloadingCount.hidden = YES;
         if (self.tableViewTopConstraint.constant == 64 + 32) {
             [UIView animateWithDuration:0.4 animations:^{
                 self.tableViewTopConstraint.constant = 64;
@@ -131,7 +133,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SongInfo * info = [self.songSource objectAtIndex:indexPath.row];
-    if (![[AppDelegate delegate].player.currentSong.sid isEqualToString:info.sid]) {
+    if (![AppDelegate delegate].player.isOffLinePlay || ![[AppDelegate delegate].player.currentSong.sid isEqualToString:info.sid]) {
         [[AppDelegate delegate].player playOffLineList:self.songSource index:indexPath.row];
     }
     [[AppDelegate delegate].playView show];

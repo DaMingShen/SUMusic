@@ -100,15 +100,18 @@
     [_playingPet addGestureRecognizer:tap];
     UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(petPan:)];
     [_playingPet addGestureRecognizer:pan];
-    [_playingPet startAnimating];
+//    [_playingPet startAnimating];
     [self.navigationController.view addSubview:_playingPet];
 }
 
 - (void)petTap {
-    if (_appDelegate.player.isPlaying) {
-        [_appDelegate.playView show];
-    }else {
+    //如果是暂停，则继续播放
+    if (_appDelegate.player.status == SUPlayStatusPause) {
         [_appDelegate.player startPlay];
+    }
+    //不是则显示页面
+    else {
+        [_appDelegate.playView show];
     }
 }
 
@@ -125,11 +128,21 @@
 #pragma mark - 通知处理
 - (void)observeSongPlayStatus {
     SUPlayStatus status = [AppDelegate delegate].player.status;
-    if (status == SUPlayStatusPause) {
-        [_playingPet stopAnimating];
-    }
-    if (status == SUPlayStatusPlay) {
-        [_playingPet startAnimating];
+    switch (status) {
+        case SUPlayStatusLoadSongInfo:
+            if (!_playingPet.isAnimating) [_playingPet startAnimating];
+            break;
+        case SUPlayStatusPause:
+            if (_playingPet.isAnimating) [_playingPet stopAnimating];
+            break;
+        case SUPlayStatusPlay:
+            if (!_playingPet.isAnimating) [_playingPet startAnimating];
+            break;
+        case SUPlayStatusStop:
+            if (_playingPet.isAnimating) [_playingPet stopAnimating];
+            break;
+        default:
+            break;
     }
 }
 
