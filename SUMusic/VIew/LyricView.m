@@ -64,9 +64,19 @@
     [self addGestureRecognizer:tap];
     
     _currentIndex = 0;
+    [self startRoll];
+}
+
+- (void)startRoll {
+    if (_timer) return;
     _timer = [CADisplayLink displayLinkWithTarget:self selector:@selector(scrollLyric)];
     _timer.frameInterval = 3;
     [_timer addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+- (void)stopRoll {
+    [_timer invalidate];
+    _timer = nil;
 }
 
 #pragma mark - 加载歌词

@@ -209,5 +209,13 @@
     [self.layer removeAnimationForKey:@"rotateAnimation"];
 }
 
+- (void)startTransitionAnimation {
+    CATransition * transition = [CATransition animation];
+    transition.duration = 0.5f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    [self.layer addAnimation:transition forKey:nil];
+}
+
 
 @end

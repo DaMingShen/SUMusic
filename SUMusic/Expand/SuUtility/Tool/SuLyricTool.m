@@ -31,6 +31,7 @@
                 
                 for (NSString * subString in lineArray) {
                     if ([subString isEqualToString:lyr]) break;
+                    if (subString.length < 6) continue;
                     //3.2 歌词对应的时间
                     NSString * timeStr = [subString substringWithRange:NSMakeRange(1, 5)];
                     NSArray<NSString *> * timeArray = [timeStr componentsSeparatedByString:@":"];

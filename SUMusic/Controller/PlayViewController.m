@@ -90,12 +90,16 @@
         [self.view addSubview:self.lycView];
     });
     
-    if (_player.isPlaying) [self addTimer];
+    if (_player.isPlaying) {
+        [self addTimer];
+        [self.lycView startRoll];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     if (_timer) [self removeTimer];
+    [self.lycView stopRoll];
 }
 
 #pragma mark - 界面出现和隐藏
@@ -263,14 +267,19 @@
         self.player.coverImg = image;
         [[AppDelegate delegate] configNowPlayingCenter];
     }];
+    [self.songCover startTransitionAnimation];
     
     //歌名
     self.songName.text = _player.currentSong.title;
     self.singer.text = [NSString stringWithFormat:@"- %@ -",_player.currentSong.artist];
+    [self.songName startTransitionAnimation];
+    [self.singer startTransitionAnimation];
     
     //进度条
     self.playTime.hidden = NO;
     self.totalTime.hidden = NO;
+    [self.playTime startTransitionAnimation];
+    [self.totalTime startTransitionAnimation];
     
     //三大金刚
     self.loveSong.selected = _player.currentSong.like.intValue == 1 ? YES : NO;

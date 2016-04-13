@@ -22,6 +22,16 @@
  */
 - (void)clearLyric;
 
+/**
+ *  滚动歌词
+ */
+- (void)startRoll;
+
+/**
+ *  停止滚动
+ */
+- (void)stopRoll;
+
 /*
  * 滚动歌词
  */

@@ -43,5 +43,6 @@
 ///截图
 - (UIImage *)screenshot;
 
+- (void)startTransitionAnimation;
 
 @end
