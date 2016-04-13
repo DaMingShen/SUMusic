@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginPage">
+            <connections>
+                <outlet property="left_hidden" destination="6Zt-k4-9dh" id="I6p-zp-ejI"/>
+                <outlet property="left_look" destination="Upt-Z5-RRk" id="cqk-QM-0Tx"/>
+                <outlet property="loginButton" destination="AKg-mj-GWk" id="l1S-mj-gVC"/>
+                <outlet property="loginView" destination="kM8-27-YCN" id="pUn-vf-hjV"/>
+                <outlet property="passwordTextField" destination="aKo-xV-3bg" id="FgL-xZ-3zc"/>
+                <outlet property="right_hidden" destination="l8J-2v-tVL" id="l2Q-oT-adb"/>
+                <outlet property="right_look" destination="cDb-OY-5zB" id="R8G-xa-Zxd"/>
+                <outlet property="userNameTextField" destination="SWP-hr-eWR" id="LiG-5I-hxV"/>
+                <outlet property="view" destination="6dZ-Et-L9N" id="5Fy-Js-nx4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="6dZ-Et-L9N">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52K-TG-NC5">
+                    <rect key="frame" x="150" y="116" width="300" height="300"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login" translatesAutoresizingMaskIntoConstraints="NO" id="KQ5-zG-Rpl">
+                            <rect key="frame" x="40" y="1" width="220" height="110"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-arm-left" translatesAutoresizingMaskIntoConstraints="NO" id="6Zt-k4-9dh" userLabel="login-arm-left-hidden.png">
+                            <rect key="frame" x="45" y="101" width="40" height="66"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-arm-right" translatesAutoresizingMaskIntoConstraints="NO" id="l8J-2v-tVL" userLabel="login-arm-right-hidden.png">
+                            <rect key="frame" x="218" y="101" width="40" height="66"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kM8-27-YCN">
+                            <rect key="frame" x="6" y="102" width="288" height="190"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Phone" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SWP-hr-eWR">
+                                    <rect key="frame" x="28" y="28" width="232" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="wU3-Zm-ncl"/>
+                                    </connections>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aKo-xV-3bg">
+                                    <rect key="frame" x="28" y="83" width="232" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="Usu-XC-jrn"/>
+                                    </connections>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5X3-2k-XeU">
+                                    <rect key="frame" x="0.0" y="137" width="288" height="53"/>
+                                    <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKg-mj-GWk">
+                                    <rect key="frame" x="19" y="147" width="251" height="33"/>
+                                    <color key="backgroundColor" red="0.1019607843" green="0.5568627451" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Login">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="login:" destination="-1" eventType="touchUpInside" id="6Iy-0g-L6v"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <real key="value" value="0.5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-arm-normal" translatesAutoresizingMaskIntoConstraints="NO" id="Upt-Z5-RRk" userLabel="login-arm-left.png">
+                            <rect key="frame" x="45" y="82" width="40" height="40"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login-arm-normal" translatesAutoresizingMaskIntoConstraints="NO" id="cDb-OY-5zB" userLabel="login-arm-right.png">
+                            <rect key="frame" x="218" y="82" width="40" height="40"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="300" id="DrK-ga-o9a"/>
+                        <constraint firstAttribute="width" constant="300" id="UuP-K1-WhX"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5i-R8-Bjb">
+                    <rect key="frame" x="16" y="25" width="44" height="44"/>
+                    <state key="normal" image="back_btn"/>
+                    <connections>
+                        <action selector="back:" destination="-1" eventType="touchUpInside" id="XCq-AL-b06"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="52K-TG-NC5" secondAttribute="centerX" id="4C8-BN-6vf"/>
+                <constraint firstAttribute="centerY" secondItem="52K-TG-NC5" secondAttribute="centerY" constant="34" id="QIp-0E-nJA"/>
+            </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="x3p-uU-Fcg" appends="YES" id="8YJ-uF-NqZ"/>
+            </connections>
+        </view>
+        <tapGestureRecognizer id="x3p-uU-Fcg">
+            <connections>
+                <action selector="tapAction:" destination="-1" id="ihZ-dq-yu8"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="back_btn" width="30" height="30"/>
+        <image name="login" width="211" height="108"/>
+        <image name="login-arm-left" width="40" height="65"/>
+        <image name="login-arm-normal" width="100" height="100"/>
+        <image name="login-arm-right" width="40" height="65"/>
+    </resources>
+</document>
