@@ -8,7 +8,6 @@
 
 #import "PlayViewController.h"
 #import "OffLineManager.h"
-#import <UMSocial.h>
 #import <MediaPlayer/MPNowPlayingInfoCenter.h>
 #import "LyricView.h"
 #import "ShareView.h"
@@ -491,17 +490,6 @@
 
 - (void)shareWithType:(NSInteger)shareType {
     
-    NSArray * types = @[UMShareToSina, UMShareToWechatSession, UMShareToWechatTimeline];
-    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[types[shareType]] content:[NSString stringWithFormat:@"%@%@",_player.currentSong.title,_player.currentSong.artist] image:DefaultImg location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response) {
-        
-        [_shareView dismiss:nil];
-        if (response.responseCode == UMSResponseCodeSuccess) {
-            BASE_INFO_FUN(@"分享成功");
-            [SuDBManager saveToSharedList];
-        }else {
-            BASE_INFO_FUN(@"分享失败");
-        }
-    }];
 }
 
 @end

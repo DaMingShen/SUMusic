@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
-#import <UMSocial.h>
-#import <UMSocialWechatHandler.h>
 #import "OffLineManager.h"
 
 @interface AppDelegate ()
@@ -47,11 +45,6 @@
     self.playView = [[PlayViewController alloc]init];
     [self.playView launchShow];
     [self.player launchPlay];
-    
-    
-    //初始化友盟
-    [UMSocialData setAppKey:@"56a4941667e58e200d001b8d"];
-    [UMSocialWechatHandler setWXAppId:@"wxf8ce75c31226366a" appSecret:@"4692af8d31f541dba7b1a2ffbcd29019" url:@"www.baidu.com"];
     
     //Remote Control
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
@@ -91,11 +84,7 @@
 #pragma mark - URL 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
-    BOOL result = [UMSocialSnsService handleOpenURL:url];
-    if (result == false) {
-        
-    }
-    return result;
+    return YES;
 }
 
 #pragma mark - User

@@ -91,7 +91,7 @@
     
     //请求数据
     [[SUNetwork manager] GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-//        BASE_INFO_FUN(responseObject);
+        BASE_INFO_FUN(responseObject);
         if ([[responseObject objectForKey:NetResult] intValue] == NetOk) {
             //正常播放完一首歌 : 直接返回请求结果，不用切歌
             if (type == OperationTypeEnd) {

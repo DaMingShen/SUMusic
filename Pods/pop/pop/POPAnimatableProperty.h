@@ -12,6 +12,7 @@
 #import <Foundation/NSObject.h>
 
 #import <pop/POPDefines.h>
+#import <pop/POPAnimatablePropertyTypes.h>
 
 @class POPMutableAnimatableProperty;
 
@@ -46,12 +47,12 @@
 /**
  @abstract Block used to read values from a property into an array of floats.
  */
-@property (readonly, nonatomic, copy) void (^readBlock)(id obj, CGFloat values[]);
+@property (readonly, nonatomic, copy) POPAnimatablePropertyReadBlock readBlock;
 
 /**
  @abstract Block used to write values from an array of floats into a property.
  */
-@property (readonly, nonatomic, copy) void (^writeBlock)(id obj, const CGFloat values[]);
+@property (readonly, nonatomic, copy) POPAnimatablePropertyWriteBlock writeBlock;
 
 /**
  @abstract The threshold value used when determining completion of dynamics simulations.
@@ -73,12 +74,12 @@
 /**
  @abstract A read-write version of POPAnimatableProperty readBlock property.
  */
-@property (readwrite, nonatomic, copy) void (^readBlock)(id obj, CGFloat values[]);
+@property (readwrite, nonatomic, copy) POPAnimatablePropertyReadBlock readBlock;
 
 /**
  @abstract A read-write version of POPAnimatableProperty writeBlock property.
  */
-@property (readwrite, nonatomic, copy) void (^writeBlock)(id obj, const CGFloat values[]);
+@property (readwrite, nonatomic, copy) POPAnimatablePropertyWriteBlock writeBlock;
 
 /**
  @abstract A read-write version of POPAnimatableProperty threshold property.
@@ -86,6 +87,8 @@
 @property (readwrite, nonatomic, assign) CGFloat threshold;
 
 @end
+
+POP_EXTERN_C_BEGIN
 
 /**
  Common CALayer property names.
@@ -129,6 +132,7 @@ extern NSString * const kPOPShapeLayerStrokeEnd;
 extern NSString * const kPOPShapeLayerStrokeColor;
 extern NSString * const kPOPShapeLayerFillColor;
 extern NSString * const kPOPShapeLayerLineWidth;
+extern NSString * const kPOPShapeLayerLineDashPhase;
 
 /**
  Common NSLayoutConstraint property names.
@@ -159,6 +163,7 @@ extern NSString * const kPOPScrollViewContentOffset;
 extern NSString * const kPOPScrollViewContentSize;
 extern NSString * const kPOPScrollViewZoomScale;
 extern NSString * const kPOPScrollViewContentInset;
+extern NSString * const kPOPScrollViewScrollIndicatorInsets;
 
 /**
  Common UITableView property names.
@@ -247,3 +252,5 @@ extern NSString * const kPOPSCNNodeScaleZ;
 extern NSString * const kPOPSCNNodeScaleXY;
 
 #endif
+
+POP_EXTERN_C_END
